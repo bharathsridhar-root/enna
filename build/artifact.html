@@ -204,6 +204,9 @@ section.blk.alt{background:var(--sunk)}
 
 footer{padding-block:52px;border-top:1px solid var(--line);
   background:var(--ground);position:relative;z-index:3}
+footer a{color:var(--accent);text-decoration:none;
+  border-bottom:1px solid var(--line);padding-bottom:2px}
+footer a:hover{border-bottom-color:var(--accent)}
 footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-3);
   line-height:1.8}
@@ -242,6 +245,30 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
 .sum .l{font-size:14px;color:var(--ink-2)}
 .sum .s{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
   text-transform:uppercase;color:var(--ink-3)}
+
+/* the loop */
+.loop{display:flex;flex-direction:column;gap:15px;max-width:940px;margin-top:38px}
+.ex{max-width:min(100%,34rem);display:flex;flex-direction:column;gap:3px}
+.ex.r{margin-left:auto;text-align:right}
+.ex .w{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.ex b{font-family:var(--tam);font-weight:700;color:var(--ink);line-height:1.5;
+  letter-spacing:-.01em}
+.ex .t{font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.03em}
+.ex.s1 b{font-size:21px}
+.ex.s2 b{font-size:22px}
+.ex.s3 b{font-size:24px}
+.ex.s4 b{font-size:clamp(24px,2.6vw,28px)}
+.ex.s5 b{font-size:clamp(26px,3vw,32px)}
+.ex.s6{max-width:min(100%,44rem)}
+.ex.s6 b{font-size:clamp(24px,3.4vw,36px);line-height:1.35}
+.ex.s7 b{font-size:clamp(22px,2.6vw,27px)}
+.beat{font-family:var(--mono);font-size:20px;color:var(--ink-3);text-align:center;
+  padding-block:10px;letter-spacing:.5em}
+.gloss{margin-top:38px;padding-top:26px;border-top:1px solid var(--line);
+  font-size:15.5px;color:var(--ink-2);max-width:64ch;line-height:1.8}
+.gloss b{font-family:var(--tam);color:var(--ink);font-weight:700}
+.gloss i{font-style:italic;color:var(--accent)}
 
 /* name-origin dialogue */
 .dlg{display:flex;flex-direction:column;gap:10px;max-width:940px}
@@ -286,6 +313,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
 .cn .k-h{fill:none;stroke:var(--ink);stroke-width:2.5}
 .cn .e-grip{fill:var(--accent-bright);stroke:var(--ink);stroke-width:2.5}
 .cn .oil{fill:var(--accent-bright);stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.cn .film{fill:var(--accent-bright);opacity:.42;stroke:none}
 .cn .mist circle{fill:var(--accent-bright);stroke:none}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 </style>
@@ -320,14 +348,6 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
         brush ever reaches the corner it can't see.</p>
       <span class="hint">Ø52 mm base · captive LSR face gasket</span>
     </div></div>
-    <div class="panel panel--r wrap"><div class="card">
-      <p class="eyebrow">The hard problem</p>
-      <h2>Eleven parts. Every one washable.</h2>
-      <p class="lede">Sprayers don't die of old age — they die of clogging. Every
-        wetted part here comes out by hand in under fifteen seconds. No tools, no
-        captive screens, no sealed cartridge you throw away.</p>
-      <span class="hint">Scroll to separate</span>
-    </div></div>
     <div class="panel wrap"><div class="card">
       <p class="eyebrow">The gauge</p>
       <h2>It counts, so you don't have to.</h2>
@@ -338,6 +358,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
         mouth handles the other half — knowing when to stop pouring.</p>
       <span class="hint">1,250 strokes · etched 250 ml fill line</span>
     </div></div>
+    <div class="panel wrap" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -399,52 +420,40 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   <div class="wrap">
     <div class="head narrow">
       <p class="eyebrow">Where the name comes from</p>
-      <h2>"என்ன வேணும்?"</h2>
-      <p class="lede">In Tamil, <em>enna</em> means <strong>what</strong>. Move
-        one sound and எண்ணெய் — <em>ennai</em> — means <strong>oil</strong>.
-        There is a comedy scene every Tamil household can recite, built entirely
-        on those two words refusing to meet. We named the product after the
-        collision.</p>
+      <h2>Two men. One word. Seven rounds.</h2>
+      <p class="lede">Read the small line under each. That is the whole joke —
+        both of them are saying the identical thing.</p>
     </div>
-    <div class="dlg">
-      <div class="ln ln--a">
-        <span class="who">Shopkeeper</span>
-        <span class="ta">என்ன வேணும்?</span>
-        <span class="tr">enna vēṇum?</span>
-        <span class="tx">What do you want?</span>
-      </div>
-      <div class="ln ln--b">
-        <span class="who">Customer</span>
-        <span class="ta">எண்ணெய் வேணும்!</span>
-        <span class="tr">eṇṇai vēṇum!</span>
-        <span class="tx">Oil is what I want!</span>
-      </div>
-      <div class="ln ln--a">
-        <span class="who">Shopkeeper</span>
-        <span class="ta">அதத்தானே கேக்குறேன் — என்ன வேணும்னு?</span>
-        <span class="tr">adhaththāne kēkkuṟēn — enna vēṇum-nu?</span>
-        <span class="tx">That is exactly what I am asking — what do you want?</span>
-      </div>
-      <div class="ln ln--b">
-        <span class="who">Customer</span>
-        <span class="ta">நானும் அததானே சொல்றேன்!</span>
-        <span class="tr">nānum adhathāne solṟēn!</span>
-        <span class="tx">And I am telling you exactly the same thing!</span>
-      </div>
-      <div class="ln ln--beat">— four more rounds of this —</div>
-      <div class="ln ln--a">
-        <span class="who">Shopkeeper, at the end of his patience</span>
-        <span class="ta">என்ன எண்ணெய்?! நல்லெண்ணெயா, கடலை எண்ணெயா, தேங்காய் எண்ணெயா?!</span>
-        <span class="tr">enna eṇṇai?! nallennaiyā, kaḍalai eṇṇaiyā, thēngāy eṇṇaiyā?!</span>
-        <span class="tx">WHAT oil?! Sesame, groundnut or coconut?!</span>
-      </div>
-      <div class="ln ln--a">
-        <span class="who">Shopkeeper, the coin finally dropping</span>
-        <span class="ta">அட பாவி… ஆயில் கேக்கறியா?!</span>
-        <span class="tr">aḍa pāvi… oil-ā kēkkaṟiyā?!</span>
-        <span class="tx">Oh you villain — you wanted OIL this whole time?!</span>
-      </div>
+
+    <div class="loop">
+      <div class="ex s1"><span class="w">Shopkeeper</span>
+        <b>என்ன வேணும்?</b><span class="t">enna vēṇum?</span></div>
+      <div class="ex s1 r"><span class="w">Customer</span>
+        <b>என்ன வேணும்!</b><span class="t">enna vēṇum!</span></div>
+      <div class="ex s2">
+        <b>அததான் கேக்குறேன் — என்ன வேணும்-னு?</b>
+        <span class="t">adhathān kēkkuṟēn — enna vēṇum-nu?</span></div>
+      <div class="ex s3 r">
+        <b>நானும் அததான் சொல்றேன் — என்ன வேணும்-னு!</b>
+        <span class="t">nānum adhathān solṟēn — enna vēṇum-nu!</span></div>
+      <div class="ex s4">
+        <b>அய்யோய்யோ… அதுதான் என்ன-ன்னு சொல்லுய்யா!</b>
+        <span class="t">ayyōyyō… adhudhān enna-nnu solluyyā!</span></div>
+      <div class="ex s5 r">
+        <b>என்ன தான் வேணும்-ங்குறேன்!</b>
+        <span class="t">enna dhān vēṇum-ṅguṟēn!</span></div>
+      <div class="ex s6">
+        <b>என்ன எண்ணெ?! நல்லெண்ணெயா, கடலை எண்ணெயா, தேங்காய் எண்ணெயா?!</b>
+        <span class="t">enna eṇṇe?! nallennaiyā, kaḍalai eṇṇaiyā, thēngāy eṇṇaiyā?!</span></div>
+      <div class="beat">· · ·</div>
+      <div class="ex s7">
+        <b>அட பாவி… ஆயில்-ஆ கேக்குற?!</b>
+        <span class="t">aḍa pāvi… oil-ā kēkkuṟa?!</span></div>
     </div>
+
+    <p class="gloss"><b>என்ன</b> <i>enna</i> — what. &nbsp;&nbsp;
+      <b>எண்ணெய்</b> <i>ennai</i> — oil. &nbsp; Say them at speed and they are the
+      same word. Seven rounds later he works out that the man just wanted oil.</p>
 
     <div class="oils">
       <div class="oil-c">
@@ -472,9 +481,8 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
 
     <div class="punch">
       <div class="ta">"என்ன வேணும்?" &nbsp;—&nbsp; "<b>எண்ணெய்.</b>"</div>
-      <p>It takes the poor man seven rounds to work out that <em>enna</em> and
-        <em>ennai</em> were the same request all along. We just put them on the
-        same bottle and saved everyone the argument.</p>
+      <p>He asked the right question the whole time. We just made the answer a
+        product, so nobody has to go seven rounds again.</p>
     </div>
   </div>
 </section>
@@ -502,7 +510,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
           <path class="k-body" d="M64 140 a86 62 0 0 0 172 0"/>
           <circle class="k-h" cx="46" cy="140" r="11"/>
           <circle class="k-h" cx="254" cy="140" r="11"/>
-          <ellipse class="oil" cx="150" cy="186" rx="26" ry="6"/>
+          <ellipse class="oil" cx="150" cy="188" rx="19" ry="5"/>
         </svg>
         <div class="beat">
           <div><div class="ta">கொஞ்சம் தான்</div><div class="en">just a little</div></div>
@@ -564,7 +572,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
           <path class="k-body" d="M64 140 a86 62 0 0 0 172 0"/>
           <circle class="k-h" cx="46" cy="140" r="11"/>
           <circle class="k-h" cx="254" cy="140" r="11"/>
-          <ellipse class="oil" cx="150" cy="150" rx="79" ry="9"/>
+          <ellipse class="film" cx="150" cy="150" rx="78" ry="5"/>
         </svg>
         <div class="beat">
           <div><div class="ta">இது தான் கொஞ்சம்.</div><div class="en">this is "a little".</div></div>
@@ -679,10 +687,11 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   <div class="wrap">
     <div class="head narrow">
       <p class="eyebrow">What we fixed</p>
-      <h2>Eleven complaints, eleven answers.</h2>
+      <h2>Six complaints, six answers.</h2>
       <p class="lede">Each of these is a documented failure in reviews of the
         sprayers already on sale — the ₹300 imports and the ₹2,600 imports
-        alike. We treated the review sections as a specification.</p>
+        alike. We treated the review sections as a specification. There are
+        another five, and the full list is in the engineering notes.</p>
     </div>
     <div class="feats">
       <div class="feat"><span class="n">01</span><h3>It clogs in two weeks</h3>
@@ -691,121 +700,21 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
       <div class="feat"><span class="n">02</span><h3>It sprays a jet, not a mist</h3>
         <p>A pre-compression valve holds a 2.4 bar floor under every discharge.
           Squeeze slowly and it still atomises — or it doesn't fire at all.</p></div>
-      <div class="feat"><span class="n">03</span><h3>It leaks at the thread</h3>
-        <p>Coarse four-start threads that cannot cross-thread, closing onto
-          silicone face seals rather than thread-on-thread contact.</p></div>
-      <div class="feat"><span class="n">04</span><h3>You can't clean inside it</h3>
+      <div class="feat"><span class="n">03</span><h3>You can't clean inside it</h3>
         <p>Both ends open. The body becomes a straight tube you can see through,
           brush through and drop in hot water.</p></div>
-      <div class="feat"><span class="n">05</span><h3>Oil runs down the outside</h3>
+      <div class="feat"><span class="n">04</span><h3>Oil runs down the outside</h3>
         <p>The nozzle is recessed in a wiper collar with a return channel that
           drains the post-spray bead back into the body.</p></div>
+      <div class="feat"><span class="n">05</span><h3>You never know what's left</h3>
+        <p>A stroke counter in the head and a fill line etched inside the mouth.
+          No window means no hole in the wall, and no leak path.</p></div>
       <div class="feat"><span class="n">06</span><h3>The plastic top warped</h3>
         <p>Steel and silicone in every part that faces the hob. Nothing near the
           heat is structural plastic.</p></div>
-      <div class="feat"><span class="n">07</span><h3>It's a mess to refill</h3>
-        <p>The pouch goes into the decanter once. The decanter tops up the
-          sprayer three times. Nothing is ever poured from a floppy pouch again.</p></div>
-      <div class="feat"><span class="n">08</span><h3>You never know what's left</h3>
-        <p>A segmented stroke counter in the head, not a window. No hole in the
-          wall means no leak path — and it counts calories while it's there.</p></div>
-      <div class="feat"><span class="n">09</span><h3>You overfilled it and killed the pump</h3>
-        <p>Oil above the max line overloads the pump on almost every sprayer
-          sold. A 250 ml line laser-etched on the inside wall is visible straight
-          down the open mouth while you pour.</p></div>
-      <div class="feat"><span class="n">10</span><h3>You've no idea how old that oil is</h3>
-        <p>The silicone ring is a dry-erase surface. Write the date you filled it
-          in marker, wipe it off next time. It is also exactly the labelling
-          format commercial kitchens are required to use.</p></div>
-      <div class="feat"><span class="n">11</span><h3>Nobody answers the warranty</h3>
-        <p>Spares sold openly at ₹199 — nozzle, both gaskets, both screens — so
-          "buy once" means something past year two.</p></div>
     </div>
   </div>
 </section>
-<section class="blk alt">
-  <div class="wrap">
-    <div class="head narrow">
-      <p class="eyebrow">Specification</p>
-      <h2>Target numbers.</h2>
-    </div>
-    <div class="scroll">
-      <table class="tbl">
-        <thead><tr><th>Parameter</th><th>Enna Spray</th><th>Enna Store</th></tr></thead>
-        <tbody>
-          <tr><td>Capacity</td><td>250 ml</td><td>750 ml</td></tr>
-          <tr><td>Height · body diameter</td><td>185 mm · Ø58 mm</td><td>192 mm · Ø82 mm</td></tr>
-          <tr><td>Mouth opening</td><td>Ø48 mm</td><td>Ø70 mm</td></tr>
-          <tr><td>Base opening</td><td>Ø52 mm, removable</td><td>—</td></tr>
-          <tr><td>Empty mass · filled mass</td><td>300 g · 530 g</td><td>250 g · 940 g</td></tr>
-          <tr><td>Metered dose per stroke</td><td>0.20 ml ± 0.03</td><td>—</td></tr>
-          <tr><td>Counter range</td><td>1,250 strokes, resettable</td><td>—</td></tr>
-          <tr><td>Fill indication</td><td>Etched 250 ml line, internal</td><td>Etched 250 ml pour line</td></tr>
-          <tr><td>Valve cracking pressure</td><td>2.4 bar</td><td>—</td></tr>
-          <tr><td>Filtration</td><td>600 µm · 150 µm</td><td>—</td></tr>
-          <tr><td>Body · screens</td><td>18/8 stainless · SS 316</td><td>18/8 stainless</td></tr>
-          <tr><td>Seals · grip ring</td><td>Food-grade LSR silicone</td><td>Food-grade LSR silicone</td></tr>
-          <tr><td>Grip ring surface</td><td colspan="2">Dry-erase writable — date the oil</td></tr>
-          <tr><td>Wetted parts, tool-free</td><td>11 of 11</td><td>3 of 3</td></tr>
-          <tr><td>Viscosity window</td><td>25–95 cSt at 25 °C</td><td>—</td></tr>
-          <tr><td>Leak validation</td><td colspan="2">24 h inverted at 45 °C · 500 open/close cycles</td></tr>
-          <tr><td>Compliance route</td><td colspan="2">BIS food-contact IS series · one GS1 EAN for the set</td></tr>
-          <tr><td>Indicative retail</td><td colspan="2">₹1,799 for the set</td></tr>
-        </tbody>
-</table>
-    </div>
-    <p class="cap">Design targets for the first prototype round, not measured
-      production values.</p>
-
-    <div class="parts" style="margin-top:34px" aria-label="Part list">
-      <div class="part"><b>EN-01</b><span>Nozzle collar<small>MIST / SPRAY / DRIZZLE</small></span></div>
-      <div class="part"><b>EN-02</b><span>Dose counter<small>1,250 strokes, resets on refill</small></span></div>
-      <div class="part"><b>EN-03</b><span>Pre-compression valve<small>2.4 bar cracking pressure</small></span></div>
-      <div class="part"><b>EN-04</b><span>Pump cartridge<small>POM + SS spring, tool-free</small></span></div>
-      <div class="part"><b>EN-05</b><span>Fine screen<small>150 µm, SS 316</small></span></div>
-      <div class="part"><b>EN-06</b><span>Wide-mouth collar<small>Ø48 mm, 4-start thread</small></span></div>
-      <div class="part"><b>EN-07</b><span>Body<small>18/8 stainless, 250 ml</small></span></div>
-      <div class="part"><b>EN-08</b><span>Dip tube<small>Raised intake, 9 mm standoff</small></span></div>
-      <div class="part"><b>EN-09</b><span>Intake basket<small>600 µm bayonet screen</small></span></div>
-      <div class="part"><b>EN-10</b><span>Base cap + gasket<small>Ø52 mm, captive LSR face seal</small></span></div>
-      <div class="part"><b>EN-11</b><span>Silicone grip ring<small>Twist to open · anti-slip · dry-erase band</small></span></div>
-    </div>
-  </div>
-</section>
-
-<section class="blk">
-  <div class="wrap">
-    <div class="head narrow">
-      <p class="eyebrow">Against the field</p>
-      <h2>Where Enna sits.</h2>
-      <p class="lede">The market has a crowded floor and an empty middle. Below
-        ₹600 the imports fail predictably; above ₹2,500 the American premium
-        brands were never designed for these oils.</p>
-    </div>
-    <div class="scroll">
-      <table class="tbl tbl--cmp">
-        <thead><tr><th></th><th>₹200–600 imports</th><th>Evo, ≈₹2,600</th><th>Enna</th></tr></thead>
-        <tbody>
-          <tr><td>Handles particulate from reused oil</td><td class="no">No</td><td class="no">No</td><td class="yes">Three-stage</td></tr>
-          <tr><td>Consistent mist at low squeeze speed</td><td class="no">No</td><td class="no">Degrades</td><td class="yes">Pre-compression</td></tr>
-          <tr><td>Opens at both ends for cleaning</td><td class="no">No</td><td class="no">No</td><td class="yes">Top and base</td></tr>
-          <tr><td>Sized to a 1 L pouch</td><td class="no">Leftover pouch</td><td class="no">Leftover pouch</td><td class="yes">250 + 750</td></tr>
-          <tr><td>Survives a drop</td><td class="no">Glass or thin plastic</td><td class="no">Glass option</td><td class="yes">Stainless</td></tr>
-          <tr><td>Blocks light to slow rancidity</td><td class="no">Clear</td><td class="no">Clear</td><td class="yes">Opaque steel</td></tr>
-          <tr><td>Survives being overfilled</td><td class="no">Kills the pump</td><td class="no">Kills the pump</td><td class="yes">Etched fill line</td></tr>
-          <tr><td>Survives sitting near the hob</td><td class="no">Warps</td><td class="no">Reported warping</td><td class="yes">Steel + silicone</td></tr>
-          <tr><td>Tells you what's left</td><td class="no">No</td><td class="no">No</td><td class="yes">Stroke counter</td></tr>
-          <tr><td>Spares sold separately</td><td class="no">No</td><td class="no">No</td><td class="yes">₹199 kit</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="cap">Import and Evo columns summarise published customer reviews on
-      Amazon, Walmart and QVC, not our own laboratory testing. Europe is further
-      along on one row than this table suggests — Valuxe ships UV-protected glass,
-      which is the best answer anyone has given to light short of going opaque.</p>
-  </div>
-</section>
-
 <section class="blk alt">
   <div class="wrap">
     <div class="head narrow">
@@ -845,90 +754,52 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   </div>
 </section>
 
-<section class="blk">
-  <div class="wrap">
-    <div class="head narrow">
-      <p class="eyebrow">Who this is for</p>
-      <h2>People who already measure.</h2>
-      <p class="lede">Three groups reach for Enna first, and they have exactly
-        one thing in common: every one of them already counts something. Enna
-        does not ask them to start a new habit — it plugs into the one they
-        have.</p>
-    </div>
-    <div class="feats">
-      <div class="feat"><span class="n">Measures blood sugar</span>
-        <h3>Diabetic and PCOS households</h3>
-        <p>Enormous in India and medically motivated rather than aspirational.
-          Fat quantity is already on the doctor's list, and a counter that
-          reports the week's oil in kilocalories is the first honest answer
-          anyone has given them.</p></div>
-      <div class="feat"><span class="n">Measures cooking</span>
-        <h3>Air fryer owners</h3>
-        <p>They already bought an appliance to use less oil, then went back to
-          pouring from the bottle into the basket. The argument is pre-made;
-          Enna is the missing accessory.</p></div>
-      <div class="feat"><span class="n">Measures intake</span>
-        <h3>Calorie and macro trackers</h3>
-        <p>Cooking oil is the single largest untracked number in an Indian
-          food log — nobody knows what went into the sambar. 1,250 strokes at
-          1.7 kcal each is the first oil figure they can actually enter.</p></div>
-    </div>
-    <p class="cap">Launch geography and launch audience are separate questions.
-      These three are pan-India; the name, the joke and the oils argue for
-      Tamil Nadu as the first state on the shelf.</p>
-  </div>
-</section>
-
-<section class="blk alt">
-  <div class="wrap">
-    <div class="head narrow">
-      <p class="eyebrow">Status</p>
-      <h2>Where this actually stands.</h2>
-      <p class="lede">Enna is a design concept with a costed path to production.
-        Nothing on this page is for sale yet, and the numbers above are targets,
-        not measurements.</p>
-    </div>
-    <div class="road">
-      <div class="step"><div class="step__n">01</div><div class="step__b">
-        <span class="when">Complete</span>
-        <h3>Category teardown and failure analysis</h3>
-        <p>Mechanism architectures compared, review-mined failure modes
-          catalogued across Evo, Misto and the Amazon and Flipkart import field,
-          India-specific constraints documented.</p></div></div>
-      <div class="step"><div class="step__n">02</div><div class="step__b">
-        <span class="when">Next · 4 weeks</span>
-        <h3>Freedom-to-operate and provisional filing</h3>
-        <p>Clear the live pre-compression patent family, then file a provisional
-          on the filtration, raised-intake and dual-opening architecture, plus
-          the Enna word mark in class 21.</p></div></div>
-      <div class="step"><div class="step__n">03</div><div class="step__b">
-        <span class="when">Months 2–4</span>
-        <h3>Pump head sourcing and India category exclusivity</h3>
-        <p>Qualify pre-compression heads against the target viscosity window,
-          then negotiate exclusive Indian rights — the fastest durable moat
-          available to a first-time hardware brand.</p></div></div>
-      <div class="step"><div class="step__n">04</div><div class="step__b">
-        <span class="when">Months 3–6</span>
-        <h3>Prototypes, reused-oil testing and leak validation</h3>
-        <p>Printed bodies and screens tested against real strained frying oil
-          from working kitchens. Clog-to-failure cycle counts and the inverted
-          leak test on the base seal are the pass/fail gates.</p></div></div>
-      <div class="step"><div class="step__n">05</div><div class="step__b">
-        <span class="when">Months 6–9</span>
-        <h3>Tooling, compliance and first run</h3>
-        <p>Design registration on the final form, food-contact migration testing
-          under the BIS standards, GS1 barcodes, and soft tooling for a first
-          thousand units.</p></div></div>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap in">
     <span>Enna · எண்ணெய் · an oil sprayer for Indian kitchens</span>
-    <span>Design concept, September 2026 · specifications are targets</span>
+    <span><a href="#" data-page="engineering">Engineering notes, BOM and market research →</a></span>
+  </div>
+  <div class="wrap in" style="margin-top:12px">
+    <span>Design concept, September 2026. Every specification on this page is a
+      design target, not a measured production value. Nothing is for sale yet.</span>
   </div>
 </footer>
+<script>
+/* Cards and callouts are never on screen together: the card's backdrop blur
+   smears the model behind it, and its column collides with the left-hand tags.
+   Copy fades out first; only then do the tags come in. Runs independently of
+   WebGL so the copy still behaves if the 3D library fails to load. */
+(function(){
+  "use strict";
+  var stage  = document.getElementById("stage");
+  var panels = document.querySelector(".stage__panels");
+  if(!stage || !panels){ return; }
+  var queued = false;
+
+  function smooth(a, b, x){
+    var t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+    return t * t * (3 - 2 * t);
+  }
+  function apply(){
+    queued = false;
+    var r = stage.getBoundingClientRect();
+    var span = r.height - window.innerHeight;
+    var p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
+    var fade = 1 - smooth(0.76, 0.86, p);
+    panels.style.opacity = fade;
+    panels.style.pointerEvents = fade < 0.08 ? "none" : "";
+    stage.dataset.progress = p.toFixed(3);
+  }
+  function onScroll(){
+    if(queued){ return; }
+    queued = true;
+    requestAnimationFrame(apply);
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll, {passive:true});
+  apply();
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
@@ -1181,7 +1052,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   function frame(now){
     targetP = progress();
     explode += (targetP - explode) * 0.10;
-    var e = smooth(0.12, 0.62, explode);
+    var e = smooth(0.10, 0.72, explode);
 
     for(var i = 0; i < PARTS.length; i++){
       var p = PARTS[i], o = meshes[p.id];
@@ -1203,8 +1074,8 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
     camera.lookAt(0, group.position.y + 2.0, 0);
 
     if(wide){
-      overlay.classList.toggle("on", e > 0.34);
-      if(e > 0.20){ placeTags(); }
+      overlay.classList.toggle("on", targetP > 0.87);
+      if(targetP > 0.80){ placeTags(); }
     }else{
       overlay.classList.remove("on");
     }
