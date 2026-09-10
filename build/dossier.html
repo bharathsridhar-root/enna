@@ -1,0 +1,446 @@
+<title>Enna Market Dossier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F1F3F4; --surface:#FFFFFF; --sunk:#E9EDEE;
+  --ink:#10161A; --ink-2:#47555E; --ink-3:#74838C;
+  --line:#D2D9DC; --line-soft:#E2E7E9;
+  --accent:#A96C12; --accent-bright:#D9A441; --accent-soft:rgba(217,164,65,.14);
+  --bar:#93A5B0; --warn:#8A4B2A;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gut:clamp(20px,5vw,56px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0E1215; --surface:#161C21; --sunk:#11161A;
+  --ink:#ECF1F3; --ink-2:#9DAAB3; --ink-3:#74838C;
+  --line:#273038; --line-soft:#1D242A;
+  --accent:#E0A63F; --accent-bright:#F0BE63; --accent-soft:rgba(224,166,63,.12);
+  --bar:#41525E; --warn:#D9885A;
+}}
+:root[data-theme="dark"]{
+  --ground:#0E1215; --surface:#161C21; --sunk:#11161A;
+  --ink:#ECF1F3; --ink-2:#9DAAB3; --ink-3:#74838C;
+  --line:#273038; --line-soft:#1D242A;
+  --accent:#E0A63F; --accent-bright:#F0BE63; --accent-soft:rgba(224,166,63,.12);
+  --bar:#41525E; --warn:#D9885A;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.06;
+  letter-spacing:-.025em;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:var(--gut)}
+.col{max-width:70ch}
+.mono{font-family:var(--mono)}
+
+header.mast{border-bottom:1px solid var(--line);padding-block:clamp(38px,7vw,72px) 30px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-3)}
+h1{font-size:clamp(34px,5.4vw,58px);margin-top:14px}
+.sub{font-size:clamp(16px,1.7vw,19px);color:var(--ink-2);max-width:60ch;margin-top:16px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:26px;
+  font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.05em}
+
+section{padding-block:clamp(40px,6vw,68px);border-bottom:1px solid var(--line-soft)}
+section:last-of-type{border-bottom:0}
+.snum{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--accent)}
+h2{font-size:clamp(24px,3.2vw,34px);margin-top:10px}
+.lede{font-size:17px;color:var(--ink-2);margin-top:14px;max-width:66ch}
+.body p{margin-top:16px;color:var(--ink-2);max-width:70ch}
+.body p strong{color:var(--ink);font-weight:600}
+.body h3{font-size:19px;margin-top:34px}
+.stack{margin-top:30px}
+
+.scroll{overflow-x:auto;margin-top:30px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:720px}
+th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line-soft);
+  vertical-align:top}
+thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400;
+  border-bottom:1px solid var(--line);white-space:nowrap}
+tbody th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400;width:15%}
+td strong{color:var(--ink)}
+.t2{font-size:14.5px;min-width:520px}
+.t2 td:first-child{color:var(--ink-2);width:52%}
+.t2 td:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums;
+  text-align:right;white-space:nowrap}
+
+/* price range chart */
+.chart{margin-top:32px;position:relative}
+.axis{display:grid;grid-template-columns:minmax(150px,13rem) 1fr;
+  gap:clamp(10px,2vw,20px)}
+.axis .ax{grid-column:2;display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-3);
+  border-bottom:1px solid var(--line);padding-bottom:6px}
+.rows{display:flex;flex-direction:column;gap:2px;margin-top:4px}
+.r{display:grid;grid-template-columns:minmax(150px,13rem) 1fr;
+  gap:clamp(10px,2vw,20px);align-items:center;padding-block:9px;border-radius:2px}
+.r:hover{background:var(--accent-soft)}
+.r .k{display:flex;flex-direction:column;gap:1px;min-width:0}
+.r .k b{font-size:14.5px;font-weight:600;color:var(--ink)}
+.r .k span{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums}
+.track{position:relative;height:24px;min-width:0}
+.rng{position:absolute;top:4px;height:16px;background:var(--bar);border-radius:3px}
+.gap{position:absolute;top:4px;height:16px;border:1px dashed var(--accent);
+  border-radius:3px;opacity:.75}
+.gap i{position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-style:normal}
+.mark{position:absolute;top:0;bottom:0;width:2px;background:var(--accent);
+  border-radius:1px}
+.marklab{display:grid;grid-template-columns:minmax(150px,13rem) 1fr;
+  gap:clamp(10px,2vw,20px);margin-bottom:6px}
+.marklab .m2{grid-column:2;position:relative;height:16px}
+.marklab .m2 span{position:absolute;transform:translateX(-50%);white-space:nowrap;
+  font-family:var(--mono);font-size:10.5px;color:var(--accent);letter-spacing:.06em}
+.note{font-family:var(--mono);font-size:11px;color:var(--ink-3);
+  line-height:1.7;margin-top:20px;max-width:74ch}
+
+/* stat row */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:30px}
+.stats div{background:var(--ground);padding:19px 18px;display:flex;
+  flex-direction:column;gap:4px}
+.stats .q{font-family:var(--mono);font-size:25px;font-weight:500;color:var(--ink);
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.1}
+.stats .l{font-size:13.5px;color:var(--ink-2)}
+.stats .s{font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3)}
+
+/* callouts */
+.call{margin-top:30px;background:var(--surface);border:1px solid var(--line-soft);
+  border-left:3px solid var(--accent);border-radius:2px;padding:22px 24px;
+  display:flex;flex-direction:column;gap:10px}
+.call .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent)}
+.call h3{font-size:19px}
+.call p{color:var(--ink-2);max-width:66ch}
+.call.warn{border-left-color:var(--warn)}
+.call.warn .tag{color:var(--warn)}
+
+.probs{display:flex;flex-direction:column;margin-top:26px}
+.pr{display:grid;grid-template-columns:auto 1fr;gap:18px;padding-block:20px;
+  border-bottom:1px solid var(--line-soft)}
+.pr:last-child{border-bottom:0}
+.pr .n{font-family:var(--mono);font-size:11px;color:var(--ink-3);padding-top:4px}
+.pr h3{font-size:18px}
+.pr p{margin-top:7px;color:var(--ink-2);font-size:14.5px;max-width:64ch}
+ul.tight{margin:14px 0 0;padding-left:20px;color:var(--ink-2);max-width:66ch}
+ul.tight li{margin-bottom:7px;font-size:14.5px}
+ul.tight li strong{color:var(--ink)}
+
+footer{padding-block:44px;font-family:var(--mono);font-size:11px;
+  color:var(--ink-3);line-height:1.9}
+footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--line)}
+
+@media (max-width:760px){
+  .axis,.r,.marklab{grid-template-columns:1fr}
+  .axis .ax,.marklab .m2,.r .k{grid-column:1}
+  .r{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+
+<header class="mast"><div class="wrap">
+  <div class="kicker">Enna · Internal research</div>
+  <h1>Market Dossier</h1>
+  <p class="sub">Five markets compared, and an honest assessment of whether the
+    Indian five-star and food-service channel is worth chasing. Written to be
+    argued with, not agreed with.</p>
+  <div class="meta">
+    <span>September 2026</span><span>Round 4</span>
+    <span>Desk research · sources listed</span>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <div class="snum">01</div>
+  <h2>Five markets, side by side</h2>
+  <p class="lede">The single most useful row in this table is the last one.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>USA</th><th>Japan</th><th>China</th><th>Germany / EU</th><th>India</th></tr></thead>
+      <tbody>
+        <tr><th>Format</th>
+          <td>470–500 ml glass, 2-in-1 spray + pour</td>
+          <td>250 ml heat-resistant glass, filter in the dip tube</td>
+          <td>220–600 ml glass, 2-in-1, anti-drip</td>
+          <td>Thick glass with a 304 stainless head</td>
+          <td>100–500 ml glass or thin steel, generic</td></tr>
+        <tr><th>Price band</th>
+          <td>$8–30<br>₹700–2,640</td>
+          <td>from ¥995<br>₹570+</td>
+          <td>Not reliably captured</td>
+          <td>€8–17<br>₹770–1,630</td>
+          <td><strong>₹200–600</strong></td></tr>
+        <tr><th>Leaders</th>
+          <td>TrendPlain, YARRAMATE, AOZITA, FineDine, Misto, Evo, Flairosol</td>
+          <td>TrendPlain, Mistify</td>
+          <td><strong>Supor, Kanbahe, Newair</strong></td>
+          <td>Valuxe, PORTENTUM, Hillfield, Contever, easySpray</td>
+          <td>Perfect Pricee, CRIYALE, Shopbox, SITOVI, Rushwak</td></tr>
+        <tr><th>Distinctive</th>
+          <td>Largest, most mature. Top listing ≈ 30,000 units/month</td>
+          <td>Integral filter tube. Explicit no-drip and zero-residue claims</td>
+          <td>Real domestic brands — and the world's OEM base</td>
+          <td>"Glass for the kitchen, steel for the grill." Valuxe ships UV glass</td>
+          <td>Entirely imports and rebadges</td></tr>
+        <tr><th>Premium tier</th>
+          <td>Flairosol, Evo</td><td>Mistify</td><td>Thin</td>
+          <td>easySpray, Valuxe</td>
+          <td><strong>Empty</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">02</div>
+  <h2>Where the money sits</h2>
+  <p class="lede">Retail bands converted to rupees at approximate rates.
+    India's band ends where every other market's begins.</p>
+  <div class="chart">
+    <div class="marklab"><div class="m2"><span style="left:60%">Enna · ₹1,799</span></div></div>
+    <div class="axis"><div class="ax"><em style="font-style:normal">₹0</em><em style="font-style:normal">₹1,500</em><em style="font-style:normal">₹3,000</em></div></div>
+    <div class="rows">
+      <div class="r"><div class="k"><b>United States</b><span>₹700 – ₹2,640</span></div>
+        <div class="track"><div class="mark" style="left:60%"></div>
+          <div class="rng" style="left:23.3%;width:64.7%"></div></div></div>
+      <div class="r"><div class="k"><b>Japan</b><span>₹570 – ₹1,710</span></div>
+        <div class="track"><div class="mark" style="left:60%"></div>
+          <div class="rng" style="left:19.0%;width:38.0%"></div></div></div>
+      <div class="r"><div class="k"><b>Germany / EU</b><span>₹770 – ₹1,630</span></div>
+        <div class="track"><div class="mark" style="left:60%"></div>
+          <div class="rng" style="left:25.7%;width:28.6%"></div></div></div>
+      <div class="r"><div class="k"><b>India</b><span>₹200 – ₹600</span></div>
+        <div class="track"><div class="mark" style="left:60%"></div>
+          <div class="rng" style="left:6.7%;width:13.3%"></div>
+          <div class="gap" style="left:21.3%;width:38.2%"><i>Nobody here</i></div></div></div>
+    </div>
+  </div>
+  <p class="note">Rates used: $1 ≈ ₹88 · €1 ≈ ₹96 · ¥1 ≈ ₹0.57. Chinese pricing
+    was not reliably captured and is omitted rather than guessed. Germany's
+    entire category tops out near where we intend to price — so "cheaper than
+    Europe" is not an argument available to us, and we should never reach for it.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">03</div>
+  <h2>Six things the comparison tells us</h2>
+  <div class="body stack">
+    <h3>1. India is the only major market with no domestic brand</h3>
+    <p>China has Supor and Kanbahe. Germany has easySpray. Japan has Mistify.
+      The USA has Evo, Misto and Flairosol. India's shelf is entirely unbranded
+      imports and rebadged generics. <strong>That one row is the clearest
+      argument for Enna existing at all.</strong></p>
+
+    <h3>2. The air fryer is the global demand driver</h3>
+    <p>US, Japanese and Chinese listings all lead with air-fryer compatibility.
+      It is the reason this category grew at all. India's air-fryer adoption is
+      climbing fast, and our packaging should say so explicitly rather than
+      treating it as an afterthought.</p>
+
+    <h3>3. Capacity is bifurcating, and the premium end goes small</h3>
+    <p>Mass market sits at 470–500 ml. The best-engineered products go the other
+      way — Flairosol at 200 ml, the Japanese standard at 250 ml.
+      <strong>Our 250 ml sprayer is in exactly the right cohort</strong>, and the
+      750 ml decanter answers the volume need without inflating the thing you
+      actually hold.</p>
+
+    <h3>4. The filter-in-the-dip-tube is standard in Japan and absent in India</h3>
+    <p>This validates our stage-two basket: it is proven practice, not
+      speculation. Our contribution is making it removable and rinsable rather
+      than sealed — which is the difference between a filter that works for a
+      year and one that becomes the clog.</p>
+
+    <h3>5. Nobody anywhere sells opaque steel as a kitchen sprayer</h3>
+    <p>Germany explicitly codes steel as an outdoor and grill material. That is
+      our whitespace — but it is also a <strong>marketing risk</strong>, because
+      we have to teach the category that steel belongs on the hob. India is the
+      easiest place on earth to make that argument: steel already <em>is</em> the
+      Indian kitchen material. The dabba, the tiffin, the thali, the tumbler.</p>
+
+    <h3>6. Two competitors are genuinely ahead of us on specific rows</h3>
+    <p>Valuxe's UV-protected glass is a real answer to light-driven rancidity.
+      easySpray's pressure-variable nozzle is a real answer to needing both a jet
+      and a mist. We answer both differently and, I would argue, better — but we
+      should <em>argue</em> it rather than assume it. A comparison table that
+      pretends nobody has addressed light is a table a reviewer will dismantle.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">04</div>
+  <h2>Category size — read these carefully</h2>
+  <p class="lede">Published estimates disagree by a factor of sixteen, because
+    they are counting different things.</p>
+  <div class="scroll">
+    <table class="t2" style="min-width:560px">
+      <thead><tr><th>Estimate for 2026</th><th>Probably counting</th><th>Growth</th></tr></thead>
+      <tbody>
+        <tr><td><strong>≈ $572 M</strong> → $1.02 B by 2035</td>
+          <td>The sprayer <em>device</em> category — closest to ours</td><td>6.4% CAGR</td></tr>
+        <tr><td>≈ $3.11 B → $4.39 B by 2035</td>
+          <td>Devices plus some consumables</td><td>3.9% CAGR</td></tr>
+        <tr><td>≈ $9.4 B → $15 B by 2032</td>
+          <td>Aerosol cooking spray as a <em>food product</em> — not our market</td><td>4.3–5.4% CAGR</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="call warn">
+    <span class="tag">Use this number, not the big one</span>
+    <h3>≈ $572 million, growing 6%+</h3>
+    <p>Quoting $9 billion to an investor and then being asked what it includes is
+      a bad meeting. The honest line is that the refillable-sprayer device
+      category is roughly half a billion dollars globally, and India is a
+      rounding error within it today — which is the opportunity, not the
+      objection. Bottom-up check: top US listings move 4,000–30,000 units a month
+      each.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">05</div>
+  <h2>The five-star question</h2>
+  <p class="lede">A hotel is not one kitchen. It is six to twelve — banquet, each
+    specialty restaurant, bakery and pastry, garde manger, room service, staff
+    canteen.</p>
+  <div class="stats">
+    <div><span class="q">823</span><span class="l">Classified 5-star hotels in India</span><span class="s">April 2025</span></div>
+    <div><span class="q">615</span><span class="l">IHCL / Taj portfolio</span><span class="s">360 open · 255 pipeline</span></div>
+    <div><span class="q">4,000+</span><span class="l">Rebel Foods kitchens</span><span class="s">70 cities</span></div>
+    <div><span class="q">28–35%</span><span class="l">Food cost as share of revenue</span><span class="s">Indian benchmark</span></div>
+    <div><span class="q">16.6%</span><span class="l">Cloud kitchen CAGR to 2030</span><span class="s">$1.13 B → $2.84 B</span></div>
+    <div><span class="q">~20,000</span><span class="l">Addressable units, 5-star alone</span><span class="s">at 25 per property</span></div>
+  </div>
+  <div class="body stack">
+    <h3>The pain is real and it is measured</h3>
+    <p>Portion control is <em>the</em> lever in food cost, and the standard
+      illustration is brutal: <strong>a 10 g over-portion across 200 covers gives
+      away 2 kg of product free, every single day.</strong> Oil is specifically
+      called out in Indian cost-control guidance as an <strong>undercounted</strong>
+      ingredient — left out of recipe costings along with garnishes and condiments.</p>
+    <p>The professional alternative today is aerosol. <strong>PAM Foodservice</strong>
+      (ConAgra) and <strong>Vegalene</strong> (PLZ Corp — "the leading branded pan
+      spray in foodservice", a patented three-oil blend claiming up to 30% more
+      release agents) own that shelf, alongside Bak-Klene and Everbake. Against
+      them, a refillable wins on arithmetic: aerosol runs roughly $48 a year
+      against $19 once plus ~$30 a year of oil, and a pump sprayer's narrower
+      cone <strong>cuts overspray drift by 50–70%</strong> in side-by-side
+      testing. In a commercial kitchen, drift is not just waste — it is a slip
+      hazard and a cleaning cost.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">06</div>
+  <h2>Four honest problems</h2>
+  <div class="probs">
+    <div class="pr"><div class="n">01</div><div>
+      <h3>HACCP labelling is mandatory, and our product has nowhere to write</h3>
+      <p>Any decanted container in a commercial kitchen must be identifiable at
+        all times — contents, date, and where relevant allergen status, in a form
+        that survives service and satisfies an inspector. The format the trade
+        has settled on is a silicone band with a dry- or wet-erase marker.</p></div></div>
+    <div class="pr"><div class="n">02</div><div>
+      <h3>A commercial kitchen is an abuse test</h3>
+      <p>Dropped on tile, thrown in the dish pit, through an 80 °C commercial
+        washer with caustic detergent, every day. Our LSR gaskets and POM
+        internals are specified for domestic duty. A professional unit needs its
+        own validation and possibly different materials.</p></div></div>
+    <div class="pr"><div class="n">03</div><div>
+      <h3>Usage is 50–100× domestic, which breaks the counter</h3>
+      <p>1,250 strokes is a consumer's four weeks. A banquet kitchen could burn
+        that in a shift. A professional unit wants 500 ml to a litre and probably
+        no counter at all. <strong>The pro product is a different product, not a
+        repackage</strong> — and pretending otherwise is how hardware startups
+        lose a year.</p></div></div>
+    <div class="pr"><div class="n">04</div><div>
+      <h3>Indian five-star kitchens do not spray much oil</h3>
+      <p>At that level, Indian cuisine runs on tadka, deep frying, tandoor and
+        ghee — techniques where oil is a <em>medium</em>, not a coating. The
+        sprayer's real home inside a hotel is narrower than the room count
+        suggests.</p>
+      <ul class="tight">
+        <li><strong>Bakery and pastry</strong> — pan release. The strongest fit,
+          and exactly where Vegalene and Bak-Klene earn their money</li>
+        <li><strong>Grill and à la carte</strong> — oiling proteins and vegetables</li>
+        <li><strong>Garde manger and salads</strong> — dressing without drowning</li>
+        <li><strong>The calorie-marked menu</strong> — increasingly standard in
+          Indian five-stars, and the one place the calorie story sells itself</li>
+        <li>Continental and Asian sections — <strong>not</strong> the Indian section</li>
+      </ul>
+      <p>Say that out loud in the pitch. A chef will respect it, and will tell
+        you the same thing in the first meeting anyway.</p></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">07</div>
+  <h2>One design change, now</h2>
+  <div class="call">
+    <span class="tag">Near-zero cost · required for any HORECA sale</span>
+    <h3>Make the silicone grip ring a writable dry-erase surface</h3>
+    <p>We already have that part, in that material, in that position. A silicone
+      band plus a dry-erase marker is precisely the format the trade has settled
+      on for HACCP labelling, so this single change turns a consumer component
+      into the compliance feature that unlocks the entire professional channel.</p>
+    <p>And it is a genuine consumer feature today: dating your oil is exactly
+      what you should do to manage rancidity, and right now no sprayer on the
+      market gives you anywhere to write it.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">08</div>
+  <h2>Recommendation</h2>
+  <p class="lede">Food service is a phase-two, credibility-first play. Do not
+    build a professional SKU yet — but do one cheap thing immediately.</p>
+  <div class="body stack">
+    <p>The sales cycle is slow, the abuse requirements are different, the product
+      genuinely needs to change, and a startup that needs early cash should not
+      be chasing purchase managers. The route in is also not the procurement
+      portal: <strong>chefs specify, purchase managers buy.</strong> Owners are
+      explicitly advised to ask their chefs what to buy; purchase managers then
+      compare suppliers, demand samples before bulk orders, and enforce delivery
+      SLAs.</p>
+    <h3>So do this instead</h3>
+    <p>Seed <strong>20–30 units to executive chefs</strong> at named properties
+      in Chennai and Bangalore, free, in exchange for two things: honest feedback
+      after sixty days of real service, and permission to use the property name.
+      At landed cost that is roughly <strong>₹25,000</strong>. The returns are
+      asymmetric:</p>
+    <ul class="tight">
+      <li><strong>Abuse data you cannot buy.</strong> Sixty days in a hotel
+        kitchen finds more failure modes than two years of domestic testing.</li>
+      <li><strong>Logos.</strong> A Taj or ITC name on the site is worth more than
+        any ad budget a first-time brand can afford — and it converts
+        <em>consumer</em> buyers, not just trade ones.</li>
+      <li><strong>Product truth.</strong> Chefs will tell you within a week
+        whether the spray pattern, the trigger force and the cleaning cycle
+        actually work. They will not be polite about it.</li>
+    </ul>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>Method: desk research, September 2026. Amazon.de, Amazon.co.jp product
+    pages, JD, Taobao and the German comparison portals were unreachable from
+    the research environment; those entries are assembled from search indexes.
+    Product names and market shape are reliable — <strong>verify every price
+    directly before quoting it.</strong></div>
+  <div style="margin-top:14px">Sources include ASINsight, Amazon best-seller
+    listings (US/JP/IN), Rakuten, JD, my-best.com, UPkitchen, YouGov India hotel
+    rankings 2026, IMARC, Restroworks, RestaurantTimes, Petpooja, PLZ Corp,
+    ConAgra Foodservice, HACCP Mentor and Hospiverse. Full list in
+    <span class="mono">docs/06-global-market.md</span> and
+    <span class="mono">docs/07-hospitality.md</span>.</div>
+</div></footer>
