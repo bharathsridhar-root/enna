@@ -1,0 +1,887 @@
+<title>Enna Oil Sprayer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+:root{
+  --ground:#F1F3F4; --surface:#FFFFFF; --surface-2:#E6EAEC; --sunk:#E9EDEE;
+  --ink:#10161A; --ink-2:#47555E; --ink-3:#74838C;
+  --line:#D2D9DC; --line-soft:#E2E7E9;
+  --accent:#A96C12; --accent-bright:#D9A441; --accent-soft:rgba(217,164,65,.16);
+  --bar:#96A7B1; --bar-hero:#C08A22;
+  --shadow:0 1px 2px rgba(16,22,26,.05),0 12px 32px -18px rgba(16,22,26,.35);
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --gut:clamp(20px,5vw,64px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1215; --surface:#161C21; --surface-2:#1E262C; --sunk:#11161A;
+    --ink:#ECF1F3; --ink-2:#9DAAB3; --ink-3:#74838C;
+    --line:#273038; --line-soft:#1D242A;
+    --accent:#E0A63F; --accent-bright:#F0BE63; --accent-soft:rgba(224,166,63,.12);
+    --bar:#41525E; --bar-hero:#D79E3D;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 36px -20px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1215; --surface:#161C21; --surface-2:#1E262C; --sunk:#11161A;
+  --ink:#ECF1F3; --ink-2:#9DAAB3; --ink-3:#74838C;
+  --line:#273038; --line-soft:#1D242A;
+  --accent:#E0A63F; --accent-bright:#F0BE63; --accent-soft:rgba(224,166,63,.12);
+  --bar:#41525E; --bar-hero:#D79E3D;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 36px -20px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;
+  letter-spacing:-.028em;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--gut)}
+.narrow{max-width:66ch}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);margin:0}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* ---------- sticky CAD stage ---------- */
+.stage{position:relative;z-index:0}
+.stage__sticky{position:sticky;top:0;height:100vh;z-index:1;overflow:hidden}
+#cad{position:absolute;inset:0;width:100%;height:100%;display:block}
+#overlay{position:absolute;inset:0;pointer-events:none;opacity:0;
+  transition:opacity .45s ease}
+#overlay.on{opacity:1}
+#leaders{position:absolute;inset:0;width:100%;height:100%}
+.tag{position:absolute;width:230px;font-family:var(--mono);font-size:11px;
+  line-height:1.45;color:var(--ink-2);transform:translateY(-50%)}
+.tag[data-side="L"]{left:var(--gut);text-align:right}
+.tag[data-side="R"]{right:var(--gut);text-align:left}
+.tag b{display:block;color:var(--accent);letter-spacing:.1em;font-weight:500}
+.tag i{display:block;font-style:normal;color:var(--ink);font-family:var(--body);
+  font-size:14px;font-weight:600;letter-spacing:-.01em}
+.stage__panels{position:relative;z-index:2;margin-top:-100vh;pointer-events:none}
+.panel{min-height:100vh;display:flex;align-items:center;padding-block:12vh}
+.panel .card{pointer-events:auto;max-width:31rem;
+  background:color-mix(in srgb,var(--ground) 86%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line-soft);border-radius:3px;padding:26px 28px;
+  display:flex;flex-direction:column;gap:14px}
+.panel--r{justify-content:flex-end}
+.brand{font-family:var(--display);font-weight:800;font-size:13px;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--ink)}
+h1{font-size:clamp(44px,7.4vw,84px)}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:clamp(16px,1.6vw,18px);color:var(--ink-2);max-width:38ch}
+.chip{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line);
+  border-radius:999px;padding:5px 11px}
+.chip::before{content:"";width:5px;height:5px;border-radius:50%;
+  background:var(--accent-bright)}
+.hint{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3)}
+h2{font-size:clamp(28px,3.6vw,42px)}
+.panel h2{font-size:clamp(26px,3.1vw,36px)}
+
+/* ---------- generic sections ---------- */
+section.blk{padding-block:clamp(64px,9vw,120px);position:relative;z-index:3;
+  background:var(--ground)}
+section.blk.alt{background:var(--sunk)}
+.head{display:flex;flex-direction:column;gap:12px;margin-bottom:44px}
+.head p.lede{max-width:60ch}
+
+/* chart */
+.chart{display:flex;flex-direction:column;gap:2px}
+.row{display:grid;grid-template-columns:minmax(140px,15rem) 1fr;
+  gap:clamp(10px,2vw,22px);align-items:center;padding-block:9px;
+  border-radius:2px;transition:background .15s ease}
+.row:hover,.row:focus-within{background:var(--accent-soft)}
+.row__k{display:flex;flex-direction:column;gap:1px;min-width:0}
+.row__k span{font-size:14.5px;font-weight:500;color:var(--ink)}
+.row__k small{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);
+  letter-spacing:.06em}
+.row__b{min-width:0}
+.track{min-width:0;padding-right:72px}
+.bar{position:relative;height:22px;background:var(--bar);
+  border-radius:0 4px 4px 0;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.row--hero .bar{background:var(--bar-hero)}
+.row__v{position:absolute;left:100%;top:50%;transform:translateY(-50%);
+  margin-left:10px;font-family:var(--mono);font-size:13px;font-weight:500;
+  color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.row--hero .row__v{color:var(--accent)}
+.axis{display:grid;grid-template-columns:minmax(140px,15rem) 1fr;
+  gap:clamp(10px,2vw,22px);margin-top:8px}
+.axis em{font-style:normal}
+.axis span{display:flex;justify-content:space-between;font-family:var(--mono);
+  font-size:10.5px;color:var(--ink-3);border-top:1px solid var(--line);
+  padding-top:7px;grid-column:2}
+.foot{font-family:var(--mono);font-size:11px;color:var(--ink-3);
+  line-height:1.7;margin-top:22px;max-width:70ch}
+
+/* stages diagram */
+.figure{background:var(--surface);border:1px solid var(--line-soft);
+  border-radius:3px;padding:clamp(16px,3vw,34px);overflow-x:auto}
+.figure svg{display:block;min-width:640px;width:100%;height:auto}
+.dg path,.dg rect,.dg circle{fill:none}
+.dg .f-oil{fill:url(#oil)} .dg .f-3{fill:var(--ink-3)} .dg .f-s2{fill:var(--surface-2)}
+.dg .nofill{fill:none}
+.dg .st-3{stroke:var(--ink-3);stroke-width:1.5}
+.dg .st-a{stroke:var(--accent);stroke-width:1}
+.dg .st-l{stroke:var(--line);stroke-width:1}
+.dg .w2{stroke-width:2} .dg .hair{stroke-width:1;opacity:.65} .dg .thin{stroke-width:1.2}
+.dg .dash{stroke-width:1.5;stroke-dasharray:5 4}
+.dg text{font-family:var(--body);font-size:13.5px;fill:var(--ink-2)}
+.dg .t-mono{font-family:var(--mono);font-size:10px}
+.dg .ls{font-size:11px;letter-spacing:.13em}
+.dg .t-a{fill:var(--accent)} .dg .t-3{fill:var(--ink-3)}
+.dg .t-h{font-size:17px;font-weight:600;fill:var(--ink)}
+#oil .s0{stop-color:var(--accent-bright);stop-opacity:.30}
+#oil .s1{stop-color:var(--accent-bright);stop-opacity:.16}
+.cap{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-top:16px}
+
+/* feature list */
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));
+  gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.feat{background:var(--ground);padding:24px 22px;display:flex;
+  flex-direction:column;gap:9px}
+.feat .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  color:var(--accent)}
+.feat h3{font-size:19px;letter-spacing:-.015em}
+.feat p{font-size:14.5px;color:var(--ink-2)}
+
+/* spec table */
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px}
+.tbl th,.tbl td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line-soft);
+  vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400;
+  border-bottom:1px solid var(--line)}
+.tbl td:first-child{color:var(--ink-2);width:34%}
+.tbl td:last-child{font-family:var(--mono);font-size:13px;
+  font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.tbl--cmp td:last-child{font-family:var(--body);font-size:14.5px}
+.tbl--cmp td{width:auto}
+.tbl--cmp td:first-child{width:26%;color:var(--ink)}
+.yes{color:var(--accent);font-weight:600}
+.no{color:var(--ink-3)}
+
+/* honesty */
+.limits{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.limit{border-left:2px solid var(--accent);padding-left:18px;
+  display:flex;flex-direction:column;gap:7px}
+.limit h3{font-size:17px}
+.limit p{font-size:14.5px;color:var(--ink-2)}
+
+/* roadmap */
+.road{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:auto 1fr;gap:20px;padding-block:20px;
+  border-bottom:1px solid var(--line-soft)}
+.step:last-child{border-bottom:0}
+.step__n{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  color:var(--ink-3);padding-top:4px}
+.step__b{display:flex;flex-direction:column;gap:6px}
+.step h3{font-size:18px}
+.step p{font-size:14.5px;color:var(--ink-2);max-width:62ch}
+.step .when{font-family:var(--mono);font-size:11px;color:var(--accent)}
+
+footer{padding-block:52px;border-top:1px solid var(--line);
+  background:var(--ground);position:relative;z-index:3}
+footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
+  align-items:baseline;font-family:var(--mono);font-size:11px;color:var(--ink-3);
+  line-height:1.8}
+.parts{display:none}
+
+@media (max-width:860px){
+  .stage__sticky{height:56vh;top:0}
+  .stage__panels{margin-top:-56vh}
+  .panel{min-height:100vh;align-items:flex-end;padding-block:0 8vh}
+  .panel--r{justify-content:flex-start}
+  .panel .card{max-width:100%}
+  #overlay{display:none}
+  .parts{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line-soft);
+    border:1px solid var(--line-soft)}
+  .part{background:var(--ground);padding:14px 16px;display:grid;
+    grid-template-columns:auto 1fr;gap:14px;align-items:baseline}
+  .part b{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:500}
+  .part span{font-size:14.5px;font-weight:600}
+  .part small{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-3);
+    font-weight:400}
+  .row{grid-template-columns:1fr;gap:5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+
+<section class="stage" id="stage">
+  <div class="stage__sticky">
+    <canvas id="cad" aria-label="Exploded three-dimensional view of the Enna oil sprayer"></canvas>
+    <div id="overlay">
+      <svg id="leaders" aria-hidden="true"></svg>
+    </div>
+  </div>
+  <div class="stage__panels">
+    <div class="panel wrap">
+      <div class="card">
+        <div class="brand">Enna</div>
+        <h1>Fifteen calories,<br>not two&nbsp;<em>fifty</em>.</h1>
+        <p class="lede">எண்ணெய் — <em>ennai</em>, oil. An oil sprayer engineered
+          for the way Indian kitchens actually cook: thick oils, reused oil,
+          refilled a hundred times, sitting next to a live flame.</p>
+        <span class="chip">Design concept · prototype in development</span>
+      </div>
+    </div>
+    <div class="panel panel--r wrap">
+      <div class="card">
+        <p class="eyebrow">Architecture</p>
+        <h2>Open the top, not the neck.</h2>
+        <p class="lede">The entire shoulder unscrews on a coarse four-start
+          thread. The body becomes an open cup: your hand and a brush reach
+          every internal surface, and refilling needs no funnel because the
+          mouth <em>is</em> one.</p>
+        <span class="hint">Ø46 mm mouth · silicone face seal</span>
+      </div>
+    </div>
+    <div class="panel wrap">
+      <div class="card">
+        <p class="eyebrow">The hard problem</p>
+        <h2>Nine parts. Every one of them washable.</h2>
+        <p class="lede">Sprayers don't die of old age — they die of clogging,
+          and every wetted part here comes out by hand in under ten seconds.
+          No tools, no captive screens, no sealed cartridge you have to throw
+          away.</p>
+        <span class="hint">Scroll to separate</span>
+      </div>
+    </div>
+    <div class="panel panel--r wrap">
+      <div class="card">
+        <p class="eyebrow">Materials</p>
+        <h2>Steel where it counts.</h2>
+        <p class="lede">An opaque 18/8 stainless body blocks the light that
+          turns oil rancid and shrugs off the hob heat that warps plastic-topped
+          sprayers. It will not shatter on a kitchen floor.</p>
+        <span class="hint">18/8 SS · food-grade silicone · SS 316 screens</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="wrap">
+    <div class="head narrow">
+      <p class="eyebrow">Why a sprayer at all</p>
+      <h2>The same pan. Four ways to oil it.</h2>
+      <p class="lede">This is the entire argument for the product, and it is
+        just arithmetic. Cooking oil carries about 9 kcal per gram and weighs
+        about 0.92 g per millilitre — so calories are simply a question of how
+        many millilitres end up in the pan.</p>
+    </div>
+    <div class="chart" id="chart">
+      <div class="row row--hero" tabindex="0" title="1.8 ml — about nine strokes at 0.2 ml each">
+        <div class="row__k"><span>Enna, a full pan coating</span><small>1.8 ml · ≈ 9 strokes</small></div>
+        <div class="row__b"><div class="track"><div class="bar" style="width:5.8%"><span class="row__v">15 kcal</span></div></div></div>
+      </div>
+      <div class="row" tabindex="0" title="5 ml of oil weighs 4.6 g">
+        <div class="row__k"><span>One level teaspoon</span><small>5 ml · 4.6 g</small></div>
+        <div class="row__b"><div class="track"><div class="bar" style="width:15.8%"><span class="row__v">41 kcal</span></div></div></div>
+      </div>
+      <div class="row" tabindex="0" title="15 ml of oil weighs 13.8 g">
+        <div class="row__k"><span>One tablespoon</span><small>15 ml · 13.8 g</small></div>
+        <div class="row__b"><div class="track"><div class="bar" style="width:47.7%"><span class="row__v">124 kcal</span></div></div></div>
+      </div>
+      <div class="row" tabindex="0" title="A typical unmeasured pour is around 30 ml">
+        <div class="row__k"><span>A free pour from the bottle</span><small>≈ 30 ml · 27.6 g</small></div>
+        <div class="row__b"><div class="track"><div class="bar" style="width:95.4%"><span class="row__v">248 kcal</span></div></div></div>
+      </div>
+      <div class="axis"><span><em>0 kcal</em><em>260 kcal</em></span></div>
+    </div>
+    <p class="foot">One Enna stroke meters 0.2 ml — 0.18 g — about 1.7 kcal.
+      Coating a 26 cm pan takes eight to ten strokes. The claim isn't that a
+      spray is magic; it's that a spray is <em>measurable</em>, and a pour
+      never is.</p>
+  </div>
+</section>
+
+<section class="blk alt">
+  <div class="wrap">
+    <div class="head narrow">
+      <p class="eyebrow">The India problem</p>
+      <h2>Three stages against the clog.</h2>
+      <p class="lede">Indian kitchens strain and reuse frying oil, and what
+        comes back carries besan, crumbs and masala. That particulate is what
+        kills every sprayer on the market inside a month. It has three separate
+        causes, so Enna answers it in three separate places — in the order the
+        oil meets them.</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 720 426" role="img" aria-label="Cutaway of the Enna sprayer showing sediment settling below a raised intake, a coarse bayonet basket, and a fine screen before the nozzle.">
+        <defs>
+          <linearGradient id="oil" x1="0" y1="0" x2="0" y2="1">
+            <stop class="s0" offset="0"/><stop class="s1" offset="1"/>
+          </linearGradient>
+        </defs>
+        <g class="dg">
+          <path class="f-oil st-3" d="M78 96 h124 v242 a14 14 0 0 1 -14 14 h-96 a14 14 0 0 1 -14 -14 Z"/>
+          <path class="st-3" d="M78 96 h124"/>
+          <path class="st-a dash" d="M80 140 h120"/>
+          <text class="t-mono t-3" x="86" y="134">oil level</text>
+          <path class="f-3" d="M82 330 q28 -12 58 -2 q30 10 58 -3 v22 a12 12 0 0 1 -12 12 h-92 a12 12 0 0 1 -12 -12 Z" opacity=".5"/>
+          <circle class="f-3" cx="104" cy="325" r="2.4"/>
+          <circle class="f-3" cx="150" cy="319" r="1.8"/>
+          <circle class="f-3" cx="182" cy="328" r="2.1"/>
+          <rect class="f-s2 st-3 thin" x="134" y="150" width="12" height="146" rx="3"/>
+          <rect class="st-a w2" x="122" y="296" width="36" height="22" rx="4"/>
+          <path class="st-a hair" d="M128 296 v22 M136 296 v22 M144 296 v22 M152 296 v22"/>
+          <path class="st-a hair" d="M64 318 v22 M60 318 h8 M60 340 h8 M78 318 h-18 M78 340 h-18"/>
+          <text class="t-mono t-a" x="22" y="334">9 mm</text>
+          <path class="f-s2 st-3" d="M72 80 h136 v16 h-136 Z"/>
+          <rect class="st-a w2" x="118" y="60" width="44" height="9" rx="2"/>
+          <path class="st-a hair" d="M126 60 v9 M134 60 v9 M142 60 v9 M150 60 v9"/>
+          <path class="st-3 nofill" d="M134 60 v-22 h12 v22"/>
+          <path class="st-a w2" d="M140 36 l-17 -19 M140 36 l0 -23 M140 36 l17 -19"/>
+          <path class="st-l" d="M198 340 h54 M162 307 h90 M166 64 h86"/>
+          <text class="t-mono t-a ls" x="266" y="58">STAGE 3 — LAST DEFENCE</text>
+          <text class="t-h" x="266" y="80">Fine screen, 150 µm</text>
+          <text class="t-b" x="266" y="102">Sits directly behind the orifice. Anything</text>
+          <text class="t-b" x="266" y="120">that slips past stage 2 stops here, where</text>
+          <text class="t-b" x="266" y="138">a single grain would ruin the spray cone.</text>
+          <text class="t-mono t-a ls" x="266" y="200">STAGE 2 — SERVICEABLE</text>
+          <text class="t-h" x="266" y="222">Bayonet intake basket, 600 µm</text>
+          <text class="t-b" x="266" y="244">A quarter-turn stainless basket you pull out</text>
+          <text class="t-b" x="266" y="262">and rinse — unlike the sealed filters on</text>
+          <text class="t-b" x="266" y="280">Japanese units, which clog and stay clogged.</text>
+          <text class="t-mono t-a ls" x="266" y="342">STAGE 1 — PASSIVE</text>
+          <text class="t-h" x="266" y="364">Raised intake, 9 mm standoff</text>
+          <text class="t-b" x="266" y="386">The pickup never touches the floor. Sediment</text>
+          <text class="t-b" x="266" y="404">settles into the moat beneath it and is never</text>
+          <text class="t-b" x="266" y="422">drawn up. Fuel-tank logic, in a bottle.</text>
+        </g>
+      </svg>
+    </div>
+    <p class="cap">Cutaway, schematic. Filtration ratings are design targets for
+      the first prototype round and will be confirmed against real reused-oil
+      samples.</p>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="wrap">
+    <div class="head narrow">
+      <p class="eyebrow">What we fixed</p>
+      <h2>Eight complaints, eight answers.</h2>
+      <p class="lede">Each of these is a documented failure in reviews of the
+        sprayers already on sale — the ₹300 imports and the ₹2,600 imports
+        alike. We treated the review sections as a specification.</p>
+    </div>
+    <div class="feats">
+      <div class="feat"><span class="n">01</span><h3>It clogs in two weeks</h3>
+        <p>Three-stage filtration with a raised intake, so the particulate never
+          reaches the pump in the first place.</p></div>
+      <div class="feat"><span class="n">02</span><h3>It sprays a jet, not a mist</h3>
+        <p>A pre-compression valve holds a 2.4 bar floor under every discharge.
+          Squeeze slowly and it still atomises — or it doesn't fire at all.</p></div>
+      <div class="feat"><span class="n">03</span><h3>It leaks at the thread</h3>
+        <p>A coarse four-start thread that cannot cross-thread, closing onto a
+          silicone face seal rather than thread-on-thread contact.</p></div>
+      <div class="feat"><span class="n">04</span><h3>You can't clean inside it</h3>
+        <p>No waist, no flare, no shoulder to trap oil. Straight walls to a
+          Ø46 mm mouth your hand fits through.</p></div>
+      <div class="feat"><span class="n">05</span><h3>Oil runs down the outside</h3>
+        <p>The nozzle is recessed in a wiper collar with a return channel that
+          drains the post-spray bead back into the body.</p></div>
+      <div class="feat"><span class="n">06</span><h3>The plastic top warped</h3>
+        <p>Steel and silicone in every part that faces the hob. Nothing near the
+          heat is structural plastic.</p></div>
+      <div class="feat"><span class="n">07</span><h3>It's a mess to refill</h3>
+        <p>The whole shoulder comes off. Pour from a one-litre tin into an open
+          46 mm mouth without a funnel.</p></div>
+      <div class="feat"><span class="n">08</span><h3>Nobody answers the warranty</h3>
+        <p>Spares sold openly at ₹149 — nozzle, seals, both screens — so
+          "buy once" means something past year two.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk alt">
+  <div class="wrap">
+    <div class="head narrow">
+      <p class="eyebrow">Specification</p>
+      <h2>Target numbers.</h2>
+    </div>
+    <div class="scroll">
+      <table class="tbl">
+        <thead><tr><th>Parameter</th><th>Target</th></tr></thead>
+        <tbody>
+          <tr><td>Capacity</td><td>180 ml</td></tr>
+          <tr><td>Overall height · body diameter</td><td>196 mm · Ø52 mm</td></tr>
+          <tr><td>Mouth opening</td><td>Ø46 mm, 4-start thread</td></tr>
+          <tr><td>Empty mass</td><td>265 g</td></tr>
+          <tr><td>Metered dose per stroke</td><td>0.20 ml ± 0.03</td></tr>
+          <tr><td>Valve cracking pressure</td><td>2.4 bar</td></tr>
+          <tr><td>Filtration</td><td>600 µm intake · 150 µm pre-nozzle</td></tr>
+          <tr><td>Body · screens</td><td>18/8 stainless · SS 316 mesh</td></tr>
+          <tr><td>Seals · base ring</td><td>Food-grade silicone, LSR</td></tr>
+          <tr><td>Pump internals</td><td>POM, IS-compliant food contact</td></tr>
+          <tr><td>Wetted parts, tool-free</td><td>9 of 9</td></tr>
+          <tr><td>Viscosity window</td><td>25–95 cSt at 25 °C</td></tr>
+          <tr><td>Compliance route</td><td>FSSAI · BIS food-contact IS series</td></tr>
+          <tr><td>Indicative retail</td><td>₹1,499</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cap">Design targets for the first prototype round, not measured
+      production values.</p>
+
+    <div class="parts" style="margin-top:34px" aria-label="Part list">
+      <div class="part"><b>EN-01</b><span>Nozzle collar<small>MIST / SPRAY / DRIZZLE</small></span></div>
+      <div class="part"><b>EN-02</b><span>Pre-compression valve<small>2.4 bar cracking pressure</small></span></div>
+      <div class="part"><b>EN-03</b><span>Pump cartridge<small>POM + SS spring, tool-free</small></span></div>
+      <div class="part"><b>EN-04</b><span>Fine screen<small>150 µm, SS 316</small></span></div>
+      <div class="part"><b>EN-05</b><span>Wide-mouth collar<small>Ø46 mm, 4-start thread</small></span></div>
+      <div class="part"><b>EN-06</b><span>Body<small>18/8 stainless, 180 ml</small></span></div>
+      <div class="part"><b>EN-07</b><span>Dip tube<small>Raised intake, 9 mm standoff</small></span></div>
+      <div class="part"><b>EN-08</b><span>Intake basket<small>600 µm bayonet screen</small></span></div>
+      <div class="part"><b>EN-09</b><span>Silicone base<small>Food-grade, peel-off</small></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="wrap">
+    <div class="head narrow">
+      <p class="eyebrow">Against the field</p>
+      <h2>Where Enna sits.</h2>
+      <p class="lede">The market has a crowded floor and an empty middle. Below
+        ₹600 the imports fail predictably; above ₹2,500 the American premium
+        brands were never designed for these oils.</p>
+    </div>
+    <div class="scroll">
+      <table class="tbl tbl--cmp">
+        <thead><tr><th></th><th>₹200–600 imports</th><th>Evo, ≈₹2,600</th><th>Enna</th></tr></thead>
+        <tbody>
+          <tr><td>Handles particulate from reused oil</td><td class="no">No</td><td class="no">No</td><td class="yes">Three-stage</td></tr>
+          <tr><td>Consistent mist at low squeeze speed</td><td class="no">No</td><td class="no">Degrades</td><td class="yes">Pre-compression</td></tr>
+          <tr><td>Hand fits inside for cleaning</td><td class="no">No</td><td class="no">Flared body</td><td class="yes">Ø46 mm mouth</td></tr>
+          <tr><td>Survives a drop</td><td class="no">Glass or thin plastic</td><td class="no">Glass option</td><td class="yes">Stainless</td></tr>
+          <tr><td>Blocks light to slow rancidity</td><td class="no">Clear</td><td class="no">Clear</td><td class="yes">Opaque</td></tr>
+          <tr><td>Survives sitting near the hob</td><td class="no">Warps</td><td class="no">Reported warping</td><td class="yes">Steel + silicone</td></tr>
+          <tr><td>Spares sold separately</td><td class="no">No</td><td class="no">No</td><td class="yes">₹149 kit</td></tr>
+          <tr><td>Designed around Indian oils</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cap">Import and Evo columns summarise published customer reviews on
+      Amazon, Walmart and QVC, not our own laboratory testing.</p>
+  </div>
+</section>
+
+<section class="blk alt">
+  <div class="wrap">
+    <div class="head narrow">
+      <p class="eyebrow">Honestly</p>
+      <h2>What Enna will not do.</h2>
+      <p class="lede">Every sprayer sold in India today claims to handle every
+        oil. None of them do. We would rather draw the line ourselves than let
+        you discover it in January.</p>
+    </div>
+    <div class="limits">
+      <div class="limit">
+        <h3>Solid coconut oil</h3>
+        <p>Coconut oil sets below about 24 °C. No sprayer on earth atomises a
+          solid. Warm the bottle in a bowl of hot water, or use it in the months
+          it stays liquid.</p>
+      </div>
+      <div class="limit">
+        <h3>Ghee</h3>
+        <p>Solid at Indian room temperature for much of the year. Enna is built
+          for liquid oils — mustard, groundnut, gingelly, sunflower, rice bran.
+          Ghee belongs on a spoon.</p>
+      </div>
+      <div class="limit">
+        <h3>Unstrained frying oil</h3>
+        <p>The filtration is designed for what survives a normal kitchen strainer,
+          not for oil poured straight back out of the kadai with the crumbs
+          still in it.</p>
+      </div>
+      <div class="limit">
+        <h3>Replace your oil bottle</h3>
+        <p>180 ml is deliberate. Oil in an open bottle should be finished in
+          three or four weeks. A 500 ml sprayer is a rancidity problem sold as
+          a value feature.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="wrap">
+    <div class="head narrow">
+      <p class="eyebrow">Status</p>
+      <h2>Where this actually stands.</h2>
+      <p class="lede">Enna is a design concept with a costed path to production.
+        Nothing on this page is for sale yet, and the numbers above are targets,
+        not measurements.</p>
+    </div>
+    <div class="road">
+      <div class="step"><div class="step__n">01</div><div class="step__b">
+        <span class="when">Complete</span>
+        <h3>Category teardown and failure analysis</h3>
+        <p>Mechanism architectures compared, review-mined failure modes catalogued
+          across Evo, Misto and the Amazon and Flipkart import field, India-specific
+          constraints documented.</p></div></div>
+      <div class="step"><div class="step__n">02</div><div class="step__b">
+        <span class="when">Next · 4 weeks</span>
+        <h3>Freedom-to-operate and provisional filing</h3>
+        <p>Clear the live pre-compression patent family, then file a provisional
+          on the filtration and raised-intake system, plus the Enna word mark in
+          class 21.</p></div></div>
+      <div class="step"><div class="step__n">03</div><div class="step__b">
+        <span class="when">Months 2–4</span>
+        <h3>Pump head sourcing and India category exclusivity</h3>
+        <p>Qualify pre-compression heads against the target viscosity window,
+          then negotiate exclusive Indian rights — the fastest durable moat
+          available to a first-time hardware brand.</p></div></div>
+      <div class="step"><div class="step__n">04</div><div class="step__b">
+        <span class="when">Months 3–6</span>
+        <h3>Printed prototypes and reused-oil testing</h3>
+        <p>SLA bodies and screens tested against real strained frying oil from
+          working kitchens. Clog-to-failure cycle counts are the pass/fail gate,
+          nothing else.</p></div></div>
+      <div class="step"><div class="step__n">05</div><div class="step__b">
+        <span class="when">Months 6–9</span>
+        <h3>Tooling, compliance and first run</h3>
+        <p>Design registration filed on the final form, food-contact migration
+          testing under the BIS standards, soft tooling for a first thousand
+          units.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap in">
+    <span>Enna · எண்ணெய் · an oil sprayer for Indian kitchens</span>
+    <span>Design concept, September 2026 · specifications are targets</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- part manifest: 1 unit = 10 mm ---------- */
+  var PARTS = [
+    {id:"nozzle", code:"EN-01", name:"Nozzle collar",         spec:"MIST / SPRAY / DRIZZLE",     side:"L", ex: 6.6, tagY: 1.0},
+    {id:"valve",  code:"EN-02", name:"Pre-compression valve", spec:"2.4 bar cracking pressure",  side:"R", ex: 4.9, tagY: 0.4},
+    {id:"head",   code:"EN-03", name:"Pump cartridge",        spec:"POM + SS spring, tool-free", side:"L", ex: 3.1, tagY: 2.0},
+    {id:"screen", code:"EN-04", name:"Fine screen",           spec:"150 µm, SS 316",        side:"R", ex: 1.7, tagY: 0.1},
+    {id:"collar", code:"EN-05", name:"Wide-mouth collar",     spec:"Ø46 mm, 4-start thread",side:"L", ex: 0.7, tagY: 0.5},
+    {id:"body",   code:"EN-06", name:"Body",                  spec:"18/8 stainless, 180 ml",     side:"R", ex: 0.0, tagY: 2.6},
+    {id:"tube",   code:"EN-07", name:"Dip tube",              spec:"Raised intake, 9 mm standoff",side:"L",ex:-1.4, tagY:-1.0},
+    {id:"basket", code:"EN-08", name:"Intake basket",         spec:"600 µm bayonet screen", side:"R", ex:-2.3, tagY: 0.0},
+    {id:"base",   code:"EN-09", name:"Silicone base",         spec:"Food-grade, peel-off",       side:"L", ex:-4.6, tagY: 0.0}
+  ];
+
+  var canvas = document.getElementById("cad");
+  var overlay = document.getElementById("overlay");
+  var leaders = document.getElementById("leaders");
+  var stage = document.getElementById("stage");
+  if(!canvas || typeof THREE === "undefined"){ return; }
+
+  var renderer, scene, camera, group, meshes = {}, tags = [], dots = [], lines = [];
+  var ghostMats = [];
+
+  try{
+    renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true});
+  }catch(e){ return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.06;
+
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(30, 1, 0.1, 400);
+  camera.position.set(0, 1.4, 46);
+
+  /* studio environment, drawn rather than fetched */
+  (function(){
+    var c = document.createElement("canvas");
+    c.width = 512; c.height = 256;
+    var g = c.getContext("2d");
+    var grd = g.createLinearGradient(0, 0, 0, 256);
+    grd.addColorStop(0.00, "#ffffff");
+    grd.addColorStop(0.34, "#dfe6ea");
+    grd.addColorStop(0.52, "#8c98a1");
+    grd.addColorStop(0.70, "#39424a");
+    grd.addColorStop(1.00, "#171d22");
+    g.fillStyle = grd; g.fillRect(0, 0, 512, 256);
+    g.fillStyle = "rgba(255,255,255,.85)";
+    g.fillRect(60, 34, 150, 58);
+    g.fillStyle = "rgba(255,238,205,.55)";
+    g.fillRect(330, 52, 110, 40);
+    var tex = new THREE.CanvasTexture(c);
+    tex.mapping = THREE.EquirectangularReflectionMapping;
+    var pm = new THREE.PMREMGenerator(renderer);
+    pm.compileEquirectangularShader();
+    scene.environment = pm.fromEquirectangular(tex).texture;
+    tex.dispose(); pm.dispose();
+  })();
+
+  var key = new THREE.DirectionalLight(0xffffff, 1.9); key.position.set(7, 13, 11);
+  var fill = new THREE.DirectionalLight(0xc2d6e4, 0.55); fill.position.set(-9, 2, -5);
+  var rim  = new THREE.DirectionalLight(0xffd8a2, 0.85); rim.position.set(-2, -6, -11);
+  scene.add(key, fill, rim);
+
+  function M(o){ return new THREE.MeshStandardMaterial(o); }
+  var steel   = M({color:0xdfe4e8, metalness:0.94, roughness:0.26});
+  var steelD  = M({color:0x99a3ab, metalness:0.88, roughness:0.40});
+  var poly    = M({color:0x2a3137, metalness:0.18, roughness:0.52});
+  var mesh    = M({color:0x6d7a84, metalness:0.85, roughness:0.55});
+  var amber   = M({color:0xd9a441, metalness:0.02, roughness:0.78});
+  var glass   = M({color:0x121a20, metalness:0.10, roughness:0.12,
+                   transparent:true, opacity:0.62});
+
+  function lathe(pts, mat, seg){
+    var v = pts.map(function(p){ return new THREE.Vector2(p[0], p[1]); });
+    var g = new THREE.LatheGeometry(v, seg || 72);
+    var m = new THREE.Mesh(g, mat);
+    m.material.side = THREE.DoubleSide;
+    return m;
+  }
+  function add(id, obj, y){
+    obj.position.y = y;
+    obj.userData.restY = y;
+    group.add(obj);
+    meshes[id] = obj;
+    return obj;
+  }
+
+  group = new THREE.Group();
+  scene.add(group);
+
+  /* body — straight walls, no waist, so a hand and brush reach everything */
+  var bodyG = new THREE.Group();
+  var bodyShell = lathe([
+    [0,-5.75],[1.55,-5.75],[2.32,-5.60],[2.60,-5.22],[2.60,4.85],
+    [2.44,5.42],[2.30,5.62],[2.30,6.05]
+  ], steel.clone());
+  bodyShell.material.transparent = true;
+  ghostMats.push(bodyShell.material);
+  bodyG.add(bodyShell);
+
+  var win = new THREE.Mesh(new THREE.BoxGeometry(0.42, 5.6, 0.16), glass.clone());
+  win.position.set(0, 0.2, 2.56);
+  ghostMats.push(win.material);
+  bodyG.add(win);
+  add("body", bodyG, 0);
+
+  /* wide-mouth collar */
+  var collar = lathe([
+    [2.30,0.00],[2.78,0.06],[2.82,0.26],[2.82,0.88],[2.74,1.08],[2.30,1.14],[2.30,0.00]
+  ], steelD.clone());
+  add("collar", collar, 5.30);
+
+  /* pump cartridge */
+  var head = lathe([
+    [0,0],[1.92,0],[2.26,0.20],[2.28,0.92],[2.12,1.66],[1.58,2.42],
+    [1.18,3.02],[1.06,3.58],[0.94,3.94],[0,3.94]
+  ], poly.clone());
+  add("head", head, 6.55);
+
+  /* fine screen, hidden inside the mouth at rest */
+  var screenG = new THREE.Group();
+  var disc = new THREE.Mesh(new THREE.CylinderGeometry(1.66, 1.66, 0.14, 48), mesh.clone());
+  screenG.add(disc);
+  var ring = new THREE.Mesh(new THREE.TorusGeometry(1.66, 0.09, 10, 48), steelD.clone());
+  ring.rotation.x = Math.PI / 2;
+  screenG.add(ring);
+  var grid = new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.CylinderGeometry(1.6, 1.6, 0.14, 16)),
+    new THREE.LineBasicMaterial({color:0x39424a}));
+  screenG.add(grid);
+  add("screen", screenG, 6.90);
+
+  /* pre-compression valve, hidden inside the cartridge at rest */
+  var valveG = new THREE.Group();
+  var dome = new THREE.Mesh(
+    new THREE.SphereGeometry(0.58, 32, 18, 0, Math.PI * 2, 0, Math.PI / 2), steelD.clone());
+  valveG.add(dome);
+  var seat = new THREE.Mesh(new THREE.CylinderGeometry(0.72, 0.72, 0.16, 32), poly.clone());
+  seat.position.y = -0.08;
+  valveG.add(seat);
+  add("valve", valveG, 8.70);
+
+  /* nozzle collar — the amber accent, echoed at the base */
+  var nozzleG = new THREE.Group();
+  nozzleG.add(lathe([
+    [0.52,0.00],[1.04,0.05],[1.08,0.24],[1.08,0.78],[1.00,0.96],[0.52,1.00],[0.52,0.00]
+  ], amber.clone()));
+  var tip = new THREE.Mesh(new THREE.CylinderGeometry(0.30, 0.36, 0.62, 28), steelD.clone());
+  tip.position.y = 0.42;
+  nozzleG.add(tip);
+  add("nozzle", nozzleG, 10.05);
+
+  /* dip tube — intake raised clear of the floor */
+  var tube = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 9.10, 20), steelD.clone());
+  add("tube", tube, 1.55);
+
+  /* intake basket */
+  var basketG = new THREE.Group();
+  var cage = new THREE.Mesh(new THREE.CylinderGeometry(0.68, 0.68, 1.26, 26), mesh.clone());
+  basketG.add(cage);
+  var cageLines = new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.CylinderGeometry(0.69, 0.69, 1.26, 13)),
+    new THREE.LineBasicMaterial({color:0x2f373e}));
+  basketG.add(cageLines);
+  add("basket", basketG, -3.55);
+
+  /* silicone base ring */
+  var base = lathe([
+    [1.45,0.00],[2.66,0.00],[2.74,0.18],[2.74,0.80],[2.60,1.00],[1.45,1.02],[1.45,0.00]
+  ], amber.clone());
+  add("base", base, -6.72);
+
+  /* ---------- callout DOM ---------- */
+  var ns = "http://www.w3.org/2000/svg";
+  PARTS.forEach(function(p){
+    var el = document.createElement("div");
+    el.className = "tag";
+    el.setAttribute("data-side", p.side);
+    el.innerHTML = "<b>" + p.code + "</b><i></i><span></span>";
+    el.querySelector("i").textContent = p.name;
+    el.querySelector("span").textContent = p.spec;
+    overlay.appendChild(el);
+    tags.push(el);
+    var ln = document.createElementNS(ns, "line");
+    ln.setAttribute("stroke", "currentColor");
+    ln.setAttribute("stroke-width", "1");
+    ln.setAttribute("opacity", ".38");
+    leaders.appendChild(ln);
+    lines.push(ln);
+    var dt = document.createElementNS(ns, "circle");
+    dt.setAttribute("r", "2.5");
+    dt.setAttribute("fill", "currentColor");
+    dt.setAttribute("opacity", ".8");
+    leaders.appendChild(dt);
+    dots.push(dt);
+  });
+  leaders.style.color = "var(--accent)";
+
+  /* ---------- animation state ---------- */
+  var W = 1, H = 1, wide = true, explode = 0, target = 0, spin = 0, t0 = performance.now();
+  var edgeL = 250, edgeR = 250;
+
+  function resize(){
+    var r = canvas.parentElement.getBoundingClientRect();
+    W = Math.max(1, r.width); H = Math.max(1, r.height);
+    wide = window.innerWidth > 860;
+    renderer.setSize(W, H, false);
+    camera.aspect = W / H;
+    camera.updateProjectionMatrix();
+    leaders.setAttribute("viewBox", "0 0 " + W + " " + H);
+    var ov = overlay.getBoundingClientRect();
+    edgeL = tags[0].getBoundingClientRect().right - ov.left + 10;
+    edgeR = tags[1].getBoundingClientRect().left - ov.left - 10;
+  }
+
+  function progress(){
+    var r = stage.getBoundingClientRect();
+    var span = r.height - window.innerHeight;
+    if(span <= 0){ return 0; }
+    return Math.min(1, Math.max(0, -r.top / span));
+  }
+
+  function smooth(a, b, x){
+    var t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+    return t * t * (3 - 2 * t);
+  }
+
+  var v3 = new THREE.Vector3();
+
+  function placeTags(){
+    var items = [];
+    for(var i = 0; i < PARTS.length; i++){
+      var p = PARTS[i], o = meshes[p.id];
+      if(!o){ continue; }
+      v3.set(0, o.position.y + p.tagY, 0);
+      o.parent.localToWorld(v3);
+      v3.project(camera);
+      items.push({
+        i: i, side: p.side,
+        x: (v3.x * 0.5 + 0.5) * W,
+        y: (-v3.y * 0.5 + 0.5) * H,
+        ty: (-v3.y * 0.5 + 0.5) * H
+      });
+    }
+    ["L", "R"].forEach(function(s){
+      var col = items.filter(function(it){ return it.side === s; })
+                     .sort(function(a, b){ return a.ty - b.ty; });
+      var gapMin = 62;
+      for(var k = 1; k < col.length; k++){
+        if(col[k].ty - col[k - 1].ty < gapMin){ col[k].ty = col[k - 1].ty + gapMin; }
+      }
+      if(col.length){
+        var over = col[col.length - 1].ty - (H - 44);
+        if(over > 0){ col.forEach(function(it){ it.ty -= over; }); }
+        var under = 44 - col[0].ty;
+        if(under > 0){ col.forEach(function(it){ it.ty += under; }); }
+      }
+    });
+    items.forEach(function(it){
+      var el = tags[it.i], ln = lines[it.i], dt = dots[it.i];
+      el.style.top = it.ty + "px";
+      var lx = it.side === "L"
+        ? Math.max(20, it.x - 22)
+        : Math.min(W - 20, it.x + 22);
+      ln.setAttribute("x1", lx); ln.setAttribute("y1", it.y);
+      ln.setAttribute("x2", it.side === "L" ? edgeL : edgeR);
+      ln.setAttribute("y2", it.ty);
+      dt.setAttribute("cx", it.x); dt.setAttribute("cy", it.y);
+    });
+  }
+
+  function frame(now){
+    target = progress();
+    explode += (target - explode) * 0.10;
+
+    var e = smooth(0.14, 0.60, explode);
+    for(var i = 0; i < PARTS.length; i++){
+      var p = PARTS[i], o = meshes[p.id];
+      if(o){ o.position.y = o.userData.restY + p.ex * e; }
+    }
+
+    var ghost = 1 - 0.80 * e;
+    for(var m = 0; m < ghostMats.length; m++){
+      ghostMats[m].opacity = m === 0 ? ghost : Math.min(0.62, ghost);
+      ghostMats[m].depthWrite = ghost > 0.96;
+    }
+
+    var idle = reduce ? 0 : (now - t0) * 0.00012 * Math.max(0, 1 - explode * 6);
+    spin = -0.42 + explode * 1.75 + idle;
+    group.rotation.y = spin;
+    group.position.y = -1.2 - e * 0.6;
+
+    var dist = 44 + e * 20;
+    if(camera.aspect < 1){ dist *= 1 + (1 - camera.aspect) * 0.62; }
+    camera.position.z = dist;
+    camera.lookAt(0, group.position.y + 1.8, 0);
+
+    if(wide){
+      overlay.classList.toggle("on", e > 0.34);
+      if(e > 0.20){ placeTags(); }
+    }else{
+      overlay.classList.remove("on");
+    }
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  window.addEventListener("resize", resize, {passive:true});
+  requestAnimationFrame(frame);
+})();
+</script>
