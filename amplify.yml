@@ -1,0 +1,15 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Enna site is static — no dependencies to install."
+    build:
+      commands:
+        - echo "No build step. Publishing site/ as-is."
+  artifacts:
+    baseDirectory: site
+    files:
+      - '**/*'
+  cache:
+    paths: []
