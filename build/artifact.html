@@ -150,6 +150,7 @@ section.blk.alt{background:var(--sunk)}
 .dg .t-mono{font-family:var(--mono);font-size:10px}
 .dg .ls{font-size:11px;letter-spacing:.13em}
 .dg .t-a{fill:var(--accent)} .dg .t-3{fill:var(--ink-3)}
+.dg .f-am{fill:var(--accent-bright);opacity:.25}
 .dg .t-h{font-size:17px;font-weight:600;fill:var(--ink)}
 #oil .s0{stop-color:var(--accent-bright);stop-opacity:.30}
 #oil .s1{stop-color:var(--accent-bright);stop-opacity:.16}
@@ -160,7 +161,8 @@ section.blk.alt{background:var(--sunk)}
   gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
 .feat{background:var(--ground);padding:24px 22px;display:flex;
   flex-direction:column;gap:9px}
-.feat .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--accent)}
+.feat .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent)}
 .feat h3{font-size:19px;letter-spacing:-.015em}
 .feat p{font-size:14.5px;color:var(--ink-2)}
 
@@ -171,7 +173,7 @@ section.blk.alt{background:var(--sunk)}
 .tbl th{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
   text-transform:uppercase;color:var(--ink-3);font-weight:400;
   border-bottom:1px solid var(--line)}
-.tbl td:first-child{color:var(--ink-2);width:34%}
+.tbl td:first-child{color:var(--ink-2);width:30%}
 .tbl td:last-child{font-family:var(--mono);font-size:13px;
   font-variant-numeric:tabular-nums}
 .scroll{overflow-x:auto}
@@ -230,6 +232,17 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   html{scroll-behavior:auto}
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+/* the set */
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:32px}
+.sum div{background:var(--ground);padding:20px;display:flex;flex-direction:column;gap:5px}
+.sum .q{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--ink);
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.sum .q.tot{color:var(--accent)}
+.sum .l{font-size:14px;color:var(--ink-2)}
+.sum .s{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3)}
+
 /* name-origin dialogue */
 .dlg{display:flex;flex-direction:column;gap:10px;max-width:940px}
 .ln{display:grid;gap:2px;padding:16px 20px;border:1px solid var(--line-soft);
@@ -285,18 +298,18 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
     <div class="panel wrap"><div class="card">
       <div class="brand">Enna</div>
       <h1>Fifteen calories,<br>not two&nbsp;<em>fifty</em>.</h1>
-      <p class="lede">எண்ணெய் — <em>ennai</em>, oil. A 500 ml oil sprayer built
-        for the way Indian kitchens actually work: the one-litre pouch, thick
-        oils, reused oil, and a bottle that lives next to a live flame.</p>
+      <p class="lede">எண்ணெய் — <em>ennai</em>, oil. A 250 ml sprayer and a
+        750 ml decanter, sized together to swallow exactly one pouch. Built for
+        thick oils, reused oil, and a bottle that lives next to a live flame.</p>
       <span class="chip">Design concept · prototype in development</span>
     </div></div>
     <div class="panel panel--r wrap"><div class="card">
       <p class="eyebrow">Architecture · top</p>
       <h2>Open the top, not the neck.</h2>
       <p class="lede">The entire shoulder unscrews on a coarse four-start
-        thread. Empty a one-litre pouch straight into a Ø58 mm mouth with no
+        thread. Pour straight from the decanter into a Ø48 mm mouth with no
         funnel, no spill and no squeezing oil through a 12 mm hole.</p>
-      <span class="hint">Ø58 mm mouth · silicone face seal</span>
+      <span class="hint">Ø48 mm mouth · silicone face seal</span>
     </div></div>
     <div class="panel wrap"><div class="card">
       <p class="eyebrow">Architecture · bottom</p>
@@ -305,7 +318,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
         body is an open tube you can look straight through — drop it in hot
         water, run a brush clean through it, put it in the dishwasher. No bottle
         brush ever reaches the corner it can't see.</p>
-      <span class="hint">Ø62 mm base · captive LSR face gasket</span>
+      <span class="hint">Ø52 mm base · captive LSR face gasket</span>
     </div></div>
     <div class="panel panel--r wrap"><div class="card">
       <p class="eyebrow">The hard problem</p>
@@ -320,10 +333,64 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
       <h2>It counts, so you don't have to.</h2>
       <p class="lede">No window, no glass, no hole in the wall to leak from. A
         mechanical counter in the head ticks once per stroke — the same movement
-        an inhaler uses. Because every stroke is exactly 0.20 ml, it is at once
-        a fuel gauge and a calorie meter.</p>
-      <span class="hint">2,500 strokes · resets on refill</span>
+        an inhaler uses. Because every stroke is exactly 0.20 ml, the bar is at
+        once a fuel gauge and a calorie meter.</p>
+      <span class="hint">1,250 strokes · resets on refill</span>
     </div></div>
+  </div>
+</section>
+
+<section class="blk alt">
+  <div class="wrap">
+    <div class="head narrow">
+      <p class="eyebrow">The set</p>
+      <h2>One pouch. Nothing left over.</h2>
+      <p class="lede">A 500 ml sprayer full of oil weighs 855 g, and squeezing a
+        trigger on that is tiring by the third pan. So we split it. The sprayer
+        holds 250 ml and stays light in the hand; the decanter holds the other
+        750 ml in opaque steel. Together they are exactly one litre — exactly
+        one pouch.</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 900 290" role="img" aria-label="A one-litre oil pouch emptying into a 750 millilitre decanter and a 250 millilitre sprayer.">
+        <g class="dg">
+          <path class="f-s2 st-3" d="M58 74 h96 a8 8 0 0 1 8 8 v148 a12 12 0 0 1 -12 12 h-88 a12 12 0 0 1 -12 -12 v-148 a8 8 0 0 1 8 -8 z"/>
+          <path class="f-am" d="M50 116 h112 v114 a12 12 0 0 1 -12 12 h-88 a12 12 0 0 1 -12 -12 z"/>
+          <path class="st-3" d="M58 74 q53 -14 104 0"/>
+          <path class="st-a hair" d="M50 116 h112"/>
+          <text class="t-mono t-3" x="58" y="268">1 L POUCH</text>
+          <path class="st-a w2" d="M196 158 h44 M232 150 l10 8 l-10 8"/>
+          <path class="f-s2 st-3" d="M286 106 h78 v122 a14 14 0 0 1 -14 14 h-50 a14 14 0 0 1 -14 -14 z"/>
+          <path class="f-am" d="M286 132 h78 v96 a14 14 0 0 1 -14 14 h-50 a14 14 0 0 1 -14 -14 z"/>
+          <rect class="f-s2 st-3" x="303" y="84" width="44" height="22" rx="4"/>
+          <path class="st-a w2" d="M288 236 h74"/>
+          <text class="t-mono t-3" x="286" y="268">DECANTER · 750 ML</text>
+          <path class="st-a w2" d="M421 148 v20 M411 158 h20"/>
+          <path class="f-s2 st-3" d="M470 148 h58 v80 a14 14 0 0 1 -14 14 h-30 a14 14 0 0 1 -14 -14 z"/>
+          <path class="f-am" d="M470 170 h58 v58 a14 14 0 0 1 -14 14 h-30 a14 14 0 0 1 -14 -14 z"/>
+          <rect class="f-s2 st-3" x="476" y="118" width="46" height="30" rx="5"/>
+          <rect class="f-s2 st-3" x="520" y="124" width="16" height="10" rx="2"/>
+          <path class="st-a w2" d="M472 236 h54"/>
+          <text class="t-mono t-3" x="470" y="268">SPRAYER · 250 ML</text>
+          <path class="st-l" d="M566 158 h34"/>
+          <text class="t-h" x="620" y="140">One litre in,</text>
+          <text class="t-h" x="620" y="164">one litre stored.</text>
+          <text class="t-b" x="620" y="192">No half-empty pouch</text>
+          <text class="t-b" x="620" y="210">folded shut on the shelf,</text>
+          <text class="t-b" x="620" y="228">going rancid in the light.</text>
+        </g>
+      </svg>
+    </div>
+    <div class="sum">
+      <div><span class="q">530 g</span><span class="l">Sprayer, full</span>
+        <span class="s">vs 855 g at 500 ml</span></div>
+      <div><span class="q">1,250</span><span class="l">Strokes per fill</span>
+        <span class="s">≈ 4 weeks of cooking</span></div>
+      <div><span class="q">3×</span><span class="l">Sprayer refills per decanter</span>
+        <span class="s">750 ÷ 250</span></div>
+      <div><span class="q tot">1,000 ml</span><span class="l">The set, exactly</span>
+        <span class="s">250 + 750</span></div>
+    </div>
   </div>
 </section>
 
@@ -370,6 +437,12 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
         <span class="tr">enna eṇṇai?! nallennaiyā, kaḍalai eṇṇaiyā, thēngāy eṇṇaiyā?!</span>
         <span class="tx">WHAT oil?! Sesame, groundnut or coconut?!</span>
       </div>
+      <div class="ln ln--a">
+        <span class="who">Shopkeeper, the coin finally dropping</span>
+        <span class="ta">அட பாவி… ஆயில் கேக்கறியா?!</span>
+        <span class="tr">aḍa pāvi… oil-ā kēkkaṟiyā?!</span>
+        <span class="tx">Oh you villain — you wanted OIL this whole time?!</span>
+      </div>
     </div>
 
     <div class="oils">
@@ -398,8 +471,9 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
 
     <div class="punch">
       <div class="ta">"என்ன வேணும்?" &nbsp;—&nbsp; "<b>எண்ணெய்.</b>"</div>
-      <p>Sixty years of Tamil comedy has been trying to get those two words to
-        agree. We just put them on the same bottle.</p>
+      <p>It takes the poor man seven rounds to work out that <em>enna</em> and
+        <em>ennai</em> were the same request all along. We just put them on the
+        same bottle and saved everyone the argument.</p>
     </div>
   </div>
 </section>
@@ -629,10 +703,10 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
         <p>Steel and silicone in every part that faces the hob. Nothing near the
           heat is structural plastic.</p></div>
       <div class="feat"><span class="n">07</span><h3>It's a mess to refill</h3>
-        <p>A one-litre pouch empties into a Ø58 mm mouth without a funnel, and
-          500 ml means the pouch goes in two fills, not six.</p></div>
+        <p>The pouch goes into the decanter once. The decanter tops up the
+          sprayer three times. Nothing is ever poured from a floppy pouch again.</p></div>
       <div class="feat"><span class="n">08</span><h3>You never know what's left</h3>
-        <p>A mechanical stroke counter in the head, not a window. No hole in the
+        <p>A segmented stroke counter in the head, not a window. No hole in the
           wall means no leak path — and it counts calories while it's there.</p></div>
       <div class="feat"><span class="n">09</span><h3>Nobody answers the warranty</h3>
         <p>Spares sold openly at ₹199 — nozzle, both gaskets, both screens — so
@@ -648,41 +722,41 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
     </div>
     <div class="scroll">
       <table class="tbl">
-        <thead><tr><th>Parameter</th><th>Target</th></tr></thead>
+        <thead><tr><th>Parameter</th><th>Enna Spray</th><th>Enna Store</th></tr></thead>
         <tbody>
-          <tr><td>Capacity</td><td>500 ml</td></tr>
-          <tr><td>Overall height · body diameter</td><td>232 mm · Ø70 mm</td></tr>
-          <tr><td>Top mouth · base opening</td><td>Ø58 mm · Ø62 mm</td></tr>
-          <tr><td>Empty mass · filled mass</td><td>395 g · 855 g</td></tr>
-          <tr><td>Metered dose per stroke</td><td>0.20 ml ± 0.03</td></tr>
-          <tr><td>Counter range</td><td>2,500 strokes, resettable</td></tr>
-          <tr><td>Valve cracking pressure</td><td>2.4 bar</td></tr>
-          <tr><td>Filtration</td><td>600 µm intake · 150 µm pre-nozzle</td></tr>
-          <tr><td>Body · screens</td><td>18/8 stainless · SS 316 mesh</td></tr>
-          <tr><td>Seals · grip ring</td><td>Food-grade LSR silicone</td></tr>
-          <tr><td>Pump internals</td><td>POM, IS-compliant food contact</td></tr>
-          <tr><td>Wetted parts, tool-free</td><td>11 of 11</td></tr>
-          <tr><td>Viscosity window</td><td>25–95 cSt at 25 °C</td></tr>
-          <tr><td>Leak validation</td><td>24 h inverted at 45 °C · 500 open/close cycles</td></tr>
-          <tr><td>Compliance route</td><td>BIS food-contact IS series · GS1 EAN</td></tr>
-          <tr><td>Indicative retail</td><td>₹1,499</td></tr>
+          <tr><td>Capacity</td><td>250 ml</td><td>750 ml</td></tr>
+          <tr><td>Height · body diameter</td><td>185 mm · Ø58 mm</td><td>192 mm · Ø82 mm</td></tr>
+          <tr><td>Mouth opening</td><td>Ø48 mm</td><td>Ø70 mm</td></tr>
+          <tr><td>Base opening</td><td>Ø52 mm, removable</td><td>—</td></tr>
+          <tr><td>Empty mass · filled mass</td><td>300 g · 530 g</td><td>250 g · 940 g</td></tr>
+          <tr><td>Metered dose per stroke</td><td>0.20 ml ± 0.03</td><td>—</td></tr>
+          <tr><td>Counter range</td><td>1,250 strokes, resettable</td><td>—</td></tr>
+          <tr><td>Valve cracking pressure</td><td>2.4 bar</td><td>—</td></tr>
+          <tr><td>Filtration</td><td>600 µm · 150 µm</td><td>—</td></tr>
+          <tr><td>Body · screens</td><td>18/8 stainless · SS 316</td><td>18/8 stainless</td></tr>
+          <tr><td>Seals · grip ring</td><td>Food-grade LSR silicone</td><td>Food-grade LSR silicone</td></tr>
+          <tr><td>Wetted parts, tool-free</td><td>11 of 11</td><td>3 of 3</td></tr>
+          <tr><td>Viscosity window</td><td>25–95 cSt at 25 °C</td><td>—</td></tr>
+          <tr><td>Leak validation</td><td colspan="2">24 h inverted at 45 °C · 500 open/close cycles</td></tr>
+          <tr><td>Compliance route</td><td colspan="2">BIS food-contact IS series · one GS1 EAN for the set</td></tr>
+          <tr><td>Indicative retail</td><td colspan="2">₹1,799 for the set</td></tr>
         </tbody>
-      </table>
+</table>
     </div>
     <p class="cap">Design targets for the first prototype round, not measured
       production values.</p>
 
     <div class="parts" style="margin-top:34px" aria-label="Part list">
       <div class="part"><b>EN-01</b><span>Nozzle collar<small>MIST / SPRAY / DRIZZLE</small></span></div>
-      <div class="part"><b>EN-02</b><span>Dose counter<small>2,500 strokes, resets on refill</small></span></div>
+      <div class="part"><b>EN-02</b><span>Dose counter<small>1,250 strokes, resets on refill</small></span></div>
       <div class="part"><b>EN-03</b><span>Pre-compression valve<small>2.4 bar cracking pressure</small></span></div>
       <div class="part"><b>EN-04</b><span>Pump cartridge<small>POM + SS spring, tool-free</small></span></div>
       <div class="part"><b>EN-05</b><span>Fine screen<small>150 µm, SS 316</small></span></div>
-      <div class="part"><b>EN-06</b><span>Wide-mouth collar<small>Ø58 mm, 4-start thread</small></span></div>
-      <div class="part"><b>EN-07</b><span>Body<small>18/8 stainless, 500 ml</small></span></div>
+      <div class="part"><b>EN-06</b><span>Wide-mouth collar<small>Ø48 mm, 4-start thread</small></span></div>
+      <div class="part"><b>EN-07</b><span>Body<small>18/8 stainless, 250 ml</small></span></div>
       <div class="part"><b>EN-08</b><span>Dip tube<small>Raised intake, 9 mm standoff</small></span></div>
       <div class="part"><b>EN-09</b><span>Intake basket<small>600 µm bayonet screen</small></span></div>
-      <div class="part"><b>EN-10</b><span>Base cap + gasket<small>Ø62 mm, captive LSR face seal</small></span></div>
+      <div class="part"><b>EN-10</b><span>Base cap + gasket<small>Ø52 mm, captive LSR face seal</small></span></div>
       <div class="part"><b>EN-11</b><span>Silicone grip ring<small>Twist to open · anti-slip · drip catcher</small></span></div>
     </div>
   </div>
@@ -704,7 +778,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
           <tr><td>Handles particulate from reused oil</td><td class="no">No</td><td class="no">No</td><td class="yes">Three-stage</td></tr>
           <tr><td>Consistent mist at low squeeze speed</td><td class="no">No</td><td class="no">Degrades</td><td class="yes">Pre-compression</td></tr>
           <tr><td>Opens at both ends for cleaning</td><td class="no">No</td><td class="no">No</td><td class="yes">Top and base</td></tr>
-          <tr><td>Takes a 1 L pouch in two fills</td><td class="no">6+ fills</td><td class="no">7 fills</td><td class="yes">500 ml</td></tr>
+          <tr><td>Sized to a 1 L pouch</td><td class="no">Leftover pouch</td><td class="no">Leftover pouch</td><td class="yes">250 + 750</td></tr>
           <tr><td>Survives a drop</td><td class="no">Glass or thin plastic</td><td class="no">Glass option</td><td class="yes">Stainless</td></tr>
           <tr><td>Blocks light to slow rancidity</td><td class="no">Clear</td><td class="no">Clear</td><td class="yes">Opaque</td></tr>
           <tr><td>Survives sitting near the hob</td><td class="no">Warps</td><td class="no">Reported warping</td><td class="yes">Steel + silicone</td></tr>
@@ -748,15 +822,50 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
       </div>
       <div class="limit">
         <h3>Make old oil fresh</h3>
-        <p>An opaque steel body slows ageing — it doesn't stop it. 500 ml is
-          about eight weeks of normal cooking, which is roughly the right
-          window. Keep the rest of the pouch sealed and out of the light.</p>
+        <p>An opaque steel body slows ageing — it doesn't stop it. The sprayer
+          holds about four weeks of cooking and the decanter keeps the rest in
+          the dark, which is the best either of us can do. Buy the pouch you
+          will actually finish.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="blk">
+  <div class="wrap">
+    <div class="head narrow">
+      <p class="eyebrow">Who this is for</p>
+      <h2>People who already measure.</h2>
+      <p class="lede">Three groups reach for Enna first, and they have exactly
+        one thing in common: every one of them already counts something. Enna
+        does not ask them to start a new habit — it plugs into the one they
+        have.</p>
+    </div>
+    <div class="feats">
+      <div class="feat"><span class="n">Measures blood sugar</span>
+        <h3>Diabetic and PCOS households</h3>
+        <p>Enormous in India and medically motivated rather than aspirational.
+          Fat quantity is already on the doctor's list, and a counter that
+          reports the week's oil in kilocalories is the first honest answer
+          anyone has given them.</p></div>
+      <div class="feat"><span class="n">Measures cooking</span>
+        <h3>Air fryer owners</h3>
+        <p>They already bought an appliance to use less oil, then went back to
+          pouring from the bottle into the basket. The argument is pre-made;
+          Enna is the missing accessory.</p></div>
+      <div class="feat"><span class="n">Measures intake</span>
+        <h3>Calorie and macro trackers</h3>
+        <p>Cooking oil is the single largest untracked number in an Indian
+          food log — nobody knows what went into the sambar. 1,250 strokes at
+          1.7 kcal each is the first oil figure they can actually enter.</p></div>
+    </div>
+    <p class="cap">Launch geography and launch audience are separate questions.
+      These three are pan-India; the name, the joke and the oils argue for
+      Tamil Nadu as the first state on the shelf.</p>
+  </div>
+</section>
+
+<section class="blk alt">
   <div class="wrap">
     <div class="head narrow">
       <p class="eyebrow">Status</p>
@@ -814,17 +923,17 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
 
   /* part manifest — 1 scene unit = 10 mm */
   var PARTS = [
-    {id:"nozzle", code:"EN-01", name:"Nozzle collar",         spec:"MIST / SPRAY / DRIZZLE",        side:"L", ex: 7.5, tagY: 0.5},
-    {id:"count",  code:"EN-02", name:"Dose counter",          spec:"2,500 strokes, resettable",     side:"R", ex: 5.6, tagY: 0.0},
-    {id:"valve",  code:"EN-03", name:"Pre-compression valve", spec:"2.4 bar cracking pressure",     side:"L", ex: 4.2, tagY: 0.0},
-    {id:"head",   code:"EN-04", name:"Pump cartridge",        spec:"POM + SS spring, tool-free",    side:"R", ex: 2.6, tagY: 2.2},
-    {id:"screen", code:"EN-05", name:"Fine screen",           spec:"150 µm, SS 316",                side:"L", ex: 1.3, tagY: 0.0},
-    {id:"collar", code:"EN-06", name:"Wide-mouth collar",     spec:"Ø58 mm, 4-start thread",        side:"R", ex: 0.6, tagY: 0.0},
-    {id:"body",   code:"EN-07", name:"Body",                  spec:"18/8 stainless, 500 ml",        side:"L", ex: 0.0, tagY: 2.0},
-    {id:"tube",   code:"EN-08", name:"Dip tube",              spec:"Raised intake, 9 mm standoff",  side:"R", ex:-1.6, tagY:-3.0},
-    {id:"basket", code:"EN-09", name:"Intake basket",         spec:"600 µm bayonet screen",         side:"L", ex:-2.6, tagY: 0.0},
-    {id:"cap",    code:"EN-10", name:"Base cap + gasket",     spec:"Ø62 mm, captive LSR face seal", side:"R", ex:-4.6, tagY: 0.0},
-    {id:"grip",   code:"EN-11", name:"Silicone grip ring",    spec:"Twist to open · drip catcher",  side:"L", ex:-7.0, tagY: 0.0}
+    {id:"nozzle", code:"EN-01", name:"Nozzle collar",         spec:"MIST / SPRAY / DRIZZLE",        side:"L", ex: 6.2, tagY: 0.5},
+    {id:"count",  code:"EN-02", name:"Dose counter",          spec:"1,250 strokes, resettable",     side:"R", ex: 4.6, tagY: 0.0},
+    {id:"valve",  code:"EN-03", name:"Pre-compression valve", spec:"2.4 bar cracking pressure",     side:"L", ex: 3.5, tagY: 0.0},
+    {id:"head",   code:"EN-04", name:"Pump cartridge",        spec:"POM + SS spring, tool-free",    side:"R", ex: 2.2, tagY: 1.8},
+    {id:"screen", code:"EN-05", name:"Fine screen",           spec:"150 µm, SS 316",                side:"L", ex: 1.1, tagY: 0.0},
+    {id:"collar", code:"EN-06", name:"Wide-mouth collar",     spec:"Ø48 mm, 4-start thread",        side:"R", ex: 0.5, tagY: 0.0},
+    {id:"body",   code:"EN-07", name:"Body",                  spec:"18/8 stainless, 250 ml",        side:"L", ex: 0.0, tagY: 1.6},
+    {id:"tube",   code:"EN-08", name:"Dip tube",              spec:"Raised intake, 9 mm standoff",  side:"R", ex:-1.4, tagY:-2.4},
+    {id:"basket", code:"EN-09", name:"Intake basket",         spec:"600 µm bayonet screen",         side:"L", ex:-2.2, tagY: 0.0},
+    {id:"cap",    code:"EN-10", name:"Base cap + gasket",     spec:"Ø52 mm, captive LSR face seal", side:"R", ex:-3.9, tagY: 0.0},
+    {id:"grip",   code:"EN-11", name:"Silicone grip ring",    spec:"Twist to open · drip catcher",  side:"L", ex:-5.9, tagY: 0.0}
   ];
 
   var canvas  = document.getElementById("cad");
@@ -894,7 +1003,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
 
   /* EN-07 body — an open tube: both ends come off, so you can see through it */
   var body = lathe([
-    [3.10,-7.75],[3.42,-7.55],[3.50,-7.12],[3.50,6.30],[3.30,7.10],[2.90,7.55],[2.90,7.95]
+    [2.60,-5.90],[2.86,-5.72],[2.90,-5.36],[2.90,4.60],[2.74,5.32],[2.40,5.70],[2.40,6.05]
   ], steel.clone());
   body.material.transparent = true;
   ghostMats.push(body.material);
@@ -902,24 +1011,24 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
 
   /* EN-06 wide-mouth collar */
   add("collar", lathe([
-    [2.90,-0.60],[3.40,-0.54],[3.46,-0.32],[3.46,0.34],[3.38,0.56],[2.90,0.62],[2.90,-0.60]
-  ], steelD.clone()), 7.55);
+    [2.40,-0.55],[2.86,-0.50],[2.92,-0.30],[2.92,0.30],[2.84,0.52],[2.40,0.57],[2.40,-0.55]
+  ], steelD.clone()), 5.72);
 
   /* EN-04 pump cartridge */
   add("head", lathe([
-    [0,0],[2.50,0],[2.86,0.22],[2.88,1.00],[2.66,1.85],[2.00,2.72],
-    [1.40,3.40],[1.22,4.00],[1.06,4.40],[0,4.40]
-  ], poly.clone()), 8.15);
+    [0,0],[2.06,0],[2.38,0.20],[2.40,0.92],[2.20,1.70],[1.70,2.50],
+    [1.25,3.15],[1.10,3.72],[0.98,4.10],[0,4.10]
+  ], poly.clone()), 6.30);
 
   /* EN-05 fine screen — hidden inside the mouth at rest */
   var scr = new THREE.Group();
-  scr.add(new THREE.Mesh(new THREE.CylinderGeometry(2.05, 2.05, 0.14, 48), mesh.clone()));
-  var scrRing = new THREE.Mesh(new THREE.TorusGeometry(2.05, 0.10, 10, 48), steelD.clone());
+  scr.add(new THREE.Mesh(new THREE.CylinderGeometry(1.72, 1.72, 0.14, 48), mesh.clone()));
+  var scrRing = new THREE.Mesh(new THREE.TorusGeometry(1.72, 0.10, 10, 48), steelD.clone());
   scrRing.rotation.x = Math.PI / 2; scr.add(scrRing);
   scr.add(new THREE.LineSegments(
-    new THREE.EdgesGeometry(new THREE.CylinderGeometry(2.0, 2.0, 0.14, 18)),
+    new THREE.EdgesGeometry(new THREE.CylinderGeometry(1.68, 1.68, 0.14, 18)),
     new THREE.LineBasicMaterial({color:0x39424a})));
-  add("screen", scr, 8.45);
+  add("screen", scr, 6.55);
 
   /* EN-03 pre-compression valve — hidden inside the cartridge at rest */
   var vlv = new THREE.Group();
@@ -927,7 +1036,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
     new THREE.SphereGeometry(0.60, 32, 18, 0, Math.PI * 2, 0, Math.PI / 2), steelD.clone()));
   var seat = new THREE.Mesh(new THREE.CylinderGeometry(0.76, 0.76, 0.16, 32), poly.clone());
   seat.position.y = -0.08; vlv.add(seat);
-  add("valve", vlv, 10.40);
+  add("valve", vlv, 8.40);
 
   /* EN-02 dose counter — a ring on the neck, with its read-out window */
   var cnt = new THREE.Group();
@@ -936,7 +1045,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   ], steelD.clone()));
   var winA = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.34, 0.16), amber.clone());
   winA.position.set(0, 0.02, 1.56); cnt.add(winA);
-  add("count", cnt, 11.55);
+  add("count", cnt, 9.55);
 
   /* EN-01 nozzle collar — the amber accent, echoed at the base */
   var noz = new THREE.Group();
@@ -945,11 +1054,11 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   ], amber.clone()));
   var tip = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.38, 0.64, 28), steelD.clone());
   tip.position.y = 0.44; noz.add(tip);
-  add("nozzle", noz, 12.50);
+  add("nozzle", noz, 10.45);
 
   /* EN-08 dip tube — intake held clear of the floor */
   add("tube", new THREE.Mesh(
-    new THREE.CylinderGeometry(0.26, 0.26, 14.30, 20), steelD.clone()), 0.85);
+    new THREE.CylinderGeometry(0.24, 0.24, 10.70, 20), steelD.clone()), 0.85);
 
   /* EN-09 intake basket */
   var bsk = new THREE.Group();
@@ -957,17 +1066,17 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   bsk.add(new THREE.LineSegments(
     new THREE.EdgesGeometry(new THREE.CylinderGeometry(0.75, 0.75, 1.34, 13)),
     new THREE.LineBasicMaterial({color:0x2f373e})));
-  add("basket", bsk, -6.85);
+  add("basket", bsk, -5.05);
 
   /* EN-10 base cap */
   add("cap", lathe([
-    [0,-0.825],[2.70,-0.825],[3.10,-0.55],[3.16,-0.10],[3.16,0.825]
-  ], steelD.clone()), -8.55);
+    [0,-0.78],[2.20,-0.78],[2.56,-0.52],[2.62,-0.10],[2.62,0.78]
+  ], steelD.clone()), -6.68);
 
   /* EN-11 silicone grip ring — the surface you twist to open the base */
   add("grip", lathe([
-    [3.08,-0.58],[3.44,-0.54],[3.52,-0.30],[3.52,0.34],[3.42,0.56],[3.08,0.60],[3.08,-0.58]
-  ], amber.clone()), -8.55);
+    [2.54,-0.55],[2.90,-0.51],[2.96,-0.28],[2.96,0.32],[2.88,0.53],[2.54,0.57],[2.54,-0.55]
+  ], amber.clone()), -6.68);
 
   /* callout DOM */
   var ns = "http://www.w3.org/2000/svg";
@@ -1072,12 +1181,12 @@ footer .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
 
     var idle = reduce ? 0 : (now - t0) * 0.00012 * Math.max(0, 1 - explode * 6);
     group.rotation.y = -0.42 + explode * 1.75 + idle;
-    group.position.y = -2.2 - e * 0.3;
+    group.position.y = -1.9 - e * 0.3;
 
-    var dist = 50 + e * 29;
+    var dist = 43 + e * 24;
     if(camera.aspect < 1){ dist *= 1 + (1 - camera.aspect) * 0.62; }
     camera.position.set(0, 1.4, dist);
-    camera.lookAt(0, group.position.y + 2.4, 0);
+    camera.lookAt(0, group.position.y + 2.0, 0);
 
     if(wide){
       overlay.classList.toggle("on", e > 0.34);

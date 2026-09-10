@@ -71,3 +71,66 @@ This is a claim we should be willing to defend publicly.
 - Freedom-to-operate read of the live Flairosol claim set and WO2016077114A1.
 - Pump-head supplier shortlist and viscosity qualification protocol.
 - Whether the level indicator (window strip) survives cost-down.
+
+---
+
+# Round 2 decisions (2026-09-10)
+
+## The set: 250 ml sprayer + 750 ml decanter
+
+The 500 ml pivot was right about the problem (Indians buy 1 L pouches and need
+somewhere to put them) and wrong about the solution: a 500 ml sprayer weighs
+855 g full, and squeezing a trigger on that is tiring by the third pan.
+
+**Split it, then sell it as one SKU.** *Enna Spray* holds 250 ml (530 g full —
+comfortable). *Enna Store* holds 750 ml in opaque steel. 250 + 750 = exactly one
+litre: one pouch in, nothing folded shut on the shelf going rancid.
+
+One box, one EAN, one marketplace listing. This is what makes a two-piece system
+survive quick-commerce economics, where the listing fee is ₹25,000 **per SKU per
+state**. Two separate SKUs would double that in every state.
+
+It also restores the shelf-life argument honestly: 250 ml is about four weeks of
+cooking, which is the right open-bottle window. The decanter keeps the rest dark.
+
+## Both openings stay
+
+Wide top for filling, removable base for cleaning. Both get captive LSR face
+gaskets; both gaskets go in the spares kit. The base seal is **static and
+unpressurised** — the pump pressurises only the chamber in the head, and 118 mm
+of oil exerts about 0.011 bar on the base. This is the same sealing duty as a
+moka pot or a vacuum flask, not a hard problem, but it must be validated:
+24 h inverted at 45 °C, and 500 open/close cycles.
+
+## Counter: strokes remaining, coarse segmented bar
+
+Counts down from 1,250 (250 ml ÷ 0.20 ml) like an inhaler dose counter. Reads as
+a fuel gauge at a glance, cheapest mechanism, resets with a twist ring on refill.
+Calories stay on the packaging and the website rather than on the part — a
+calorie read-out on someone's oil bottle risks reading as judgement rather than
+information.
+
+## Beachhead: three audiences, one insight
+
+Diabetic and PCOS households, air-fryer owners, and calorie/macro trackers.
+They share exactly one thing: **every one of them already measures something.**
+Enna does not ask them to start a new habit, it plugs into the one they have.
+That is the positioning line — *for people who already measure.*
+
+Launch **geography** is a separate question from launch **audience**. These three
+segments are pan-India; the name, the joke and the oils all argue for Tamil Nadu
+as the first state on the shelf — which also means one state's quick-commerce
+listing fee, not eight.
+
+## Marketing: the enna / ennai pun
+
+The brand name is the punchline of a comedy scene every Tamil household can
+recite — a shopkeeper and a customer stuck in a loop because *enna* ("what") and
+*ennai* ("oil") sound alike. It resolves into the shopkeeper listing three oils:
+gingelly, groundnut and coconut. Two of them Enna sprays perfectly; the third is
+the one we are honest about, because coconut oil sets below 24 °C.
+
+**Rights caution:** the pun itself is language and free to use, but the film
+clip, the dialogue as written, and the actors' names and likenesses are not.
+Do not use the clip or name the actors in commercial marketing without a
+licence. The site therefore stages the exchange with unnamed generic speakers.
