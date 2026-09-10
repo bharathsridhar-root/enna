@@ -1,4 +1,4 @@
-# Enna — European Market Scan (Round 3)
+# Enna. European Market Scan (Round 3)
 
 Requested: the Amazon.de oil-sprayer category. **Amazon.de itself is blocked to
 this session's network**, as are the German comparison portals
@@ -15,10 +15,10 @@ verify prices directly before quoting them anywhere.
 | CZDIDEXI | €16.60 |
 | Contever, 2-pack, 100 ml glass trigger | mid band |
 
-So the German mass market runs roughly **€8–€17**, or ₹750–₹1,600. Worth sitting
+So the German mass market runs roughly **€8, €17**, or ₹750, ₹1,600. Worth sitting
 with: **Germany's whole category tops out near where we want to price in India.**
-That is not fatal — we are selling a two-piece stainless system against a single
-glass bottle — but it means "cheaper than Europe" is not an argument available
+That is not fatal. We are selling a two-piece stainless system against a single
+glass bottle, but it means "cheaper than Europe" is not an argument available
 to us, and we should never make it.
 
 ## 2. Brands present in Europe
@@ -26,12 +26,12 @@ to us, and we should never make it.
 Valuxe (Pro Series Elements 3.0), MRUN BONE, PORTENTUM, CZDIDEXI, Hillfield,
 Contever, OilPro-3, and **easySpray by UPkitchen** as the German premium option.
 
-## 3. What Europe builds — and the two things it does that we don't
+## 3. What Europe builds, and the two things it does that we don't
 
 **Material.** The dominant construction is **thick-walled glass with a 304
 stainless head or collar**. Germany has *not* moved to opaque steel. German
 buying guides frame the choice as **glass for the kitchen, stainless for the
-grill** — steel is understood as an outdoor/rugged material, not a kitchen one.
+grill**, steel is understood as an outdoor/rugged material, not a kitchen one.
 
 Two competitor features deserve a direct response:
 
@@ -43,37 +43,37 @@ that UV glass still shatters and still lets visible light through, and that our
 stroke counter replaces the one thing transparency actually buys you. That
 argument needs to be made explicitly rather than assumed.
 
-**easySpray varies spray by hand pressure** — a light press gives a targeted
+**easySpray varies spray by hand pressure**, a light press gives a targeted
 jet, a firmer press gives a fine wide mist. Reviewers rate this highly. It is the
 same insight behind our MIST / SPRAY / DRIZZLE collar, reached from the opposite
 direction: they made output depend on the hand, we made it independent of the
 hand and put the choice on a collar. Ours is the more repeatable answer, and it
-is the *only* one that survives the pre-compression valve — but we should
+is the *only* one that survives the pre-compression valve, but we should
 acknowledge that a well-liked competitor got there first, differently.
 
 ## 4. Global bestseller shape
 
-US bestsellers — YARRAMATE, TrendPlain, AOZITA, FineDine, EJGIEGSO, ZiTour — are
-almost all **470–500 ml glass, 2-in-1 spray-and-pour**. The premium outlier is
+US bestsellers. YARRAMATE, TrendPlain, AOZITA, FineDine, EJGIEGSO, ZiTour, are
+almost all **470, 500 ml glass, 2-in-1 spray-and-pour**. The premium outlier is
 **Flairosol Olivia Signature at 200 ml**.
 
 Two conclusions:
 
-1. **The 470–500 ml glass 2-in-1 is the global default.** Our 250 + 750 opaque
-   steel set is genuinely differentiated against it — nobody, anywhere, is
+1. **The 470, 500 ml glass 2-in-1 is the global default.** Our 250 + 750 opaque
+   steel set is genuinely differentiated against it, nobody, anywhere, is
    selling this shape.
 2. **The premium end goes small.** Flairosol, the best-engineered product in the
    category, is 200 ml. Our 250 ml sprayer is in good company.
 
-Category size signal: top ASINs move **9,000–20,000 units per month** each. This
+Category size signal: top ASINs move **9,000, 20,000 units per month** each. This
 is a real category, not a novelty.
 
 ## 5. The finding that changes the design
 
 Across German reviews, one failure mode appears that our earlier teardown missed:
 
-> **Overfilling breaks the pump.** Most models carry a *Füllmarkierung* — a
-> maximum fill line — because oil above it overloads the pump mechanism and
+> **Overfilling breaks the pump.** Most models carry a *Füllmarkierung*, a
+> maximum fill line, because oil above it overloads the pump mechanism and
 > causes dripping and weak spray. Users are also told to store the bottle
 > upright with the nozzle fully tightened to reduce seepage.
 
@@ -92,8 +92,7 @@ Two further complaints worth catching in the test plan:
 - **Head internals migrate.** Owners report the insert inside the metal spray
   head shifting out of position over months.
 - **Seepage appears at the handle, not just the nozzle**, after sustained daily
-  use. Our leak protocol currently tests the base seal and inverted storage —
-  it should also run a sustained-use cycle and inspect the trigger pivot.
+  use. Our leak protocol currently tests the base seal and inverted storage. It should also run a sustained-use cycle and inspect the trigger pivot.
 
 ## Sources
 

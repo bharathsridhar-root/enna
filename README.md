@@ -5,8 +5,8 @@ research, the design and manufacturing brief, and the marketing site.
 
 ```
 docs/    research, product brief, strategy, manufacturing and BOM
-site/    the marketing site — deployed as-is to AWS Amplify
-scripts/ build-artifact.mjs — generates the Claude Artifact variant
+site/    the marketing site, deployed as-is to AWS Amplify
+scripts/ build-artifact.mjs, generates the Claude Artifact variant
 build/   generated; not the deploy target
 ```
 
@@ -14,7 +14,7 @@ build/   generated; not the deploy target
 
 `site/index.html` is a single self-contained page. It has no build step and no
 dependencies beyond two CDN loads (Google Fonts and Three.js). The exploded
-product view is generated procedurally in Three.js — there are no model files
+product view is generated procedurally in Three.js. There are no model files
 to fetch.
 
 ### Deploying to AWS Amplify

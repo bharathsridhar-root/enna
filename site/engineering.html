@@ -194,58 +194,182 @@ body{margin:0}
   </div>
   <nav class="toc">
     <a href="#arch"><b>01</b><span>Architecture</span></a>
-    <a href="#spec"><b>02</b><span>Specification</span></a>
-    <a href="#clog"><b>03</b><span>Anti-clog system</span></a>
-    <a href="#seal"><b>04</b><span>Sealing strategy</span></a>
-    <a href="#mat"><b>05</b><span>Materials</span></a>
-    <a href="#test"><b>06</b><span>Validation protocol</span></a>
-    <a href="#bom"><b>07</b><span>Bill of materials</span></a>
-    <a href="#tool"><b>08</b><span>Tooling and suppliers</span></a>
-    <a href="#ip"><b>09</b><span>IP and compliance</span></a>
-    <a href="#chan"><b>10</b><span>Channel economics</span></a>
-    <a href="#mkt"><b>11</b><span>Global market</span></a>
-    <a href="#horeca"><b>12</b><span>Food service</span></a>
-    <a href="#backlog"><b>13</b><span>Design backlog</span></a>
-    <a href="#road"><b>14</b><span>Roadmap</span></a>
+    <a href="#repair"><b>02</b><span>The repairability commitment</span></a>
+    <a href="#iface"><b>03</b><span>The interface specification</span></a>
+    <a href="#spec"><b>04</b><span>Specification</span></a>
+    <a href="#clog"><b>05</b><span>The anti-clog system</span></a>
+    <a href="#seal"><b>06</b><span>Sealing strategy</span></a>
+    <a href="#mat"><b>07</b><span>Materials</span></a>
+    <a href="#test"><b>08</b><span>Validation protocol</span></a>
+    <a href="#bom"><b>09</b><span>Bill of materials</span></a>
+    <a href="#tool"><b>10</b><span>Tooling and suppliers</span></a>
+    <a href="#ip"><b>11</b><span>IP and compliance</span></a>
+    <a href="#chan"><b>12</b><span>Channel economics</span></a>
+    <a href="#mkt"><b>13</b><span>Global market</span></a>
+    <a href="#horeca"><b>14</b><span>Food service</span></a>
+    <a href="#backlog"><b>15</b><span>Design backlog</span></a>
+    <a href="#road"><b>16</b><span>Roadmap</span></a>
   </nav>
 </div></header>
 
 <section id="arch"><div class="wrap">
   <div class="snum">01</div>
   <h2>Architecture</h2>
-  <p class="lede">Two vessels, one SKU. A 250 ml sprayer and a 750 ml decanter,
-    sized so a one-litre pouch empties into the pair with nothing left over.</p>
+  <p class="lede">Six modules. Not eleven parts. The difference is that a module
+    is a thing you can buy, stock, diagnose and swap without knowing anything
+    about what is inside it.</p>
   <div class="body stack">
-    <p>The sprayer is <strong>open at both ends</strong>. The shoulder unscrews
-      on a coarse four-start thread for filling; the base cap unscrews for
-      cleaning. With both off, the body is a straight tube you can see through —
-      which is the only way to genuinely clean an oil vessel, because a bottle
-      brush never reaches the corner it cannot see.</p>
-    <p>Eleven parts, all tool-free, all wetted parts removable in under fifteen
-      seconds.</p>
+    <p>The earlier specification had eleven individually replaceable parts,
+      which is maximally repairable and practically useless: eleven SKUs to
+      stock, eleven things to lose in a sink, and a customer who has to work out
+      which one failed. Six modules is the point where repairability stops being
+      a slogan.</p>
+    <p><strong>Nothing is glued, welded, riveted or captive.</strong> Threads
+      and snap fits only. Every module comes apart by hand and goes back the
+      same way.</p>
   </div>
   <div class="scroll">
     <table>
-      <thead><tr><th>Ref</th><th>Part</th><th>Specification</th><th>Process</th><th>Wetted</th></tr></thead>
+      <thead><tr><th>Ref</th><th>Module</th><th>Contains</th><th>Why it is one unit</th><th>Spare</th></tr></thead>
       <tbody>
-        <tr><td>EN-01</td><td><strong>Nozzle collar</strong></td><td>MIST / SPRAY / DRIZZLE, recessed in a wiper collar with drain-back channel</td><td>Anodised alu or POM</td><td>Yes</td></tr>
-        <tr><td>EN-02</td><td><strong>Dose counter</strong></td><td>1,250 strokes, segmented bar, resettable by twist ring</td><td>Moulded + ratchet</td><td>No</td></tr>
-        <tr><td>EN-03</td><td><strong>Pre-compression valve</strong></td><td>2.4 bar cracking pressure — output never falls below atomisation threshold</td><td>Sourced / SS + POM</td><td>Yes</td></tr>
-        <tr><td>EN-04</td><td><strong>Pump cartridge</strong></td><td>0.20 ml ± 0.03 metered dose, POM body, SS spring</td><td>Sourced head</td><td>Yes</td></tr>
-        <tr><td>EN-05</td><td><strong>Fine screen</strong></td><td>150 µm, immediately behind the orifice</td><td>Stamped SS 316 mesh</td><td>Yes</td></tr>
-        <tr><td>EN-06</td><td><strong>Wide-mouth collar</strong></td><td>Ø48 mm, 4-start thread, silicone face seal</td><td>Formed 18/8 SS</td><td>Yes</td></tr>
-        <tr><td>EN-07</td><td><strong>Body</strong></td><td>250 ml, Ø58 × 118 mm, opaque, etched 250 ml internal fill line</td><td>Deep-drawn 18/8 SS</td><td>Yes</td></tr>
-        <tr><td>EN-08</td><td><strong>Dip tube</strong></td><td>Intake held 9 mm clear of the floor</td><td>SS tube</td><td>Yes</td></tr>
-        <tr><td>EN-09</td><td><strong>Intake basket</strong></td><td>600 µm, quarter-turn bayonet, removable and rinsable</td><td>SS 316 mesh</td><td>Yes</td></tr>
-        <tr><td>EN-10</td><td><strong>Base cap + gasket</strong></td><td>Ø52 mm, 4-start thread, captive LSR axial face gasket</td><td>Deep-drawn SS + LSR</td><td>Yes</td></tr>
-        <tr><td>EN-11</td><td><strong>Silicone grip ring</strong></td><td>Twist-to-open surface, anti-slip, drip catcher, <strong>dry-erase writable</strong></td><td>LSR moulded</td><td>No</td></tr>
+        <tr><td>MOD-01</td><td><strong>Head assembly</strong></td>
+          <td>Sourced pre-compression pump core in our housing, dome valve, wide-mouth collar, top face gasket</td>
+          <td>The pump is the only part a user cannot service, so it is sealed inside a module they can simply replace</td><td>₹549</td></tr>
+        <tr><td>MOD-02</td><td><strong>Nozzle</strong></td>
+          <td>Single fixed mist orifice on a bayonet</td>
+          <td>The wear part and the part most likely to be lost. Two second swap, and future patterns need no retooling</td><td>₹99</td></tr>
+        <tr><td>MOD-03</td><td><strong>Intake cartridge</strong></td>
+          <td>Dip tube, 600 µm bayonet basket, 150 µm fine screen, carrier</td>
+          <td>All three filtration stages fail together and are cleaned together, so they are bought together</td><td>₹199</td></tr>
+        <tr><td>MOD-04</td><td><strong>Body</strong></td>
+          <td>250 ml opaque tube, threaded both ends, etched fill line and QR</td>
+          <td>The one module that should outlive everything else</td><td>₹449</td></tr>
+        <tr><td>MOD-05</td><td><strong>Base cap</strong></td>
+          <td>Threaded cap, captive LSR face gasket, spare gasket recess, vent membrane</td>
+          <td>Carries the only consumable in the product, so the consumable travels with it</td><td>₹179</td></tr>
+        <tr><td>MOD-06</td><td><strong>Grip ring</strong></td>
+          <td>LSR ring, anti-slip, drip catcher, dry-erase surface</td>
+          <td>The part that takes the most abuse and the only one anybody will want in another colour</td><td>₹99</td></tr>
+        <tr><td>ACC-01</td><td><strong>Dose counter</strong></td>
+          <td>Clip-on ratchet ring, 1,250 strokes, resettable</td>
+          <td><strong>Optional and separate.</strong> A ratchet is not user serviceable, so it does not belong inside a module that has to be</td><td>₹399</td></tr>
       </tbody>
     </table>
+  </div>
+  <div class="call">
+    <span class="tag">What the fixed nozzle changed</span>
+    <h3>No mode dial, and the product got better</h3>
+    <p>A rotating multi position collar puts a moving seal in the oil path,
+      which is both a wear part and a leak path, and it needs internal channels
+      that make the head harder to mould and impossible to service. Removing it
+      cost us two features and the architecture replaced both.</p>
+    <p><strong>Clearing a clog</strong> was going to be a PURGE detent. It is now
+      pull the head, flush it, click it back. Five seconds, no tools, no bypass
+      channel. <strong>Pouring a spoonful</strong> was going to be a DRIZZLE
+      detent. It is now what the decanter is for. The second vessel answers the
+      2 in 1 objection that a single bottle needed a dial to answer.</p>
+  </div>
+</div></section>
+
+<section id="repair"><div class="wrap">
+  <div class="snum">02</div>
+  <h2>The repairability commitment</h2>
+  <p class="lede">This is a promise with a ten year tail, so it is written down
+    here in the form it will be published, and it constrains the design rather
+    than describing it.</p>
+  <div class="body stack">
+    <h3>What we commit to</h3>
+    <p><strong>A public exploded drawing and a part number for every module.</strong>
+      Not a marketing render. A dimensioned drawing with the module boundaries,
+      the fits, and the order code.</p>
+    <p><strong>Parts stocked for ten years from last shipment.</strong> Every
+      module, plus gaskets, remains orderable. If we ever cannot supply one, we
+      publish the drawing in enough detail for somebody else to.</p>
+    <p><strong>No adhesives, no ultrasonic welds, no rivets, nothing captive.</strong>
+      Threads and snap fits only. This is the constraint that does real work: it
+      rules out the cheapest assembly method at almost every joint, and it is why
+      the head is a housing around a pump core rather than a pump potted into a
+      shell.</p>
+    <p><strong>A repair QR on the body</strong> that resolves to the drawing set
+      and the reorder page, so the documentation is attached to the object rather
+      than to a manual nobody keeps.</p>
+    <h3>Why publish rather than just sell spares</h3>
+    <p>Because a promise nobody can check is marketing, and every ₹300 import
+      already claims to be durable. A published drawing set is
+      <strong>verifiable</strong>, and it is the one claim in this category that
+      a competitor cannot make cheaply, because making it requires actually
+      designing the product this way.</p>
+    <p>It is not open source hardware. We publish what a repairer needs, not the
+      full CAD, tolerances and process notes an import factory would need to
+      clone the geometry. The distinction matters and we should hold it.</p>
+    <h3>Module price list</h3>
+  </div>
+  <div class="scroll">
+    <table class="t2" style="min-width:520px">
+      <thead><tr><th>Module</th><th>Why you would buy one</th><th>₹</th></tr></thead>
+      <tbody>
+        <tr><td>MOD-01 Head assembly</td><td>Pump finally worn out after years</td><td>549</td></tr>
+        <tr><td>MOD-02 Nozzle</td><td>Lost, damaged, or you want a spare in the drawer</td><td>99</td></tr>
+        <tr><td>MOD-03 Intake cartridge</td><td>Screens past cleaning, or you run a second oil</td><td>199</td></tr>
+        <tr><td>MOD-04 Body</td><td>Dented badly, or you want a second one</td><td>449</td></tr>
+        <tr><td>MOD-05 Base cap and gasket</td><td>Gasket finally hardened</td><td>179</td></tr>
+        <tr><td>MOD-06 Grip ring</td><td>Worn, stained, or a different colour</td><td>99</td></tr>
+        <tr><td>Gasket pair</td><td>The only true consumable</td><td>79</td></tr>
+        <tr><td>ACC-01 Dose counter</td><td>You want the calorie gauge</td><td>399</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The module prices are set so that repairing is always
+    obviously cheaper than replacing, and so that no single failure costs more
+    than a third of a new set. If a price ever breaks that rule, the module
+    boundary is wrong, not the price.</p>
+</div></section>
+
+<section id="iface"><div class="wrap">
+  <div class="snum">03</div>
+  <h2>The interface specification</h2>
+  <p class="lede">The head to body interface is published. Anything built to it
+    will fit, including things we do not make.</p>
+  <div class="body stack">
+    <p>Modularity that only lets you buy our parts is not modularity, it is a
+      spares business with better vocabulary. Publishing the interface is what
+      makes the claim real, and it costs us very little, because
+      <strong>the value in this product is the pump core and the filtration, not
+      the thread form.</strong></p>
+    <h3>What gets published</h3>
+    <p>The body mouth thread, four start, Ø48 mm, with its pitch, lead and
+      tolerance band. The face seal land and its required flatness. The nozzle
+      bayonet form. The intake cartridge register and its clearance. Enough for
+      somebody to make a vessel our head screws onto, or a nozzle that fits our
+      head.</p>
+    <h3>What it buys us</h3>
+    <p><strong>Future sizes cost one body tool.</strong> A 500 ml body for people
+      who cook more, or a 1 litre body for a professional kitchen, reuses MOD-01,
+      02, 03, 05 and 06 unchanged. The head becomes the platform and the bottle
+      becomes the variable, which inverts how every competitor in this category
+      is structured.</p>
+    <p><strong>The food service version stops being a different product.</strong>
+      The earlier assessment said a professional unit needs 500 ml to a litre and
+      no counter, and called that a different product. With a published interface
+      it is a different <em>body</em>.</p>
+    <p><strong>Accessories become other people's problem.</strong> If somebody
+      makes a nozzle for vinegar, or a wall dock, or a glass body for people who
+      want to see the level, that is reach we did not pay for.</p>
+    <h3>The risk, stated plainly</h3>
+    <p>A published thread makes it easier for an import to make a compatible
+      body and undercut MOD-04. That is a real cost and we should accept it,
+      because the body is ₹92 of BOM and the head is ₹228, and a customer who
+      buys a cheap third party body still needs our head, our nozzle and our
+      intake cartridge. <strong>Publishing the interface concedes the cheap half
+      to defend the expensive half.</strong></p>
+    <p>Versioning: the interface gets a version number and a commitment not to
+      break it. If it ever has to change, both versions ship in parallel for two
+      years.</p>
   </div>
 </div></section>
 
 <section id="spec"><div class="wrap">
-  <div class="snum">02</div>
+  <div class="snum">04</div>
   <h2>Specification</h2>
   <div class="scroll">
     <table>
@@ -253,52 +377,57 @@ body{margin:0}
       <tbody>
         <tr><td>Capacity</td><td>250 ml</td><td>750 ml</td></tr>
         <tr><td>Height · body diameter</td><td>185 mm · Ø58 mm</td><td>192 mm · Ø82 mm</td></tr>
-        <tr><td>Mouth opening</td><td>Ø48 mm, 4-start</td><td>Ø70 mm</td></tr>
-        <tr><td>Base opening</td><td>Ø52 mm, removable</td><td>—</td></tr>
+        <tr><td>Mouth opening</td><td>Ø48 mm, 4 start</td><td>Ø70 mm</td></tr>
+        <tr><td>Base opening</td><td>Ø52 mm, removable</td><td>Fixed</td></tr>
         <tr><td>Empty mass · filled mass</td><td>300 g · 530 g</td><td>250 g · 940 g</td></tr>
-        <tr><td>Metered dose per stroke</td><td>0.20 ml ± 0.03 (0.18 g, ≈1.7 kcal)</td><td>—</td></tr>
-        <tr><td>Counter range</td><td>1,250 strokes, resettable</td><td>—</td></tr>
-        <tr><td>Fill indication</td><td>Laser-etched internal line</td><td>Etched pour line</td></tr>
-        <tr><td>Valve cracking pressure</td><td>2.4 bar</td><td>—</td></tr>
-        <tr><td>Filtration</td><td>600 µm intake · 150 µm pre-nozzle</td><td>—</td></tr>
-        <tr><td>Intake standoff</td><td>9 mm above the floor</td><td>—</td></tr>
-        <tr><td>Viscosity window</td><td>25–95 cSt at 25 °C</td><td>—</td></tr>
-        <tr><td>Wetted parts, tool-free</td><td>11 of 11</td><td>3 of 3</td></tr>
-        <tr><td>Grip ring</td><td colspan="2">Food-grade LSR, dry-erase writable</td></tr>
-        <tr><td>Indicative retail</td><td colspan="2">₹1,799 for the set · ₹199 spares kit</td></tr>
+        <tr><td>Modules</td><td>6</td><td>3</td></tr>
+        <tr><td>Adhesives, welds, rivets</td><td colspan="2"><strong>None</strong></td></tr>
+        <tr><td>Spray pattern</td><td>Single fixed mist, bayonet nozzle</td><td>Pour spout</td></tr>
+        <tr><td>Metered dose per stroke</td><td>0.20 ml ± 0.03 (0.18 g, ≈1.7 kcal)</td><td>Not applicable</td></tr>
+        <tr><td>Valve cracking pressure</td><td>2.4 bar</td><td>Not applicable</td></tr>
+        <tr><td>Filtration</td><td>600 µm intake · 150 µm pre nozzle</td><td>Not applicable</td></tr>
+        <tr><td>Intake standoff</td><td>9 mm above the floor</td><td>Not applicable</td></tr>
+        <tr><td>Viscosity window</td><td>25 to 95 cSt at 25 °C</td><td>Not applicable</td></tr>
+        <tr><td>Fill indication</td><td>Laser etched internal line</td><td>Etched pour line</td></tr>
+        <tr><td>Headspace venting</td><td>Hydrophobic PTFE membrane in the base cap</td><td>Not applicable</td></tr>
+        <tr><td>Grip ring</td><td colspan="2">Food grade LSR, dry erase writable</td></tr>
+        <tr><td>Parts availability</td><td colspan="2"><strong>10 years from last shipment</strong></td></tr>
+        <tr><td>Documentation</td><td colspan="2">Public exploded drawing and part number per module</td></tr>
+        <tr><td>Indicative retail</td><td colspan="2">₹1,799 the set · ACC-01 counter ₹399</td></tr>
       </tbody>
     </table>
   </div>
   <p class="note">Dose arithmetic: cooking oil ≈ 9 kcal/g at ≈ 0.92 g/ml. One
-    stroke = 0.20 ml = 0.18 g ≈ 1.7 kcal. A 26 cm pan takes 8–10 strokes ≈ 15 kcal,
-    against ≈ 41 kcal for a teaspoon, 124 for a tablespoon and ≈ 248 for a free pour.</p>
+    stroke = 0.20 ml = 0.18 g ≈ 1.7 kcal. A 26 cm pan takes 8 to 10 strokes,
+    about 15 kcal, against about 41 for a teaspoon, 124 for a tablespoon and
+    about 248 for a free pour.</p>
 </div></section>
 
 <section id="clog"><div class="wrap">
-  <div class="snum">03</div>
+  <div class="snum">05</div>
   <h2>The anti-clog system</h2>
   <p class="lede">Clogging kills every sprayer on the market, and it has three
     separate causes, so it gets three separate answers in the order the oil
     meets them.</p>
   <div class="body stack">
-    <h3>Stage 1 — passive. Raised intake, 9 mm standoff</h3>
+    <h3>Stage 1, passive. Raised intake, 9 mm standoff</h3>
     <p>The pickup never touches the floor. Sediment settles into the moat
       beneath it and is never drawn up. This is fuel-tank logic and it costs
       nothing: it is a dimension, not a component. <strong>It is also the stage
       that does the most work</strong>, because particulate that never enters the
       tube cannot clog anything downstream.</p>
-    <h3>Stage 2 — serviceable. 600 µm bayonet intake basket</h3>
+    <h3>Stage 2, serviceable. 600 µm bayonet intake basket</h3>
     <p>A quarter-turn stainless basket the user pulls out and rinses. The
       Japanese market already ships filters in the dip tube, which validates the
-      idea — but theirs are sealed, so when they clog they stay clogged. Ours is
+      idea, but theirs are sealed, so when they clog they stay clogged. Ours is
       the same idea made maintainable.</p>
-    <h3>Stage 3 — last defence. 150 µm fine screen</h3>
+    <h3>Stage 3, last defence. 150 µm fine screen</h3>
     <p>Sits directly behind the orifice, where a single grain ruins the spray
       cone. Anything that survives stage 2 stops here.</p>
     <h3>Why 600 and 150 µm</h3>
     <p>These are <strong>design targets, not validated numbers.</strong> The
-      intake is sized to stop what survives a normal domestic strainer — besan
-      lumps, crumbs, whole spice fragments — while passing oil at the flow the
+      intake is sized to stop what survives a normal domestic strainer, besan
+      lumps, crumbs, whole spice fragments, while passing oil at the flow the
       pump needs. The fine screen is sized well below the nozzle orifice. Both
       must be confirmed against real strained frying oil from working kitchens
       before tooling, and the gate is clog-to-failure cycle count, not opinion.</p>
@@ -306,7 +435,7 @@ body{margin:0}
 </div></section>
 
 <section id="seal"><div class="wrap">
-  <div class="snum">04</div>
+  <div class="snum">06</div>
   <h2>Sealing strategy</h2>
   <p class="lede">A removable base doubles the sealing surfaces on a product
     whose first requirement is "leak-proof". The tension is real but smaller
@@ -318,7 +447,7 @@ body{margin:0}
       118 mm deep:</p>
     <p class="mono" style="font-size:15px;color:var(--ink)">
       p = ρgh = 920 × 9.81 × 0.118 ≈ <strong>1,065 Pa ≈ 0.011 bar</strong></p>
-    <p>That is the same sealing duty as a moka pot base or a vacuum flask — a
+    <p>That is the same sealing duty as a moka pot base or a vacuum flask, a
       solved problem, provided it is solved the right way.</p>
     <h3>The right way</h3>
     <p>An <strong>axial face gasket</strong>, never a thread seal. A captive LSR
@@ -326,19 +455,19 @@ body{margin:0}
       four-start thread. Four starts means the cap cannot cross-thread and
       closes in a quarter turn. A positive stop and a tactile detent tell the
       user it is shut, and a moulded lock arrow tells them which way.</p>
-    <p>Both gaskets — top and base — are user-replaceable and both ship in the
+    <p>Both gaskets, top and base, are user-replaceable and both ship in the
       ₹199 spares kit. A seal you cannot replace is a product with an expiry
       date.</p>
   </div>
 </div></section>
 <section id="mat"><div class="wrap">
-  <div class="snum">05</div>
+  <div class="snum">07</div>
   <h2>Materials</h2>
   <div class="scroll">
     <table>
       <thead><tr><th>Component</th><th>Material</th><th>Why</th></tr></thead>
       <tbody>
-        <tr><td>Body, collar, base cap, decanter</td><td>18/8 (AISI 304) stainless</td><td>Opaque — blocks ~99% of light, which roughly doubles oil shelf life against clear containers. Will not shatter. Will not distort beside a hob, which plastic-topped competitors demonstrably do.</td></tr>
+        <tr><td>Body, collar, base cap, decanter</td><td>18/8 (AISI 304) stainless</td><td>Opaque, blocks ~99% of light, which roughly doubles oil shelf life against clear containers. Will not shatter. Will not distort beside a hob, which plastic-topped competitors demonstrably do.</td></tr>
         <tr><td>Screens, dip tube, intake basket</td><td>SS 316</td><td>Higher corrosion resistance than 304 at the parts in permanent oil contact and repeated hot-water cleaning.</td></tr>
         <tr><td>Face gaskets ×2, grip ring</td><td>Food-grade LSR silicone</td><td>Compression set resistance across repeated open/close cycles; dishwasher stable; and LSR takes a dry-erase surface finish.</td></tr>
         <tr><td>Pump internals, counter housing</td><td>POM (acetal)</td><td>Low friction, dimensional stability, standard for metered pump mechanisms.</td></tr>
@@ -349,18 +478,18 @@ body{margin:0}
   <div class="call">
     <span class="tag">Rejected, and why</span>
     <h3>Glass, Tritan, and clear anything</h3>
-    <p><strong>Glass</strong> is the global default and it breaks — the founding
+    <p><strong>Glass</strong> is the global default and it breaks, the founding
       brief rules it out. <strong>Tritan</strong> is safe from a verified supplier
       but degrades under prolonged UV and offers no light protection.
       <strong>Any clear body</strong> accelerates rancidity, which is the failure
       mode nobody sees until the oil tastes wrong. Valuxe's UV-protected glass is
-      the best answer anyone else has given to this and deserves respect — it
+      the best answer anyone else has given to this and deserves respect, it
       still shatters.</p>
   </div>
 </div></section>
 
 <section id="test"><div class="wrap">
-  <div class="snum">06</div>
+  <div class="snum">08</div>
   <h2>Validation protocol</h2>
   <p class="lede">Gates, not opinions. Nothing gets tooled until each of these
     passes on printed and machined prototypes.</p>
@@ -370,10 +499,10 @@ body{margin:0}
       <tbody>
         <tr><td><strong>Clog life</strong></td><td>Real strained frying oil sourced from working kitchens, cycled to failure</td><td>Target ≥ 5,000 strokes with no spray-pattern degradation. Baseline the same oil in an import and an Evo for comparison.</td></tr>
         <tr><td><strong>Dose repeatability</strong></td><td>Gravimetric, 100 consecutive strokes, three oils across the viscosity window</td><td>0.20 ml ± 0.03, and no drift across the run</td></tr>
-        <tr><td><strong>Spray cone</strong></td><td>Deposition on card at 200 mm, slow and fast trigger speeds</td><td>Cone must not collapse to a jet at low squeeze speed — this is the pre-compression valve's whole job</td></tr>
+        <tr><td><strong>Spray cone</strong></td><td>Deposition on card at 200 mm, slow and fast trigger speeds</td><td>Cone must not collapse to a jet at low squeeze speed. This is the pre-compression valve's whole job</td></tr>
         <tr><td><strong>Base leak, static</strong></td><td>Filled, inverted, 24 h at 45 °C</td><td>Zero weep</td></tr>
         <tr><td><strong>Base leak, cycled</strong></td><td>500 open/close cycles, then repeat the inverted test</td><td>Zero weep. Gasket compression set within spec</td></tr>
-        <tr><td><strong>Sustained use</strong></td><td>Daily use simulation to 20,000 strokes</td><td>No seepage at the <strong>trigger pivot</strong> or handle — a documented competitor failure our earlier protocol missed — and no migration of the head internals</td></tr>
+        <tr><td><strong>Sustained use</strong></td><td>Daily use simulation to 20,000 strokes</td><td>No seepage at the <strong>trigger pivot</strong> or handle, a documented competitor failure our earlier protocol missed, and no migration of the head internals</td></tr>
         <tr><td><strong>Overfill tolerance</strong></td><td>Fill above the etched line and operate</td><td>Must not damage the pump. Overfilling is a documented killer of competitor products</td></tr>
         <tr><td><strong>Drop</strong></td><td>1.0 m onto tile, filled, six orientations</td><td>No rupture, no leak, spray still functional</td></tr>
         <tr><td><strong>Hob proximity</strong></td><td>Sustained radiant heat beside a live burner</td><td>No distortion, no seal degradation</td></tr>
@@ -386,99 +515,144 @@ body{margin:0}
 </div></section>
 
 <section id="bom"><div class="wrap">
-  <div class="snum">07</div>
+  <div class="snum">09</div>
   <h2>Bill of materials</h2>
-  <p class="lede">At 10,000 sets. <strong>Estimates, not quotes</strong> — every
-    line needs a real number from a real vendor.</p>
+  <p class="lede">Built bottom up, module by module, at 10,000 sets.
+    <strong>Estimates, not quotes.</strong> Every line needs a real number from
+    a real vendor, and the module subtotals are what you take into a
+    negotiation.</p>
   <div class="scroll">
-    <table class="t2" style="min-width:600px">
-      <thead><tr><th>Line</th><th>Process</th><th>₹ / set</th></tr></thead>
+    <table class="t2" style="min-width:620px">
+      <thead><tr><th>Line</th><th>Process</th><th>₹</th></tr></thead>
       <tbody>
-        <tr><td><strong>Sprayer</strong> — body, 18/8 SS, Ø58 × 118</td><td>Deep draw + thread + polish + etch</td><td>78</td></tr>
-        <tr><td>Base cap, SS, threaded</td><td>Deep draw + thread</td><td>28</td></tr>
-        <tr><td>Wide-mouth collar, SS</td><td>Formed</td><td>24</td></tr>
-        <tr><td>Pump cartridge — sourced pre-compression head</td><td>Bought-in</td><td>180</td></tr>
-        <tr><td>Dose counter module</td><td>Moulded + assembly</td><td>45</td></tr>
-        <tr><td>Dip tube + intake basket, SS 316</td><td>Tube + mesh forming</td><td>34</td></tr>
-        <tr><td>Fine screen, SS 316</td><td>Stamped mesh</td><td>12</td></tr>
-        <tr><td>Grip ring + 2 face gaskets</td><td>LSR moulded</td><td>30</td></tr>
-        <tr><td>Nozzle collar</td><td>Anodised alu or POM</td><td>18</td></tr>
-        <tr><td>Sprayer assembly, leak test, QC</td><td>Labour</td><td>42</td></tr>
-        <tr><td><strong>Decanter</strong> — body, 18/8 SS, Ø82 × 165</td><td>Deep draw + thread</td><td>112</td></tr>
-        <tr><td>Wide cap + drip-free pour spout</td><td>Formed + moulded</td><td>40</td></tr>
-        <tr><td>Silicone base ring</td><td>LSR moulded</td><td>16</td></tr>
-        <tr><td>Decanter assembly + QC</td><td>Labour</td><td>14</td></tr>
-        <tr><td>Set packaging — carton, insert, manual</td><td>Print + convert</td><td>68</td></tr>
-        <tr><td><strong>Ex-works subtotal</strong></td><td></td><td><strong>741</strong></td></tr>
-        <tr><td>Tooling amortised (₹15 L over 25,000 sets)</td><td></td><td>60</td></tr>
-        <tr><td><strong>Landed cost</strong></td><td></td><td><strong>≈ 801</strong></td></tr>
+        <tr><td colspan="2"><strong>MOD-01 Head assembly</strong></td><td></td></tr>
+        <tr><td>Pre compression pump core</td><td>Sourced, core only</td><td>150</td></tr>
+        <tr><td>Housing shell</td><td>POM, multi cavity</td><td>28</td></tr>
+        <tr><td>Wide mouth collar</td><td>Formed 18/8 SS</td><td>24</td></tr>
+        <tr><td>Top face gasket</td><td>LSR</td><td>8</td></tr>
+        <tr><td>Module assembly and test</td><td>Labour</td><td>18</td></tr>
+        <tr><td><strong>MOD-01 subtotal</strong></td><td></td><td><strong>228</strong></td></tr>
+
+        <tr><td colspan="2"><strong>MOD-02 Nozzle</strong></td><td></td></tr>
+        <tr><td>Fixed mist orifice, bayonet</td><td>Anodised alu or POM</td><td>16</td></tr>
+
+        <tr><td colspan="2"><strong>MOD-03 Intake cartridge</strong></td><td></td></tr>
+        <tr><td>Dip tube</td><td>SS tube, cut and formed</td><td>14</td></tr>
+        <tr><td>600 µm intake basket</td><td>SS 316 mesh, formed</td><td>18</td></tr>
+        <tr><td>150 µm fine screen</td><td>SS 316 mesh, stamped</td><td>12</td></tr>
+        <tr><td>Carrier</td><td>POM</td><td>9</td></tr>
+        <tr><td>Module assembly</td><td>Labour</td><td>8</td></tr>
+        <tr><td><strong>MOD-03 subtotal</strong></td><td></td><td><strong>61</strong></td></tr>
+
+        <tr><td colspan="2"><strong>MOD-04 Body</strong></td><td></td></tr>
+        <tr><td>18/8 SS, Ø58 × 118, 0.5 mm</td><td>Material</td><td>32</td></tr>
+        <tr><td>Deep draw</td><td>Forming</td><td>28</td></tr>
+        <tr><td>Threading, both ends</td><td>Machining</td><td>18</td></tr>
+        <tr><td>Polish</td><td>Finishing</td><td>10</td></tr>
+        <tr><td>Fill line and QR</td><td>Laser etch</td><td>4</td></tr>
+        <tr><td><strong>MOD-04 subtotal</strong></td><td></td><td><strong>92</strong></td></tr>
+
+        <tr><td colspan="2"><strong>MOD-05 Base cap</strong></td><td></td></tr>
+        <tr><td>Cap</td><td>Deep draw + thread</td><td>26</td></tr>
+        <tr><td>Captive face gasket</td><td>LSR</td><td>8</td></tr>
+        <tr><td>Spare gasket, in the recess</td><td>LSR</td><td>6</td></tr>
+        <tr><td>Hydrophobic vent membrane</td><td>PTFE, welded insert</td><td>4</td></tr>
+        <tr><td><strong>MOD-05 subtotal</strong></td><td></td><td><strong>44</strong></td></tr>
+
+        <tr><td colspan="2"><strong>MOD-06 Grip ring</strong></td><td></td></tr>
+        <tr><td>Ring, dry erase surface finish</td><td>LSR moulded</td><td>22</td></tr>
+
+        <tr><td>Sprayer final assembly, leak test, QC</td><td>Labour</td><td>38</td></tr>
+        <tr><td><strong>Enna Spray, ex works</strong></td><td></td><td><strong>501</strong></td></tr>
+
+        <tr><td colspan="2"><strong>Enna Store, 750 ml decanter</strong></td><td></td></tr>
+        <tr><td>Body, 18/8 SS, Ø82 × 165</td><td>Deep draw + thread</td><td>108</td></tr>
+        <tr><td>Cap and drip free pour spout</td><td>Formed + moulded</td><td>38</td></tr>
+        <tr><td>Grip ring</td><td>LSR moulded</td><td>16</td></tr>
+        <tr><td>Assembly and QC</td><td>Labour</td><td>12</td></tr>
+        <tr><td><strong>Enna Store, ex works</strong></td><td></td><td><strong>174</strong></td></tr>
+
+        <tr><td>Set packaging, carton, insert, printed exploded drawing</td><td>Print and convert</td><td>72</td></tr>
+        <tr><td><strong>Ex works, the set</strong></td><td></td><td><strong>747</strong></td></tr>
+        <tr><td>Tooling amortised, ₹16 L over 25,000 sets</td><td></td><td>64</td></tr>
+        <tr><td><strong>Landed cost</strong></td><td></td><td><strong>≈ 811</strong></td></tr>
       </tbody>
     </table>
   </div>
   <div class="call">
-    <span class="tag">The one number that matters</span>
-    <h3>The sourced pump head is 24% of the BOM</h3>
-    <p>It is the single biggest lever and the part we are deliberately not
-      tooling — the right trade for a 6–9 month timeline. Which makes the
-      supplier negotiation, including <strong>India category exclusivity</strong>,
-      the most valuable hour of work in this entire project.</p>
+    <span class="tag">What the bottom up view exposes</span>
+    <h3>The head assembly is 46% of the sprayer</h3>
+    <p>₹228 of a ₹501 sprayer, and ₹150 of that is the sourced pump core alone.
+      Everything else in this product is cheap. That means two things: the
+      supplier negotiation is where the margin lives, and pricing MOD-01 at ₹549
+      as a spare is defensible rather than greedy, because it is genuinely the
+      expensive half of the machine.</p>
+    <p>At ₹1,799 the set, landed cost ₹811 gives a <strong>55% gross margin
+      before channel</strong>, which becomes 49% direct, 41% on marketplaces and
+      11 to 29% on quick commerce.</p>
   </div>
 </div></section>
 
 <section id="tool"><div class="wrap">
-  <div class="snum">08</div>
+  <div class="snum">10</div>
   <h2>Tooling and suppliers</h2>
+  <p class="lede">Building our own head housing and tooling the decanter to match
+    both cost money the earlier plan did not spend. The honest total is over
+    budget.</p>
   <div class="scroll">
-    <table class="t2" style="min-width:520px">
+    <table class="t2" style="min-width:540px">
       <thead><tr><th>Item</th><th></th><th>₹</th></tr></thead>
       <tbody>
-        <tr><td>Sprayer plastics — pump housing, counter, nozzle (multi-cavity)</td><td></td><td>5,00,000</td></tr>
-        <tr><td>Sprayer SS body + base cap, forming and threading tools</td><td></td><td>3,20,000</td></tr>
-        <tr><td>Decanter SS body + cap tooling</td><td></td><td>2,20,000</td></tr>
-        <tr><td>LSR tooling — grip ring and three gaskets</td><td></td><td>1,30,000</td></tr>
-        <tr><td>Prototype rounds (SLA + machined, 3 iterations)</td><td></td><td>1,60,000</td></tr>
-        <tr><td>Migration, leak and clog testing</td><td></td><td>90,000</td></tr>
-        <tr><td>Contingency</td><td></td><td>80,000</td></tr>
-        <tr><td><strong>Total</strong></td><td></td><td><strong>15,00,000</strong></td></tr>
+        <tr><td>Head housing, nozzle, intake carrier</td><td>POM, multi cavity</td><td>4,60,000</td></tr>
+        <tr><td>Sprayer body and base cap</td><td>SS forming and threading</td><td>3,20,000</td></tr>
+        <tr><td>Decanter body and cap</td><td>SS forming</td><td>2,20,000</td></tr>
+        <tr><td>Grip rings ×2, gaskets ×3</td><td>LSR</td><td>1,40,000</td></tr>
+        <tr><td>Prototype rounds ×3</td><td>SLA and machined</td><td>1,60,000</td></tr>
+        <tr><td>Validation testing</td><td>Twelve gates</td><td>90,000</td></tr>
+        <tr><td>Contingency</td><td>Correction cuts</td><td>2,10,000</td></tr>
+        <tr><td><strong>Subtotal</strong></td><td></td><td><strong>16,00,000</strong></td></tr>
+        <tr><td>ACC-01 counter tooling</td><td><em>Deferrable</em></td><td>90,000</td></tr>
+        <tr><td><strong>Total if launched together</strong></td><td></td><td><strong>16,90,000</strong></td></tr>
       </tbody>
     </table>
   </div>
   <div class="call warn">
-    <span class="tag">Recommendation</span>
-    <h3>Do not tool the decanter</h3>
-    <p>₹80,000 of contingency does not cover a correction cut, and first tools
-      almost always need one. A 750 ml opaque stainless bottle with a wide mouth
-      is a commodity — vendors in Palghar and Gujarat make them by the container
-      load. Source it, brand it, and return the whole ₹2.2 lakh to contingency,
-      taking it to ₹3 lakh. <strong>The sprayer is the invention; the decanter is
-      a bottle.</strong> It also shortens the timeline, because only one product
-      needs new tools.</p>
+    <span class="tag">₹1 lakh over the stated budget</span>
+    <h3>Defer the counter, launch at ₹16 lakh</h3>
+    <p>The counter is an accessory with its own price and its own demand. It does
+      not need to exist on day one, and deferring it takes the programme to
+      ₹16,00,000 against a ₹15,00,000 budget, with the gap covered by the
+      investor co funding already on the table. Contingency at ₹2,10,000 is a
+      realistic number for a first tooling programme, and cutting it to make the
+      total look better is how first tooling programmes fail.</p>
+    <p>Tooling the decanter rather than sourcing it costs ₹2,20,000 and buys a
+      matched pair: same radii, same finish, same grip ring, and the nesting
+      option stays open. That was a deliberate call.</p>
   </div>
   <div class="body stack">
-    <h3>Supplier shortlist — directory leads, nobody called</h3>
-    <p><strong>Injection moulding, Bangalore (Peenya belt):</strong>
-      <strong>Kruger Industries</strong> — ISO 9001:2015, operating since 2004,
-      nine machines, in-house mould-flow analysis, which matters for the pump
-      housing. <strong>Fortune Group</strong> — quotes 5–90 g engineering
-      plastics, exactly our part band. <strong>Mathru Toolings</strong> — tool
-      development plus moulding. <strong>Shree Sampath Plastics</strong> —
-      second-source candidate.</p>
-    <p><strong>Stainless bodies — probably not Bangalore.</strong> India's
-      stainless bottle industry sits in Maharashtra (Palghar/Wada), Gujarat and
-      Delhi NCR, not Karnataka. Names surfaced: Eagle Consumer Products, NIRLON
-      Kitchenware. Plan on a split supply chain and accept it rather than forcing
-      geography — deep drawing a body with threads at both ends is a specialist
-      operation, and the vendors who do it at volume already do it for flasks.</p>
+    <h3>Supplier shortlist, directory leads, nobody called</h3>
+    <p><strong>Injection moulding, Bangalore, Peenya belt.</strong>
+      <strong>Kruger Industries</strong>, ISO 9001:2015, operating since 2004,
+      nine machines, in house mould flow analysis, which matters for the head
+      housing. <strong>Fortune Group</strong>, quotes 5 to 90 g engineering
+      plastics, exactly our part band. <strong>Mathru Toolings</strong>, tool
+      development plus moulding. <strong>Shree Sampath Plastics</strong>, second
+      source candidate.</p>
+    <p><strong>Stainless bodies, probably not Bangalore.</strong> India's
+      stainless bottle industry sits in Maharashtra, Palghar and Wada, plus
+      Gujarat and Delhi NCR. Names surfaced: Eagle Consumer Products, NIRLON
+      Kitchenware. Plan on a split supply chain rather than forcing geography.</p>
     <h3>Qualification checklist before anyone gets a rupee</h3>
-    <p>Food-contact material declaration and prior BIS/IS work · samples at our
-      part size, not a deck · scrap rate on a comparable part · a written T1
-      first-shot date · <strong>tool ownership stated in the PO</strong>, because
-      the tool is ours and must be movable · second-source the nozzle and seals
-      from day one.</p>
+    <p>Food contact material declaration and prior BIS or IS work · samples at
+      our part size, not a deck · scrap rate on a comparable part · a written T1
+      first shot date · <strong>tool ownership stated in the PO</strong>, because
+      the tool is ours and must be movable · second source the nozzle and the
+      gaskets from day one, since those are the two modules customers will
+      reorder most.</p>
   </div>
 </div></section>
 <section id="ip"><div class="wrap">
-  <div class="snum">09</div>
+  <div class="snum">11</div>
   <h2>IP and compliance</h2>
   <div class="body stack">
     <h3>Freedom to operate</h3>
@@ -487,9 +661,8 @@ body{margin:0}
       products", the Evo lineage) and US5467900 / US5730335 (precompression
       valve for trigger sprayers) are all early-1990s filings. The base concept
       of a non-aerosol pre-compression oil sprayer is public domain.</p>
-    <p>The live risk is <strong>AFA Dispensing's Flairosol family</strong> —
-      US8905271B2, US9714133, EP2566629B1 — with 2010–2013 priority, running to
-      roughly 2030–33. Also directly on point and requiring a read:
+    <p>The live risk is <strong>AFA Dispensing's Flairosol family</strong>. US8905271B2, US9714133, EP2566629B1, with 2010, 2013 priority, running to
+      roughly 2030, 33. Also directly on point and requiring a read:
       <strong>WO2016077114A1</strong>, "spray nozzle for high viscosity (e.g.
       oil) spray applications with uniform spray distribution".</p>
     <p>Our strategy avoids the collision entirely: <strong>we source the pump
@@ -500,8 +673,8 @@ body{margin:0}
     <p><strong>Provisional patent</strong> on the combination that is actually
       novel: raised anti-sediment intake plus serviceable two-stage filtration
       plus the dual-opening body. <strong>Design registration</strong> under the
-      Designs Act 2000 on the final form — ₹1,000 government fee for a startup or
-      small entity with Form-24, plus ₹5,000–8,000 attorney, giving 10 years
+      Designs Act 2000 on the final form, ₹1,000 government fee for a startup or
+      small entity with Form-24, plus ₹5,000, 8,000 attorney, giving 10 years
       extendable by 5. <strong>Trademark</strong> "Enna" in class 21, plus 8 and
       11 as relevant.</p>
     <h3>The fourth moat nobody files for</h3>
@@ -509,8 +682,7 @@ body{margin:0}
       A contractual moat obtainable in weeks rather than years, and the fastest
       durable defence available to a first-time hardware brand.</p>
     <h3>Compliance</h3>
-    <p>Food-contact plastics must conform to the applicable Indian Standard —
-      IS 10146 for polyethylene, with sibling standards per polymer — under the
+    <p>Food-contact plastics must conform to the applicable Indian Standard. IS 10146 for polyethylene, with sibling standards per polymer, under the
       FSS (Packaging & Labelling) Regulations. FSSAI 2.4.1 requires that no
       substance transfers in quantities that endanger health or alter the food.
       Migration testing on plastics and elastomers is required.</p>
@@ -522,15 +694,15 @@ body{margin:0}
 </div></section>
 
 <section id="chan"><div class="wrap">
-  <div class="snum">10</div>
+  <div class="snum">12</div>
   <h2>Channel economics</h2>
   <div class="scroll">
     <table class="t2" style="min-width:560px">
       <thead><tr><th>Channel</th><th>Platform take</th><th>Gross margin</th></tr></thead>
       <tbody>
-        <tr><td>D2C — own site</td><td>~2% gateway + ₹90 ship + 4% returns → ≈ ₹1,565</td><td><strong>₹764 · 49%</strong></td></tr>
+        <tr><td>D2C, own site</td><td>~2% gateway + ₹90 ship + 4% returns → ≈ ₹1,565</td><td><strong>₹764 · 49%</strong></td></tr>
         <tr><td>Amazon / Flipkart</td><td>~25% all-in → ≈ ₹1,349</td><td><strong>₹548 · 41%</strong></td></tr>
-        <tr><td>Quick commerce</td><td>30–45% all-in → ₹990–1,259</td><td><strong>₹189–458 · 11–29%</strong></td></tr>
+        <tr><td>Quick commerce</td><td>30, 45% all-in → ₹990, 1,259</td><td><strong>₹189, 458 · 11, 29%</strong></td></tr>
       </tbody>
     </table>
   </div>
@@ -544,22 +716,22 @@ body{margin:0}
       double the fee in every state.</p>
     <p>Even so, at ~₹300 margin each state costs roughly <strong>420 sets of
       sales just to clear the fee.</strong> Sequence accordingly: D2C plus
-      Amazon and Flipkart first, where margin is 41–49%. Quick commerce in phase
+      Amazon and Flipkart first, where margin is 41, 49%. Quick commerce in phase
       two, in two metros, not eight. A ₹1,799 durable is a considered purchase;
       quick commerce is built for impulse replenishment.</p>
   </div>
 </div></section>
 
 <section id="mkt"><div class="wrap">
-  <div class="snum">11</div>
+  <div class="snum">13</div>
   <h2>Global market</h2>
   <p class="lede">The single most useful row in this table is the last one.</p>
   <div class="scroll">
     <table>
       <thead><tr><th></th><th>USA</th><th>Japan</th><th>China</th><th>Germany / EU</th><th>India</th></tr></thead>
       <tbody>
-        <tr><th>Format</th><td>470–500 ml glass, 2-in-1</td><td>250 ml glass, filter in dip tube</td><td>220–600 ml glass, anti-drip</td><td>Thick glass + 304 SS head</td><td>100–500 ml, generic</td></tr>
-        <tr><th>Price band</th><td>$8–30<br>₹700–2,640</td><td>from ¥995<br>₹570+</td><td>Not captured</td><td>€8–17<br>₹770–1,630</td><td><strong>₹200–600</strong></td></tr>
+        <tr><th>Format</th><td>470, 500 ml glass, 2-in-1</td><td>250 ml glass, filter in dip tube</td><td>220, 600 ml glass, anti-drip</td><td>Thick glass + 304 SS head</td><td>100, 500 ml, generic</td></tr>
+        <tr><th>Price band</th><td>$8, 30<br>₹700, 2,640</td><td>from ¥995<br>₹570+</td><td>Not captured</td><td>€8, 17<br>₹770, 1,630</td><td><strong>₹200, 600</strong></td></tr>
         <tr><th>Leaders</th><td>TrendPlain, YARRAMATE, AOZITA, Misto, Evo, Flairosol</td><td>TrendPlain, Mistify</td><td><strong>Supor, Kanbahe, Newair</strong></td><td>Valuxe, PORTENTUM, Hillfield, easySpray</td><td>Perfect Pricee, CRIYALE, SITOVI, Rushwak</td></tr>
         <tr><th>Premium tier</th><td>Flairosol, Evo</td><td>Mistify</td><td>Thin</td><td>easySpray, Valuxe</td><td><strong>Empty</strong></td></tr>
       </tbody>
@@ -569,13 +741,13 @@ body{margin:0}
     <div class="marklab"><div class="m2"><span style="left:60%">Enna · ₹1,799</span></div></div>
     <div class="axis"><div class="ax"><em style="font-style:normal">₹0</em><em style="font-style:normal">₹1,500</em><em style="font-style:normal">₹3,000</em></div></div>
     <div class="rows">
-      <div class="r"><div class="k"><b>United States</b><span>₹700 – ₹2,640</span></div>
+      <div class="r"><div class="k"><b>United States</b><span>₹700, ₹2,640</span></div>
         <div class="track"><div class="mark" style="left:60%"></div><div class="rng" style="left:23.3%;width:64.7%"></div></div></div>
-      <div class="r"><div class="k"><b>Japan</b><span>₹570 – ₹1,710</span></div>
+      <div class="r"><div class="k"><b>Japan</b><span>₹570, ₹1,710</span></div>
         <div class="track"><div class="mark" style="left:60%"></div><div class="rng" style="left:19.0%;width:38.0%"></div></div></div>
-      <div class="r"><div class="k"><b>Germany / EU</b><span>₹770 – ₹1,630</span></div>
+      <div class="r"><div class="k"><b>Germany / EU</b><span>₹770, ₹1,630</span></div>
         <div class="track"><div class="mark" style="left:60%"></div><div class="rng" style="left:25.7%;width:28.6%"></div></div></div>
-      <div class="r"><div class="k"><b>India</b><span>₹200 – ₹600</span></div>
+      <div class="r"><div class="k"><b>India</b><span>₹200, ₹600</span></div>
         <div class="track"><div class="mark" style="left:60%"></div><div class="rng" style="left:6.7%;width:13.3%"></div>
           <div class="gap" style="left:21.3%;width:38.2%"><i>Nobody here</i></div></div></div>
     </div>
@@ -586,71 +758,69 @@ body{margin:0}
       China has Supor and Kanbahe, Japan has Mistify, Germany has easySpray, the
       USA has Evo, Misto and Flairosol. India's shelf is entirely imports and
       rebadges. That one row is the clearest argument for Enna existing.</p>
-    <p><strong>The air fryer is the global demand driver</strong> — US, Japanese
+    <p><strong>The air fryer is the global demand driver</strong>. US, Japanese
       and Chinese listings all lead with it. <strong>The premium end goes
       small</strong> (Flairosol 200 ml, Japan 250 ml), which puts our 250 ml
       sprayer in the right cohort. <strong>The filter-in-dip-tube is standard in
       Japan</strong>, validating stage 2 as proven practice. And
-      <strong>nobody anywhere sells opaque steel as a kitchen sprayer</strong> —
-      Germany codes steel as a grill material. That is whitespace and a teaching
+      <strong>nobody anywhere sells opaque steel as a kitchen sprayer</strong>. Germany codes steel as a grill material. That is whitespace and a teaching
       problem at once; India is the easiest place on earth to argue it, because
       steel already <em>is</em> the Indian kitchen material.</p>
-    <h3>Category size — quote the small number</h3>
+    <h3>Category size, quote the small number</h3>
     <p>Published estimates range from $572 M to $9.4 B because they measure
       different things; the big ones count aerosol cooking spray as a food
       product. <strong>The sprayer device category is ≈ $572 M growing 6.4%,
       heading to ~$1.02 B by 2035.</strong> Quoting $9 B and then being asked
       what it includes is a bad meeting. Bottom-up check: top US listings move
-      4,000–30,000 units a month each.</p>
+      4,000, 30,000 units a month each.</p>
   </div>
   <p class="note">FX: $1 ≈ ₹88 · €1 ≈ ₹96 · ¥1 ≈ ₹0.57. Amazon.de, Amazon.co.jp
     product pages, JD, Taobao and the German comparison portals were unreachable
     from the research environment; those entries come from search indexes.
-    Product names and market shape are reliable — verify every price directly
+    Product names and market shape are reliable, verify every price directly
     before quoting it.</p>
 </div></section>
 
 <section id="horeca"><div class="wrap">
-  <div class="snum">12</div>
+  <div class="snum">14</div>
   <h2>Food service</h2>
   <div class="stats">
     <div><span class="q">823</span><span class="l">Classified 5-star hotels in India</span><span class="s">April 2025</span></div>
     <div><span class="q">615</span><span class="l">IHCL / Taj portfolio</span><span class="s">360 open · 255 pipeline</span></div>
     <div><span class="q">4,000+</span><span class="l">Rebel Foods kitchens</span><span class="s">70 cities</span></div>
-    <div><span class="q">28–35%</span><span class="l">Food cost as share of revenue</span><span class="s">Indian benchmark</span></div>
+    <div><span class="q">28, 35%</span><span class="l">Food cost as share of revenue</span><span class="s">Indian benchmark</span></div>
     <div><span class="q">16.6%</span><span class="l">Cloud kitchen CAGR to 2030</span><span class="s">$1.13 B → $2.84 B</span></div>
     <div><span class="q">~20,000</span><span class="l">Addressable units, 5-star alone</span><span class="s">at 25 per property</span></div>
   </div>
   <div class="body stack">
     <p>Portion control is <em>the</em> lever in food cost, and oil is
       specifically called out in Indian cost guidance as an
-      <strong>undercounted</strong> ingredient. The incumbents are aerosols —
-      <strong>PAM Foodservice</strong> and <strong>Vegalene</strong> — and a
+      <strong>undercounted</strong> ingredient. The incumbents are aerosols, <strong>PAM Foodservice</strong> and <strong>Vegalene</strong>, and a
       refillable beats them on arithmetic (≈$48/year against $19 once plus
-      ~$30/year of oil) while <strong>cutting overspray drift 50–70%</strong>. In
+      ~$30/year of oil) while <strong>cutting overspray drift 50, 70%</strong>. In
       a kitchen, drift is a slip hazard as well as waste.</p>
     <h3>Four honest problems</h3>
-    <p><strong>1. HACCP labelling is mandatory</strong> — decanted containers must
+    <p><strong>1. HACCP labelling is mandatory</strong>, decanted containers must
       carry contents and date, and the format the trade settled on is a silicone
       band with a dry-erase marker. <em>This is why the grip ring is now
       writable, and it costs us nothing.</em></p>
-    <p><strong>2. A commercial kitchen is an abuse test</strong> — 80 °C washers,
+    <p><strong>2. A commercial kitchen is an abuse test</strong>, 80 °C washers,
       caustic detergent, daily. Our LSR and POM are specified for domestic duty.</p>
-    <p><strong>3. Usage is 50–100× domestic</strong>, which breaks the counter.
+    <p><strong>3. Usage is 50, 100× domestic</strong>, which breaks the counter.
       1,250 strokes is a consumer's four weeks and a banquet kitchen's shift. A
-      pro unit wants 500 ml–1 L and no counter. <strong>It is a different
+      pro unit wants 500 ml, 1 L and no counter. <strong>It is a different
       product, not a repackage.</strong></p>
     <p><strong>4. Indian 5-star kitchens do not spray much oil.</strong> Tadka,
       deep frying, tandoor and ghee are techniques where oil is a
       <em>medium</em>, not a coating. The real home is bakery and pastry (pan
-      release — exactly where Vegalene earns its money), grill and à la carte,
+      release, exactly where Vegalene earns its money), grill and à la carte,
       garde manger, and the calorie-marked menu. Not the Indian section. Say it
       in the pitch; a chef will respect it and will tell you the same thing
       anyway.</p>
     <h3>Recommendation</h3>
     <p>Phase two, credibility first. <strong>Do not build a pro SKU yet.</strong>
-      Instead seed <strong>20–30 units to executive chefs</strong> in Chennai and
-      Bangalore — free, for sixty days of real service, in exchange for honest
+      Instead seed <strong>20, 30 units to executive chefs</strong> in Chennai and
+      Bangalore, free, for sixty days of real service, in exchange for honest
       feedback and permission to use the property name. That is ≈ ₹25,000 at
       landed cost, and it buys abuse data you cannot purchase plus a logo that
       converts <em>consumer</em> buyers. The route in is the executive chef, not
@@ -658,142 +828,131 @@ body{margin:0}
   </div>
 </div></section>
 <section id="backlog"><div class="wrap">
-  <div class="snum">13</div>
+  <div class="snum">15</div>
   <h2>Design backlog</h2>
-  <p class="lede">Candidate features beyond what is already specified. Ranked by
-    what they buy against what they cost. The first six are the ones I would
-    fight for.</p>
+  <p class="lede">What is still open, after the modular rebuild. Five items
+    graduated into the specification, two were killed by the fixed nozzle, and
+    what remains is ranked by what it buys against what it costs.</p>
 
-  <h3 style="font-size:19px;margin-top:36px">Tier one — worth tooling for</h3>
-  <div class="probs">
-    <div class="idea"><div class="n">01</div><div>
-      <h3>PURGE position on the nozzle collar</h3>
-      <p>A fourth detent that opens a bypass so you can pump hot water — or a
-        little fresh oil — straight through the nozzle to clear it, without
-        taking anything apart. Clogging is the number one cause of death in this
-        category, and every rescue today means disassembly, a toothpick and
-        fifteen minutes. We are already tooling a multi-position collar, so this
-        is one more detent and an internal channel. <strong>It is also the single
-        most demonstrable feature in a thirty-second video.</strong></p>
-    </div><span class="pill hi">High value · low cost</span></div>
-
-    <div class="idea"><div class="n">02</div><div>
-      <h3>Hydrophobic vent membrane in the base cap</h3>
-      <p>As oil leaves, air must enter. Every sprayer on the market pulls raw
-        kitchen air — humid, greasy, airborne particulate — straight into the
-        headspace, which is exactly what oxidises oil. A PTFE vent membrane costs
-        a few paise, is standard in food packaging, and nobody in this category
-        uses one. It is invisible, it directly serves the rancidity argument that
-        justifies the opaque body, and <strong>it is the most patentable idea on
-        this list</strong> in combination with the rest.</p>
-    </div><span class="pill hi">High value · low cost</span></div>
-
-    <div class="idea"><div class="n">03</div><div>
-      <h3>Make DRIZZLE a real controlled pour</h3>
-      <p>The global bestsellers are all "2-in-1 spray and pour" — that is the
-        format buyers expect, because sometimes you genuinely want a tablespoon.
-        If the DRIZZLE detent delivers a clean controlled stream rather than a
-        coarse spray, we match the category convention without a second bottle
-        and without compromising the mist. <strong>Not having this is a reason to
-        not buy us.</strong></p>
-    </div><span class="pill hi">High value · low cost</span></div>
-
-    <div class="idea"><div class="n">04</div><div>
-      <h3>Nest the set — sprayer docks into the decanter cap</h3>
-      <p>A recess in the decanter's cap that the sprayer's base ring seats into,
-        so the two store as one object. Smaller counter footprint, smaller
-        carton, cheaper shipping, better shelf economics in quick commerce — and
-        it makes the pair read as a designed system rather than a bundle. This
-        is the detail that makes people photograph it.</p>
-    </div><span class="pill hi">High value · medium cost</span></div>
-
-    <div class="idea"><div class="n">05</div><div>
-      <h3>Make the counter click audible and deliberate</h3>
-      <p>The counter ratchet produces a click as a byproduct. Tune it so the
-        click lands precisely at the completion of a full 0.20 ml stroke, and it
-        becomes dose confirmation you can hear without looking at the pan.
-        <strong>Turning an unavoidable noise into the proof of the core
-        claim</strong> costs a geometry decision, not a part.</p>
-    </div><span class="pill hi">High value · no cost</span></div>
-
-    <div class="idea"><div class="n">06</div><div>
-      <h3>Store a spare gasket inside the base cap</h3>
-      <p>A moulded recess in the base cap holds one spare LSR face gasket. When
-        the seal eventually needs replacing, the replacement is already inside
-        the product. It costs a feature in a tool we are cutting anyway, and it
-        makes "buy once, own for life" a thing you can physically show someone
-        rather than a claim on a website.</p>
-    </div><span class="pill hi">Medium value · no cost</span></div>
+  <div class="call">
+    <span class="tag">Graduated into the specification</span>
+    <h3>No longer candidates, now committed</h3>
+    <p>Hydrophobic vent membrane in the base cap · spare gasket stored in the
+      base cap recess · repair QR etched on the body · dry erase grip ring ·
+      laser etched internal fill line. All five are in section 04 and costed in
+      section 09.</p>
   </div>
 
-  <h3 style="font-size:19px;margin-top:44px">Tier two — cheap, worth considering</h3>
+  <div class="call warn">
+    <span class="tag">Killed, and correctly</span>
+    <h3>PURGE detent and DRIZZLE mode</h3>
+    <p>Both needed a rotating multi position collar, which puts a moving seal in
+      the oil path and internal channels in a module that has to be serviceable.
+      Pulling the head and flushing it clears a clog in five seconds with no
+      mechanism at all, and the decanter pours. <strong>The architecture beat the
+      features.</strong></p>
+  </div>
+
+  <h3 style="font-size:19px;margin-top:40px">Tier one</h3>
   <div class="probs">
+    <div class="idea"><div class="n">01</div><div>
+      <h3>A 500 ml body module</h3>
+      <p>The first real payoff of the published interface. One body tool, reusing
+        MOD-01, 02, 03, 05 and 06 completely unchanged, and it answers every
+        reviewer who says 250 ml is too small without splitting the product line
+        or paying a second listing fee on a second head. <strong>This is what
+        modularity is for</strong>, and it is worth building the interface
+        properly in order to have it.</p>
+    </div><span class="pill hi">High value · one tool</span></div>
+
+    <div class="idea"><div class="n">02</div><div>
+      <h3>Nest the set, sprayer docks into the decanter cap</h3>
+      <p>A recess in the decanter cap that the grip ring seats into, so the pair
+        stores as one object. Smaller counter footprint, smaller carton, cheaper
+        shipping, better shelf economics. Now that we are tooling the decanter
+        anyway, this is a feature in a tool we are already cutting rather than a
+        new part. It is also the detail that makes people photograph it.</p>
+    </div><span class="pill hi">High value · no new part</span></div>
+
+    <div class="idea"><div class="n">03</div><div>
+      <h3>Tune the counter click to land at stroke completion</h3>
+      <p>ACC-01's ratchet makes a click as a byproduct. Land it precisely at a
+        complete 0.20 ml stroke and it becomes dose confirmation you can hear
+        without watching the pan. Turning an unavoidable noise into proof of the
+        core claim costs a geometry decision, not a part.</p>
+    </div><span class="pill hi">High value · no cost</span></div>
+
+    <div class="idea"><div class="n">04</div><div>
+      <h3>Magnetic hob side dock</h3>
+      <p>A steel disc that mounts on a wall or the side of a fridge, and a magnet
+        in the base cap. Answers the question every kitchen object has to answer,
+        which is where it lives, and keeps it off the counter and away from the
+        flame. It is an accessory, so it carries its own price and does not
+        complicate the product.</p>
+    </div><span class="pill">Medium · accessory</span></div>
+  </div>
+
+  <h3 style="font-size:19px;margin-top:44px">Tier two</h3>
+  <div class="probs">
+    <div class="idea"><div class="n">05</div><div>
+      <h3>Additional nozzle modules</h3>
+      <p>A coarser orifice for vinegar and thin dressings, and a wider cone for
+        large trays. With a bayonet nozzle these are just further part numbers,
+        no retooling of anything else. <strong>Modularity already paid for
+        this</strong>, which is the argument for the architecture in one line.</p>
+    </div><span class="pill">Medium · part number only</span></div>
+
+    <div class="idea"><div class="n">06</div><div>
+      <h3>Colour coded grip rings, three pack</h3>
+      <p>Yellow, green and red so a household runs gingelly, groundnut and
+        vinegar without confusion, and so a commercial kitchen can colour code,
+        which is standard HACCP practice. Near zero marginal cost on a tool we
+        already have, and a repeat purchase accessory.</p>
+    </div><span class="pill">Medium · no new tool</span></div>
+
     <div class="idea"><div class="n">07</div><div>
-      <h3>Second nozzle in the box, for vinegar and water</h3>
-      <p>A larger orifice for low-viscosity liquids turns one product into a
-        dressing and misting tool. One extra moulded part, and it answers the
-        "can I use it for vinegar" question every listing in this category gets.</p>
+      <h3>Dishwasher clip for the nozzle and intake cartridge</h3>
+      <p>Six modules is a cleaning feature and a losing things problem. A small
+        moulded clip that holds the two smallest modules together through a cycle
+        prevents the most likely reason somebody stops fully disassembling it.</p>
     </div><span class="pill">Medium · low cost</span></div>
 
     <div class="idea"><div class="n">08</div><div>
-      <h3>Colour-coded grip rings, sold as a three-pack</h3>
-      <p>Yellow, green and red LSR rings so a household runs gingelly, groundnut
-        and vinegar without confusion — and so a commercial kitchen can
-        colour-code, which is standard HACCP practice. Near-zero marginal cost on
-        a tool we already have, and it creates a repeat-purchase accessory
-        alongside the spares kit.</p>
-    </div><span class="pill">Medium · no new tool</span></div>
+      <h3>Trigger lock</h3>
+      <p>A quarter turn that blocks the trigger so it cannot fire in a drawer, a
+        picnic bag or a delivery carton. Removes an entire class of one star
+        review that begins with the words it leaked all over my.</p>
+    </div><span class="pill">Medium · low cost</span></div>
 
     <div class="idea"><div class="n">09</div><div>
-      <h3>Trigger lock</h3>
-      <p>A quarter-turn that blocks the trigger so it cannot fire in a drawer, a
-        picnic bag or a delivery carton. Small, and it removes an entire class of
-        one-star review that begins "it leaked all over my…".</p>
-    </div><span class="pill">Medium · low cost</span></div>
-
-    <div class="idea"><div class="n">10</div><div>
-      <h3>Dishwasher clip for the small parts</h3>
-      <p>Eleven tool-free parts is a cleaning feature and a losing-things
-        problem. A small moulded clip that holds the screens, valve and basket
-        together through a dishwasher cycle costs almost nothing and prevents the
-        most likely reason someone stops fully disassembling it.</p>
-    </div><span class="pill">Medium · low cost</span></div>
-
-    <div class="idea"><div class="n">11</div><div>
-      <h3>Print the cold limit on the collar</h3>
-      <p>"Below 24 °C, coconut oil will not spray" belongs on the product, at the
-        moment of the decision — not in a manual nobody keeps. It costs a line of
-        marking and it converts our most awkward limitation into visible honesty.</p>
+      <h3>Mark the cold limit on the head</h3>
+      <p>Below 24 °C coconut oil will not spray, and that belongs on the product
+        at the moment of the decision rather than in a manual nobody keeps. A
+        line of marking, and it turns our most awkward limitation into visible
+        honesty.</p>
     </div><span class="pill">Low cost</span></div>
 
-    <div class="idea"><div class="n">12</div><div>
+    <div class="idea"><div class="n">10</div><div>
       <h3>Thumb detent on the trigger</h3>
       <p>A shallow recess so the hand lands identically every time. Repeatable
         grip means repeatable stroke force, which is what makes a metered dose
         actually metered. A surface detail that quietly supports the headline
         claim.</p>
     </div><span class="pill">Low cost</span></div>
-
-    <div class="idea"><div class="n">13</div><div>
-      <h3>QR on the base for spares and refills</h3>
-      <p>Laser-etched alongside the fill line, linking to the spares kit and the
-        dose reference. The spares business only works if reordering takes ten
-        seconds, and this is the cheapest customer-retention mechanism available.</p>
-    </div><span class="pill">Low cost</span></div>
   </div>
 
   <div class="call">
-    <span class="tag">If you only do three</span>
-    <h3>Purge, vent membrane, and a real pour mode</h3>
-    <p>Purge attacks the category's number one failure mode and demos in
-      seconds. The vent membrane is invisible, nearly free, uniquely ours, and
-      strengthens the patent. A real pour mode removes the one reason a buyer
-      comparing us against a 2-in-1 glass bottle would pick the glass bottle.</p>
+    <span class="tag">If you only do two</span>
+    <h3>The 500 ml body, and nesting the set</h3>
+    <p>The 500 ml body proves the interface was worth publishing and answers the
+      only recurring objection to a 250 ml sprayer, for the price of one tool.
+      Nesting costs nothing extra now that the decanter is being tooled, and it
+      is the difference between a bundle and a system.</p>
   </div>
 </div></section>
 
 <section id="road"><div class="wrap">
-  <div class="snum">14</div>
+  <div class="snum">16</div>
   <h2>Roadmap</h2>
   <div class="probs">
     <div class="pr"><div class="n">01</div><div><h3>Category teardown and failure analysis</h3>
@@ -804,14 +963,14 @@ body{margin:0}
       <p>Read the Flairosol claim set and WO2016077114A1 properly. File a
         provisional on the filtration, raised intake, dual-opening and vent
         membrane combination. File the Enna word mark in class 21.</p></div></div>
-    <div class="pr"><div class="n">03</div><div><h3>Pump head sourcing and India exclusivity · months 2–4</h3>
-      <p>Qualify pre-compression heads against the 25–95 cSt window, then
-        negotiate exclusive Indian rights — the fastest durable moat available.</p></div></div>
-    <div class="pr"><div class="n">04</div><div><h3>Prototypes and the validation gates · months 3–6</h3>
+    <div class="pr"><div class="n">03</div><div><h3>Pump head sourcing and India exclusivity · months 2, 4</h3>
+      <p>Qualify pre-compression heads against the 25, 95 cSt window, then
+        negotiate exclusive Indian rights, the fastest durable moat available.</p></div></div>
+    <div class="pr"><div class="n">04</div><div><h3>Prototypes and the validation gates · months 3, 6</h3>
       <p>Printed bodies and screens against real strained frying oil from working
         kitchens. Clog-to-failure count and the inverted leak test are the
-        pass/fail gates. Seed 20–30 units to executive chefs in parallel.</p></div></div>
-    <div class="pr"><div class="n">05</div><div><h3>Tooling, compliance and first run · months 6–9</h3>
+        pass/fail gates. Seed 20, 30 units to executive chefs in parallel.</p></div></div>
+    <div class="pr"><div class="n">05</div><div><h3>Tooling, compliance and first run · months 6, 9</h3>
       <p>Design registration on the final form, migration testing under the BIS
         standards, GSTIN and GS1 barcodes, soft tooling for a first thousand
         sets.</p></div></div>
