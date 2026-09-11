@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enna Dream Machines</title>
+<meta name="description" content="Every other way a kitchen could turn oil into a mist: gas assist, spinning discs, electrostatics, heat, and four that are not sprayers at all.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0E11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Deliberately single theme. This is the speculation room, not the spec, and it
+   should not look like the pages that carry commitments. Every colour is
+   painted explicitly so the page holds on any host ground. */
+:root{
+  --ground:#0B0E11; --surface:#12171C; --raised:#171E24; --sunk:#080B0D;
+  --ink:#EEF3F5; --ink-2:#9AAAB4; --ink-3:#65757F;
+  --line:#1F2831; --line-soft:#161D23;
+  --accent:#E8AE45; --accent-2:#7FB2C9; --accent-soft:rgba(232,174,69,.10);
+  --hot:#E0714A; --cool:#6E93A8;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gut:clamp(20px,5vw,56px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.68;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.05;
+  letter-spacing:-.026em;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:var(--gut)}
+.mono{font-family:var(--mono)}
+
+header.mast{padding-block:clamp(44px,8vw,88px) 40px;
+  background:
+    radial-gradient(120% 90% at 12% 0%, rgba(232,174,69,.10), transparent 60%),
+    radial-gradient(90% 80% at 92% 10%, rgba(127,178,201,.08), transparent 62%),
+    var(--ground);
+  border-bottom:1px solid var(--line)}
+.backlink{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-3);margin-top:24px}
+h1{font-size:clamp(38px,6.6vw,74px);margin-top:14px}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{font-size:clamp(16px,1.8vw,20px);color:var(--ink-2);max-width:58ch;margin-top:20px}
+.warnbar{margin-top:30px;border:1px solid var(--line);border-left:3px solid var(--hot);
+  background:var(--surface);border-radius:2px;padding:16px 20px;max-width:62ch;
+  font-size:14.5px;color:var(--ink-2)}
+.warnbar b{color:var(--ink)}
+
+section{padding-block:clamp(44px,6.5vw,76px);border-bottom:1px solid var(--line-soft)}
+.snum{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--accent)}
+h2{font-size:clamp(25px,3.4vw,38px);margin-top:10px}
+.lede{font-size:17.5px;color:var(--ink-2);margin-top:16px;max-width:64ch}
+.body p{margin-top:16px;color:var(--ink-2);max-width:68ch}
+.body p strong{color:var(--ink);font-weight:600}
+.body h3{font-size:19px;margin-top:32px;color:var(--ink)}
+
+/* mechanism cards */
+.fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:36px}
+.f{background:var(--surface);padding:26px 24px;display:flex;flex-direction:column;gap:11px}
+.f .who{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent-2)}
+.f h3{font-size:21px}
+.f p{font-size:14.5px;color:var(--ink-2)}
+.f .verdict{margin-top:4px;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.04em;padding-top:11px;border-top:1px solid var(--line)}
+.f .verdict.go{color:var(--accent)}
+.f .verdict.maybe{color:var(--cool)}
+.f .verdict.no{color:var(--ink-3)}
+
+/* rating matrix */
+.matrix{overflow-x:auto;margin-top:34px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
+th,td{text-align:left;padding:13px 12px;border-bottom:1px solid var(--line-soft);
+  vertical-align:middle}
+thead th{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400;
+  border-bottom:1px solid var(--line);white-space:nowrap}
+tbody td:first-child{color:var(--ink);font-weight:500;width:24%}
+.dots{display:inline-flex;gap:3px;align-items:center}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line);display:block}
+.dots i.on{background:var(--accent)}
+.dots.cool i.on{background:var(--accent-2)}
+.dots.bad i.on{background:var(--hot)}
+.mini{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);
+  display:block;margin-top:3px}
+
+/* dream product blocks */
+.dream{border:1px solid var(--line);background:var(--raised);border-radius:3px;
+  padding:clamp(22px,3.4vw,34px);margin-top:26px;display:flex;flex-direction:column;gap:14px}
+.dream .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent)}
+.dream h3{font-size:clamp(22px,2.8vw,28px)}
+.dream p{color:var(--ink-2);max-width:66ch}
+.dream .how{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.dream .how div{background:var(--surface);padding:14px 16px;display:flex;
+  flex-direction:column;gap:3px}
+.dream .how b{font-family:var(--mono);font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400}
+.dream .how span{font-size:14px;color:var(--ink)}
+.kill{border-left:3px solid var(--hot);padding-left:16px;margin-top:6px}
+.kill b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--hot);margin-bottom:5px}
+.kill p{font-size:14.5px}
+
+ul.tight{margin:14px 0 0;padding-left:20px;color:var(--ink-2);max-width:66ch}
+ul.tight li{margin-bottom:8px;font-size:15px}
+ul.tight li strong{color:var(--ink)}
+
+footer{padding-block:48px;font-family:var(--mono);font-size:11px;
+  color:var(--ink-3);line-height:1.9;background:var(--sunk)}
+footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<header class="mast"><div class="wrap">
+  <a class="backlink" href="index.html">Back to Enna</a>
+  <div class="kicker">Speculation. Nothing here is committed.</div>
+  <h1>Dream <em>machines</em></h1>
+  <p class="sub">Enna is a hand squeezed pump pushing oil through a hole. That is
+    one point in a very large space. This page is the rest of the space, borrowed
+    from paint shops, crop sprayers, jet engines, snack factories and inhalers.</p>
+  <div class="warnbar"><b>Read this as a wish list, not a plan.</b> The product
+    pages carry commitments. This one carries none. Several of these would be
+    better products and worse businesses, and a few are simply beautiful and
+    wrong.</div>
+</div></header>
+
+<section><div class="wrap">
+  <div class="snum">01</div>
+  <h2>There are only six ways to break a liquid apart</h2>
+  <p class="lede">Every atomiser ever built uses one of these, or two in
+    combination. Once you see the list, the category stops looking like a
+    crowded shelf and starts looking like one occupied corner of an empty room.</p>
+  <div class="fam">
+    <div class="f">
+      <span class="who">Borrowed from: perfume, garden sprayers</span>
+      <h3>1. Pressure</h3>
+      <p>Force liquid through a small hole fast enough that it tears itself into
+        droplets. Simple, cheap, no power. The hole has to be small, which is
+        exactly why every sprayer in this category dies of clogging.</p>
+      <p class="verdict go">This is what Enna does today.</p>
+    </div>
+    <div class="f">
+      <span class="who">Borrowed from: jet engines, oil burners</span>
+      <h3>2. Gas assist</h3>
+      <p>Mix air into the liquid <em>before</em> the orifice. The bubbles expand
+        on the way out and shatter the oil from the inside. Because the gas does
+        the work, the passages can be large and the pressure low.</p>
+      <p class="verdict go">The best fit nobody in this category uses.</p>
+    </div>
+    <div class="f">
+      <span class="who">Borrowed from: car paint booths, spray drying</span>
+      <h3>3. Centrifugal</h3>
+      <p>Drip oil onto a disc spinning at thousands of rpm and let it fling
+        itself off the edge into droplets. <strong>There is no orifice at
+        all.</strong> Used industrially precisely because pastes and slurries
+        plug nozzles.</p>
+      <p class="verdict go">Structurally cannot clog.</p>
+    </div>
+    <div class="f">
+      <span class="who">Borrowed from: crop dusting, snack seasoning</span>
+      <h3>4. Electrical</h3>
+      <p>Charge the droplets and ground the target. The mist is pulled onto the
+        pan and wraps around it instead of drifting into the room. Real food
+        industry technology, not a lab curiosity.</p>
+      <p class="verdict maybe">Cuts the oil again, needs a grounded pan.</p>
+    </div>
+    <div class="f">
+      <span class="who">Borrowed from: humidifiers, asthma inhalers</span>
+      <h3>5. Acoustic</h3>
+      <p>Vibrate a mesh at ultrasonic frequency and shake droplets off it. It is
+        the obvious modern answer and it is the one that clearly does not work
+        here: common piezo atomisers cannot aerosolise viscous fluids, and
+        struggle above about 6 cP. Cooking oil is 40 to 90.</p>
+      <p class="verdict no">Ruled out on physics, not on cost.</p>
+    </div>
+    <div class="f">
+      <span class="who">Borrowed from: nothing. This is cheating.</span>
+      <h3>6. Change the liquid</h3>
+      <p>Do not build a better atomiser. Make the oil easier to atomise. Warm it
+        by twenty degrees and the viscosity roughly halves, and the fats we
+        publicly cannot spray become fats we can.</p>
+      <p class="verdict go">The cheapest physics on this page.</p>
+    </div>
+  </div>
+</div></section>
+<section><div class="wrap">
+  <div class="snum">02</div>
+  <h2>Scored against what actually kills sprayers</h2>
+  <p class="lede">Not scored on elegance. Scored on viscosity tolerance, whether
+    it can clog at all, what it needs to run, and how far it sits from something
+    a person would put on a kitchen counter.</p>
+  <div class="matrix">
+    <table>
+      <thead><tr>
+        <th>Mechanism</th><th>Handles thick oil</th><th>Can it clog</th>
+        <th>Power needed</th><th>Kitchen ready</th><th>The one line</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Pressure, hand pump<span class="mini">Enna today</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
+          <td><span class="dots bad"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="mini">constantly</span></td>
+          <td><span class="dots cool"><i></i><i></i><i></i><i></i><i></i></span><span class="mini">none</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+          <td>Proven, cheap, and dies of the thing it is famous for.</td></tr>
+
+        <tr><td>Gas assist, effervescent<span class="mini">air injected upstream</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="mini">to 400 mPa·s</span></td>
+          <td><span class="dots bad"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="mini">large passages</span></td>
+          <td><span class="dots cool"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="mini">1.4 to 2.8 bar air</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td>
+          <td>Runs at the pressure a hand already makes.</td></tr>
+
+        <tr><td>Centrifugal, spinning disc<span class="mini">no orifice exists</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="mini">thicker is finer</span></td>
+          <td><span class="dots bad"><i></i><i></i><i></i><i></i><i></i></span><span class="mini">nothing to block</span></td>
+          <td><span class="dots cool"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span class="mini">10,000 rpm</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>
+          <td>The only design that cannot clog by construction.</td></tr>
+
+        <tr><td>Electrostatic<span class="mini">charged droplets</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
+          <td><span class="dots bad"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span class="mini">still has a nozzle</span></td>
+          <td><span class="dots cool"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="mini">kV, low current</span></td>
+          <td><span class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></span></td>
+          <td>Transfer yield 17% to 40% in food trials. Needs a grounded pan.</td></tr>
+
+        <tr><td>Acoustic, ultrasonic mesh<span class="mini">piezo</span></td>
+          <td><span class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="mini">fails above ~6 cP</span></td>
+          <td><span class="dots bad"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="mini">mesh fouls</span></td>
+          <td><span class="dots cool"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>
+          <td><span class="dots"><i></i><i></i><i></i><i></i><i></i></span></td>
+          <td>The obvious modern answer, and the wrong one.</td></tr>
+
+        <tr><td>Thermal, warm the oil<span class="mini">viscosity halves</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="mini">ghee included</span></td>
+          <td><span class="dots bad"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="mini">helps any nozzle</span></td>
+          <td><span class="dots cool"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span class="mini">10 to 15 W</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
+          <td>Not an atomiser. A multiplier on every other row.</td></tr>
+
+        <tr><td>Peristaltic metering<span class="mini">oil touches only a tube</span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td>
+          <td><span class="dots bad"><i></i><i></i><i></i><i></i><i></i></span><span class="mini">swap the tube</span></td>
+          <td><span class="dots cool"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td>
+          <td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td>
+          <td>Perfect dosing, no mist. Solves cleaning completely.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="lede" style="margin-top:26px">Read the clog column. It is the only
+    column where the current design scores worst and two of the alternatives
+    score zero.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">03</div>
+  <h2>Four machines worth dreaming about</h2>
+  <p class="lede">Each of these is a real product, not a concept render. Each
+    also has a reason it might never ship, written directly underneath.</p>
+
+  <div class="dream">
+    <span class="tag">Dream one · closest to buildable</span>
+    <h3>The effervescent trigger</h3>
+    <p>Identical to Enna from the outside. Same squeeze, same steel, same
+      modules. Inside, the trigger drives a small air piston as well as the oil
+      piston, and the air is injected into the oil <em>upstream</em> of the
+      orifice. The bubbles expand on the way out and blow the oil apart from
+      within.</p>
+    <p>This is well established twin fluid atomisation, used precisely because
+      it processes highly viscous liquids into a fine spray with low gas
+      consumption. Published work reaches roughly 25 µm droplets at viscosities
+      up to 400 mPa·s, at gas pressures of 1.4 to 2.8 bar. <strong>Cooking oil
+      is 37 to 83 mPa·s and our pre-compression valve already cracks at
+      2.4 bar.</strong> The numbers line up almost uncomfortably well.</p>
+    <div class="how">
+      <div><b>What changes</b><span>A second piston and a mixing chamber</span></div>
+      <div><b>What it buys</b><span>Passages ten times larger</span></div>
+      <div><b>Power</b><span>Still none. Your hand</span></div>
+      <div><b>Where it is used</b><span>Oil burners, spray drying</span></div>
+    </div>
+    <div class="kill"><b>Why it might not ship</b>
+      <p>Effervescent sprays are known to be unsteady, and the character of the
+        spray depends on the gas to liquid ratio. A hand squeeze does not hold a
+        constant ratio, so the first pull and the last pull of a stroke may not
+        look the same. That is an engineering problem, not a physics problem,
+        which is exactly the kind worth attempting.</p></div>
+  </div>
+
+  <div class="dream">
+    <span class="tag">Dream two · the one that ends clogging forever</span>
+    <h3>The hand cranked spinning disc</h3>
+    <p>Squeeze the trigger and a gear train spins a small disc to ten thousand
+      rpm. Oil drips onto the centre of the disc, spreads into a film, and flings
+      itself off the rim as droplets. <strong>There is no orifice anywhere in
+      the machine.</strong> Nothing to block, nothing to descale, nothing to
+      poke a pin through.</p>
+    <p>Centrifugal atomisation is used industrially for exactly this reason: it
+      handles suspensions and pastes that erode or plug nozzles. And there is a
+      lovely inversion at the heart of it. In nozzles, thicker oil sprays worse.
+      On a spinning disc, higher viscosity promotes a more stable spreading film
+      and can produce <em>finer</em> droplets. The physics runs the right way for
+      once.</p>
+    <div class="how">
+      <div><b>What changes</b><span>Pump becomes a gear train</span></div>
+      <div><b>What it buys</b><span>Clogging stops existing</span></div>
+      <div><b>Power</b><span>None, if hand cranked</span></div>
+      <div><b>Same gesture</b><span>You still just squeeze</span></div>
+    </div>
+    <div class="kill"><b>Why it might not ship</b>
+      <p>A gear train to 10,000 rpm from a hand squeeze is a real mechanism with
+        real friction, real noise and real wear, and it is the opposite of six
+        simple modules. It also throws a wide, soft cloud rather than a directed
+        cone, so it wants a shroud, and a shroud is a thing that gets oily and
+        needs cleaning. You would trade the clog for a cowling.</p></div>
+  </div>
+  <div class="dream">
+    <span class="tag">Dream three · the one that breaks our own promise</span>
+    <h3>The warm sprayer</h3>
+    <p>A 12 watt heating element in the base cap brings the oil to about 45 °C
+      before it reaches the pump. Viscosity roughly halves. Every atomiser on
+      this page works better, the existing nozzle works better, and the two fats
+      the product page honestly admits it cannot handle become fats it can.</p>
+    <p><strong>Coconut oil sets below 24 °C and ghee is solid for much of the
+      Indian year.</strong> That limitation is currently printed on our own
+      website as a virtue of honesty. Thirty seconds of gentle warming makes it
+      untrue, which would be the single largest expansion of what this product
+      is for.</p>
+    <div class="how">
+      <div><b>What changes</b><span>A PTC element and a USB-C port</span></div>
+      <div><b>What it buys</b><span>Ghee, coconut, winter</span></div>
+      <div><b>Power</b><span>10 to 15 W, rechargeable</span></div>
+      <div><b>Bonus</b><span>Helps every other dream here</span></div>
+    </div>
+    <div class="kill"><b>Why it might not ship</b>
+      <p>It puts a battery, a heater and a charging port into a product whose
+        entire case is that it is simple, modular and repairable for ten years.
+        Warm oil also oxidises faster than cold oil, so a feature bought to serve
+        one honesty claim quietly damages another. And it becomes an appliance,
+        which is a different shelf, a different price and a different set of
+        safety approvals.</p></div>
+  </div>
+
+  <div class="dream">
+    <span class="tag">Dream four · not a sprayer at all</span>
+    <h3>The oil stick</h3>
+    <p>A push up tube, exactly like a deodorant or a glue stick, holding
+      solidified coconut oil or ghee. You wind out two millimetres and wipe it
+      round a warm pan. It melts on contact and spreads further than any spray,
+      because the pan does the work.</p>
+    <p>It has no pump, no nozzle, no seals, no screens and no moving parts beyond
+      a screw thread. It cannot clog, cannot leak, and doses more precisely than
+      any atomiser, because a marked thread is a far better metering device than
+      a human hand. <strong>It solves the exact problem the sprayer cannot</strong>,
+      using the property of solid fats that makes them a problem in the first
+      place.</p>
+    <div class="how">
+      <div><b>What changes</b><span>Everything. It is a new product</span></div>
+      <div><b>What it buys</b><span>Ghee, butter, coconut</span></div>
+      <div><b>Power</b><span>None. Barely a mechanism</span></div>
+      <div><b>Modules</b><span>Three</span></div>
+    </div>
+    <div class="kill"><b>Why it might not ship</b>
+      <p>It is a second product, not a variant, and it competes for the same
+        tooling budget. It also asks people to buy fat in a format they have
+        never bought it in, which is a far harder ask than a better bottle. The
+        honest read is that this is a second company, or a second year.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">04</div>
+  <h2>Five more, unranked and unjustified</h2>
+  <p class="lede">Kept here because the point of this page is to be a net, not a
+    filter.</p>
+  <div class="body">
+    <ul class="tight">
+      <li><strong>Electrostatic assist.</strong> Charge the mist, ground the pan
+        through the hob. Food industry trials moved transfer yield from about
+        17% to about 40%, and electrostatic seasoning systems claim up to 45%
+        less powder. If it held here it would cut oil use again on top of the
+        spray, which is the only idea on this page that attacks the calorie
+        number rather than the clog. Needs kilovolts near a hot surface and a
+        grounded pan, so treat it as a laboratory question first.</li>
+      <li><strong>Peristaltic dosing.</strong> A motor squeezes a silicone tube
+        and the oil touches nothing else in the machine. Cleaning becomes
+        replacing a ten rupee tube, and dosing becomes exact rather than
+        approximate. It gives up the mist entirely and becomes a precision
+        drizzler, which may be a better product for baking than for a pan.</li>
+      <li><strong>Collapsible liner.</strong> A bag inside the bottle that
+        shrinks as oil leaves, so no air ever enters. Oxidation stops being a
+        design problem and becomes an impossibility. It fights the refillable,
+        repairable premise, because the bag is a consumable.</li>
+      <li><strong>Oil sheets.</strong> Thin dissolvable squares of solidified
+        oil, one per pan, like a dishwasher tablet. Perfect portion control, zero
+        mechanism, wonderful packaging story, and an enormous behaviour change to
+        ask for.</li>
+      <li><strong>Micro heater bubble nucleation.</strong> The one route that
+        makes ultrasonics work on viscous fluids: tiny heaters nucleate bubbles
+        which do the atomising instead of the vibration. Published for
+        aromatherapy oils. Beautiful, and at least a decade from a kitchen.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="snum">05</div>
+  <h2>What I would actually do with this page</h2>
+  <div class="body">
+    <p><strong>Build the effervescent trigger as a bench rig, not a product.</strong>
+      It is the only dream here that keeps every commitment the real product has
+      made. Same gesture, same six modules, no power, no battery, no appliance.
+      It needs a second piston and a mixing chamber, and the published numbers
+      for viscosity and pressure already sit where we need them. A rig on a bench
+      would answer it in a month for the price of a prototype round.</p>
+    <p><strong>Treat the spinning disc as the patent, not the product.</strong>
+      A hand cranked rotary atomiser for kitchen oil is genuinely novel and
+      genuinely defensible. Filing it costs a fraction of building it, and it
+      protects a direction we may want in five years and certainly do not want a
+      competitor to own.</p>
+    <p><strong>Keep the warm sprayer for the professional line.</strong> A
+      commercial kitchen already has power everywhere, does not care about a
+      charging port, and has the one use case that justifies the whole thing,
+      which is ghee. The objection that it becomes an appliance stops being an
+      objection in a kitchen full of appliances.</p>
+    <p><strong>Leave the oil stick alone until Enna ships.</strong> It is the
+      most charming idea on this page and it is a different company. Write it
+      down, date it, and come back.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div><a href="index.html">Back to Enna</a> &nbsp;·&nbsp;
+    <a href="engineering.html">Engineering notes</a></div>
+  <div style="margin-top:14px">Speculation document, September 2026. Nothing on
+    this page is specified, costed, prototyped or promised. Numbers quoted from
+    published literature are for orientation and have not been reproduced.</div>
+  <div style="margin-top:14px">Drawn from published work on effervescent and
+    twin fluid atomisation of viscous liquids, rotary and spinning disc
+    atomisation, electrostatic deposition of edible liquids onto food substrates
+    (US6010726, US5830274), nebuliser viscosity limits, and micro heater bubble
+    nucleation for high viscosity aromatherapy fluids.</div>
+</div></footer>
+</body>
+</html>
