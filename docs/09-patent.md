@@ -1,16 +1,22 @@
 # Enna: Combined Patentability Assessment and Draft Patent Specification
 
-**Version 2, 16 September 2026. Supersedes version 1. Draft for instructing a
-patent attorney. Not legal advice.**
+**Version 3, 16 September 2026. Supersedes versions 1 and 2. Draft for
+instructing a patent attorney. Not legal advice.**
 
 I am not a patent attorney. This is a technically detailed draft and a reasoned
 assessment, written so a registered agent can take it, run a proper search, and
 file. Claim language must be reviewed by a professional before filing.
 
-Version 2 combines the mechanical metering invention with a powered thermal
-family arising from the decision to admit a USB powered heating element. That
-addition turns out to be far more significant than a convenience feature, for
-reasons set out in Part B4.
+**Version 3 demotes the powered thermal family.** Version 2 led with a USB
+heating element. On review that is the wrong product: it adds a controller, a
+sensor, a heater, a power input and an electrical certification programme to
+solve a problem that a single rotating collar solves with one moving part and no
+power at all. The thermal aspects are **retained in the specification and in the
+claims**, because keeping them in the priority filing is nearly free and they may
+matter for a professional model later, but they are no longer the lead invention.
+
+The lead invention is now the combination in Part B4: a **manual viscosity
+calibration collar** whose setting is taught to the user by the interlock itself.
 
 ---
 
@@ -139,15 +145,105 @@ is volume, onto one they can, which is a short delay.
 
 This aspect requires no power at all, and it is what the first product ships.
 
-## B4. Aspect 2 onwards: what the heating element actually unlocks
+## B4. Aspect 2: the manual viscosity calibration collar
 
-The founder proposed a USB powered heating element for temperature control. Worked
-through, it produces four further inventive concepts, and they interlock with
-Aspect 1 rather than merely sitting alongside it. **That functional interaction
+This is the preferred embodiment and the one that should be built.
+
+### B4.1 The variable to adjust is flow resistance, not swept volume
+
+The obvious proposal is a collar, marked per oil, which alters the swept volume of
+the metering chamber. **The instinct is correct and the variable is wrong.**
+
+If the collar shrinks the swept volume so that a viscous liquid fills the chamber
+completely within the available interval, the chamber does fill, but the delivered
+volume is then the shrunken volume. At three times viscosity the device delivers
+0.067 ml in place of 0.20 ml. **That is precisely the error the invention exists to
+remove, made repeatable rather than random.** Repeatably wrong is an improvement on
+randomly wrong, and it is not the objective.
+
+What the collar must adjust is the resistance the refill flow encounters, since
+that is what viscosity acts upon. From
+
+```
+t  ∝  mu / ( dP · r⁴ )
+```
+
+there are two available levers, with very different economics.
+
+| Viscosity range to be covered | By driving pressure | By inlet radius | By inlet area |
+|---|---|---|---|
+| 2 times | 2.00 times | **1.19 times** | 1.41 times |
+| 3 times | 3.00 times | **1.32 times** | 1.73 times |
+| 4 times | 4.00 times | **1.41 times** | 2.00 times |
+
+**Driving pressure compensates linearly.** Trebling it requires trebling the return
+spring force, and the user compresses that same spring on every delivery stroke, so
+the squeeze effort trebles with it. This lever is ergonomically capped.
+
+**Inlet radius compensates as the fourth root.** A threefold viscosity range
+requires the aperture to be opened by thirty two percent. That spans every edible
+oil in ordinary Indian use across the whole year, costs nothing in squeeze effort,
+and occupies a small, precise arc of collar rotation.
+
+**The fourth power dependence is the whole design.** It is the reason this works as
+a hand set collar rather than as a control system.
+
+### B4.2 Construction
+
+A collar is rotatably mounted on the head assembly and carries an arcuate port of
+progressively varying width which registers with the inlet passage. Rotation of the
+collar therefore varies the effective flow area of the inlet without altering the
+swept volume of the metering chamber, the stroke of the piston, or the force of the
+return spring.
+
+Detents define discrete positions. Indicia adjacent each detent identify a class of
+liquid, for example gingelly, groundnut, sunflower, or a season, for example warm
+and cool. The collar may additionally act as the closure which secures the head
+assembly to the reservoir, so that it introduces no additional part at all.
+
+A thermally responsive element may bias the collar's effective aperture with
+ambient temperature, so that the collar's markings address the class of oil and the
+element addresses the season automatically.
+
+### B4.3 The interlock teaches the collar setting, at no cost
+
+This is the feature which makes the arrangement self explanatory, and it is
+emergent rather than designed in.
+
+If the collar is set for a liquid thinner than the one present, the metering chamber
+will not have charged when the user attempts the next delivery stroke, and **the
+fill completion interlock of Aspect 1 blocks the actuator and imposes a perceptible
+pause.** If the collar is set correctly, the chamber charges within the user's
+natural cadence and **no pause occurs at all.**
+
+A user who perceives a pause therefore advances the collar by one detent until the
+pause ceases. **That is the entire instruction for use**, and it requires no
+display, no sensor, no indication and no written manual.
+
+The arrangement is functionally the same closed loop as the powered embodiment of
+Part B5, with the user performing the role of controller and the interlock
+performing the role of sensor. It is achieved with **two additional components**.
+
+### B4.4 Parts count, which is the commercial argument
+
+| Approach | Added components | Power | Certification |
+|---|---|---|---|
+| **Collar plus interlock** | **2: a latch and a collar** | **None** | Food contact only |
+| Powered normalisation | 6 or more: heater, thermistor, stroke sensor, controller, power input, energy store | USB | Electrical safety, possibly BIS registration, possibly cell certification |
+
+## B5. Aspect 3 onwards: what a heating element would additionally unlock
+
+**Retained for the priority filing, not for the first product.** The analysis below
+stands on its merits and the claims are worth holding, but nothing here should be
+built until the collar has been proven on the bench and the unpowered product has
+shipped.
+
+A USB powered heating element, worked through, produces four further inventive
+concepts which interlock with Aspect 1 rather than merely sitting alongside it. **That functional interaction
 matters a great deal at the EPO**, where a mere collocation of features is not
 inventive but a genuine synergy is.
 
-### B4.1 Heat the charge, not the bottle
+### B5.1 Heat the charge, not the bottle
 
 The naive implementation heats the reservoir. The numbers make that untenable and
 make the alternative obvious once stated:
@@ -166,10 +262,11 @@ ordinary USB power, happens within the time the user is already holding the
 device, and leaves the bulk oil cold and unoxidised throughout its life.** This is
 a claim in its own right.
 
-### B4.2 The pump is already a viscometer
+### B5.2 The pump is already a viscometer
 
 Aspect 1 gives the device a return stroke whose duration is proportional to
-viscosity, and an interlock that already detects the end of that stroke.
+viscosity, and an interlock that already detects the end of that stroke. This is
+the same signal the user reads by feel in Part B4.3, read instead by a timer.
 
 **Therefore the duration between the start of the return stroke and the release of
 the interlock is a direct measurement of the viscosity of whatever liquid is in
@@ -179,9 +276,9 @@ input and no oil type selection.
 The device can identify the fluid it has been filled with, by itself, from a
 function it was already performing.
 
-### B4.3 Closed loop normalisation to a target viscosity
+### B5.3 Closed loop normalisation to a target viscosity
 
-Combining B4.1 and B4.2 closes a loop:
+Combining B5.1 and B5.2 closes a loop:
 
 1. Time the return stroke. That is the viscosity.
 2. Compare with a target duration corresponding to a target viscosity.
@@ -199,7 +296,7 @@ creates a dwell; the dwell is the measurement; the dwell is also the window in
 which the heating occurs; and the heating shortens the dwell.** The features are
 not merely combined, they feed one another.
 
-### B4.4 Solid fat mode
+### B5.4 Solid fat mode
 
 If the piston does not move at all when the return spring is released, the
 contents are not a viscous liquid, they are a solid. Coconut oil below about
@@ -210,7 +307,7 @@ melt cycle on the intake path before attempting to charge. **The limitation the
 product page currently states honestly, that solid fats cannot be sprayed, becomes
 addressable rather than permanent.**
 
-### B4.5 The device diagnoses its own filter
+### B5.5 The device diagnoses its own filter
 
 Refill time depends on viscosity and on the flow resistance of the intake path. If
 the measured refill time is longer than the measured temperature can account for,
@@ -244,6 +341,15 @@ in this category.
    least six inventive concepts and a PCT examiner may well object.
 6. **Claim 1 must not be limited to edible oil.** Claim the fluid class broadly
    and make edible oil dependent.
+7. **Adjustable dispensers are a crowded field**, and the search must cover
+   adjustable dose pumps, adjustable flow restrictors and multi position outlet
+   selectors thoroughly. **The distinguishing feature to press is that the
+   calibration member varies flow resistance while holding swept volume,
+   stroke and spring force constant.** Almost every adjustable pump in the art
+   varies the dose; this one exists specifically in order not to.
+8. **The collar and the interlock should be claimed both together and
+   separately.** Claim 63 is the valuable one because the emergent feedback is
+   the inventive heart, but claim 55 must stand alone in case 63 is attacked.
 
 ---
 
@@ -329,6 +435,7 @@ filter element.
 - **Figure 8** schematic of the heating element, temperature sensor, stroke sensor, controller and power input.
 - **Figure 9** control flow diagram of the closed loop viscosity normalisation, melt mode and obstruction detection.
 - **Figure 10** graph of return stroke duration against liquid temperature for three edible oils, showing the target duration band.
+- **Figure 11** section through the calibration collar and its arcuate port, at the least and greatest flow area settings.
 
 ## Detailed description
 
@@ -812,6 +919,79 @@ movement of the piston that the fat is not in a flowable state, energising a hea
 element in a melt mode, and thereafter charging a metering chamber and executing a
 delivery stroke.
 
+## Aspect 7: manual viscosity calibration collar
+
+> **Renumber these immediately after claim 18.** They are placed here only to
+> avoid renumbering the draft. This is now the **preferred embodiment**, and claim
+> 55 should be presented as the second independent apparatus claim.
+
+**55.** A manually actuated dispenser for delivering a metered volume of a liquid,
+comprising a reservoir (10), a metering chamber (20) of fixed swept volume, a
+metering piston (23), a manually operable actuator (30), a return spring (24), an
+inlet valve (25), a discharge valve (26) and an intake path by which liquid is
+drawn from the reservoir into the metering chamber,
+
+**characterised by** a user settable calibration member (90) movable between a
+plurality of discrete positions, each position establishing a different flow
+resistance in said intake path, **the swept volume of the metering chamber being
+the same in each of said positions**,
+
+whereby the interval required to charge the metering chamber may be brought within
+a predetermined range for liquids of differing viscosity without altering the
+volume delivered per delivery stroke.
+
+**56.** A dispenser according to claim 55, wherein the calibration member is a
+collar rotatably mounted upon a head assembly of the dispenser.
+
+**57.** A dispenser according to claim 56, wherein the collar carries an arcuate
+port of progressively varying width arranged to register with an inlet passage,
+such that rotation of the collar varies the effective flow area of the inlet
+passage.
+
+**58.** A dispenser according to claim 56 or 57, wherein the collar additionally
+serves as a closure securing the head assembly to the reservoir, such that no
+component is added to the dispenser by the provision of the calibration member.
+
+**59.** A dispenser according to any of claims 55 to 58, further comprising detents
+defining said discrete positions, and indicia associated with each position
+identifying a class of edible oil, a season, an ambient temperature range, or a
+combination thereof.
+
+**60.** A dispenser according to any of claims 55 to 59, wherein the ratio of the
+largest to the smallest effective flow area established by the calibration member
+is at least 1.5, preferably at least 1.7, corresponding to a viscosity range of at
+least a factor of three.
+
+**61.** A dispenser according to any of claims 55 to 60, wherein movement of the
+calibration member alters neither the stroke of the metering piston, nor the force
+of the return spring, nor the swept volume of the metering chamber.
+
+**62.** A dispenser according to any of claims 55 to 61, further comprising a
+thermally responsive element (80) arranged to bias the effective flow area with
+ambient temperature, such that the calibration member addresses the class of
+liquid and the thermally responsive element addresses ambient temperature.
+
+**63.** A dispenser according to any of claims 55 to 62, further comprising a fill
+completion interlock (40) according to any of claims 1 to 5, **arranged such that a
+setting of the calibration member corresponding to a liquid less viscous than that
+present causes the interlock to impose a delay perceptible to the user, and a
+correct setting causes no perceptible delay**, whereby the interlock constitutes
+the sole indication to the user of a correct setting of the calibration member.
+
+**64.** A dispenser according to any of claims 55 to 63, wherein the calibration
+member additionally alters a preload of the return spring (24).
+
+**65.** A method of calibrating a manually actuated dispenser to a liquid of unknown
+viscosity, comprising: actuating the dispenser; observing whether a fill completion
+interlock imposes a perceptible delay before a subsequent delivery stroke may be
+executed; and, where such a delay is observed, advancing a calibration member to a
+position establishing a lower flow resistance in an intake path, and repeating until
+no perceptible delay is observed, **the volume delivered per delivery stroke being
+unaltered throughout.**
+
+**66.** A method according to claim 65, wherein the calibration is performed without
+any indication to the user other than the presence or absence of said delay.
+
 ## Abstract
 
 A manually actuated dispenser delivers a metered volume of liquid substantially
@@ -823,11 +1003,15 @@ interlock (40) blocks the actuator (30) until the piston reaches a fill stop (43
 so delivered volume is set by chamber geometry alone. In powered embodiments a
 heating element (100) heats only the charge within the metering chamber, isolated by
 a thermal break (105) from the reservoir, requiring approximately one thousandth of
-the energy needed to heat the reservoir. A controller (102) regulates that heating
-so as to drive the measured return stroke duration towards a target, presenting
-liquid of constant viscosity to the orifice whatever oil is supplied. The same
-measurement detects non flowable contents, triggering a melt mode, and detects
-filter obstruction before spray quality degrades. (Figures 2 and 9)
+the energy needed to heat the reservoir. A user settable
+calibration collar (90) varies the flow resistance of the intake path, but not the
+swept volume, so that the charging interval is brought within range for oils of
+differing viscosity without altering the delivered volume; because a mis-set collar
+causes the interlock to impose a perceptible pause and a correct setting causes
+none, the interlock itself teaches the user the correct setting. In powered
+embodiments a heating element (100) heats only the charge within the metering
+chamber, and a controller (102) regulates it against the measured return stroke
+duration. (Figures 2, 9 and 11)
 
 ---
 
@@ -903,6 +1087,10 @@ enough to file first. Direct the searcher to:
 - **inference of fluid viscosity from pump stroke timing**, including in industrial
   metering and in inkjet
 - filter obstruction detection by flow or timing anomaly
+- **adjustable flow restriction in hand pump dispensers**, multi position inlet
+  selectors, and any dispenser bearing user indicia naming a liquid or a season
+- adjustable dose pumps, to establish that the art varies dose rather than
+  preserving it
 - IPC and CPC: B05B 11/00, B05B 11/10, B67D 3/00, B67D 1/08, G01F 11/02,
   G01N 11/04, A47J 43/00, H05B 1/02
 
@@ -972,7 +1160,10 @@ professionally searched.
    evidence decays.
 2. **File the Indian provisional**, with the full description of all six aspects.
    It is cheap, it can be done in days, and it starts every clock you need.
-3. **Build the bench rig**, which is a spring, a piston, a chamber, a latch, a
-   timer and a thermistor. **If the return stroke duration tracks viscosity as
-   predicted, aspects 3 to 6 are all real**, and you will know within a month for
-   the price of a prototype round.
+3. **Build the bench rig, which is now much smaller than it was.** A spring, a
+   piston, a chamber, a latch and a variable inlet orifice. Measure charging time
+   against oil and temperature, and confirm that opening the aperture by about a
+   third restores the charging interval across a threefold viscosity range. **If
+   it does, the collar and the interlock are the whole product** and nothing needs
+   a power supply. Add a timer and a thermistor to the same rig only afterwards,
+   to check whether the powered aspects are worth holding.
