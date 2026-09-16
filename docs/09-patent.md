@@ -1,712 +1,978 @@
-# Enna: Patentability Assessment and Draft Patent Specification
+# Enna: Combined Patentability Assessment and Draft Patent Specification
 
-**Prepared 16 September 2026. Draft for instructing a patent attorney. Not legal advice.**
+**Version 2, 16 September 2026. Supersedes version 1. Draft for instructing a
+patent attorney. Not legal advice.**
 
-I am not a patent attorney and this is not a filing. What follows is a
-technically detailed draft and a reasoned patentability assessment, written so
-that a registered agent can take it, run a proper search, and file. Claim
-language in particular must be reviewed by a professional before filing, because
-claim scope is where value is won and lost.
+I am not a patent attorney. This is a technically detailed draft and a reasoned
+assessment, written so a registered agent can take it, run a proper search, and
+file. Claim language must be reviewed by a professional before filing.
+
+Version 2 combines the mechanical metering invention with a powered thermal
+family arising from the decision to admit a USB powered heating element. That
+addition turns out to be far more significant than a convenience feature, for
+reasons set out in Part B4.
 
 ---
 
-# PART A. Two things that need a decision this week
+# PART A. Legal position
 
-## A1. Section 39: you may not file abroad first
+## A1. The website is now password protected
 
-If any inventor is resident in India, **Section 39 of the Patents Act 1970**
-prohibits filing a patent application outside India unless one of these is true:
+Noted, and it was the right move. Two qualifications.
 
-1. An application for the same invention was filed **in India at least six weeks
-   earlier**, and no secrecy direction under Section 35(1) is in force; or
-2. Written permission has been obtained from the Controller, by filing
-   **Form 25**. Under Rule 71, the Controller ordinarily disposes of the request
-   within 21 days.
+**It stops further disclosure accruing. It does not undo disclosure that already
+happened.** If the site was publicly reachable for any period, that publication
+stands against you in Europe and India, where there is effectively no grace
+period. The remedy is not retroactive.
 
-**The penalty is not administrative.** Section 118 provides imprisonment up to
-two years, or a fine, or both. Beyond that, the corresponding Indian application
-can be deemed abandoned and a granted Indian patent can be revoked.
+**You still need the first-public date.** Ask the attorney's opinion on the facts,
+and gather the evidence now while it exists:
 
-**Consequence for us:** the first filing must be the Indian one. This is not a
-preference, it is a legal constraint, and it happens to also be the cheapest and
-most sensible sequence anyway.
+- the Amplify deployment log, which timestamps when each branch first went live
+- whether a custom domain was ever pointed at it
+- whether Google or Bing indexed it, checkable with a `site:` search and in
+  Search Console
+- whether the URL was ever shared in a message, post or email, and when
+- the Wayback Machine, which is the most likely third party record
 
-## A2. Your own website may already have destroyed novelty in Europe and India
+If the honest answer is that it was live and indexed for some weeks, the position
+is: **the US remains available for twelve months from that date, Europe and India
+are compromised for the features that were published, and the thermal and
+metering inventions below are unaffected because they were never disclosed.**
 
-This is the urgent one.
+## A2. Section 39 still dictates the filing order
 
-| Jurisdiction | Grace period for the inventor's own disclosure |
-|---|---|
-| **United States** | **12 months.** A disclosure by the inventor does not count as prior art if the application is filed within one year |
-| **European Patent Office** | **Effectively none.** Absolute novelty. Six months only for disclosure obtained through abuse, or display at an official international exhibition |
-| **India** | **Effectively none for this case.** The one year grace applies to a reading before a learned society or publication in its transactions, not a commercial website |
+Unchanged and non negotiable. If any inventor is resident in India, you may not
+file abroad unless an Indian application for the same invention was filed **at
+least six weeks earlier**, or Form 25 permission has been granted. Section 118
+provides imprisonment up to two years, or a fine, or both, and the Indian
+application may be deemed abandoned and a granted patent revoked.
 
-I audited what the Enna site currently discloses. If the Amplify deployment is
-publicly reachable, then the following are already published:
+**File the Indian provisional first. Everything else follows from that.**
 
-- the **9 mm raised intake standoff** and the sediment settling principle
-- the **600 µm intake and 150 µm pre-nozzle two stage filtration**
-- the **pre-compression valve with a 2.4 bar cracking pressure**
-- the **body open at both ends** and the axial face seal closures
-- the **0.20 ml metered dose** and the stroke counter
-- the **bayonet nozzle** and the six module architecture
+## A3. What is clean and what is not
 
-For the EPO and India, those features are therefore at serious risk of being
-unpatentable, because they were disclosed before filing. For the US they are
-still recoverable if you file within twelve months of first publication.
+I audited the repository and the site again for version 2.
 
-**The good news, and it is substantial.** I searched the site and the repository
-for the invention you actually want to claim, which is viscosity compensated
-constant volume metering. **It appears nowhere.** No mention of a fill completion
-interlock, a differential inlet, thermal compensation or constant volume. That
-subject matter is completely clean in every jurisdiction.
+| Subject matter | Published before filing | Status |
+|---|---|---|
+| Raised intake standoff, 9 mm | Yes, on the site | At risk in EPO and India |
+| Two stage filtration, 600 and 150 µm | Yes | At risk in EPO and India |
+| Pre-compression valve, 2.4 bar | Yes | At risk in EPO and India |
+| Body open at both ends, face seals | Yes | At risk in EPO and India |
+| 0.20 ml metered dose, stroke counter | Yes | At risk in EPO and India |
+| **Fill completion interlock** | **No** | **Clean everywhere** |
+| **Refill time as viscosity measurement** | **No** | **Clean everywhere** |
+| **Heating the metered charge only** | **No** | **Clean everywhere** |
+| **Closed loop viscosity normalisation** | **No** | **Clean everywhere** |
+| **Solid fat melt mode** | **No** | **Clean everywhere** |
+| **Filter obstruction self diagnosis** | **No** | **Clean everywhere** |
 
-### What to do, in order
-
-1. **Establish the facts.** Find the exact date the Amplify site first became
-   publicly reachable, and whether search engines indexed it. If it was never
-   public, or only shared privately, the position is far better. Record this in
-   writing now, because you will be asked.
-2. **Put the site behind a password today** if it is live, until the provisional
-   is on file. Amplify supports access control on a branch. This does not undo a
-   past disclosure but it stops further accrual and stops third parties
-   republishing.
-3. **File the Indian provisional as fast as possible**, covering the metering
-   invention in full and the intake and filtration and body architecture as
-   fallback subject matter. A provisional can be filed within days.
-4. **Ask the attorney specifically** whether the published material can still be
-   claimed in India on the basis that publication was by the applicant and
-   whether any Section 31 exception applies. Do not assume either way.
+Every one of the six strongest inventive concepts is clean. The compromised
+material is the part that was always the weaker patent subject matter anyway,
+and most of it belongs in a design registration.
 
 ---
 
 # PART B. Patentability assessment
 
-## B1. The three candidate inventions, ranked
+## B1. The problem, restated
 
-| # | Candidate | Novelty | Inventive step | Disclosed already | Verdict |
-|---|---|---|---|---|---|
-| **I** | **Viscosity independent constant volume metering by fill completion interlock** | Strong | Strong | **No** | **File this. It is the invention.** |
-| II | Anti sediment raised intake with two stage serviceable filtration | Moderate | Moderate | **Yes** | File as fallback, expect EPO and India difficulty |
-| III | Body open at both ends with axial face seals, six module architecture | Weak as a patent | Weak | **Yes** | **Design registration, not a patent** |
-
-## B2. Invention I: the technical problem, stated properly
-
-A hand actuated positive displacement pump should deliver a volume per stroke
-equal to the swept volume of its metering chamber. It does, **provided the
-chamber completely refills between strokes.**
-
-Refill is driven by the return spring creating a sub atmospheric pressure in the
-chamber, drawing liquid through the dip tube and inlet valve. That flow is
-governed approximately by the Hagen-Poiseuille relation:
+A hand actuated positive displacement pump delivers its nominal swept volume only
+if the metering chamber completely refills between strokes. Refill is driven by a
+return spring drawing liquid through the intake, and that flow follows
+approximately
 
 ```
 Q  ≈  π · ΔP · r⁴  /  (8 · μ · L)
 ```
 
-so refill time is **directly proportional to dynamic viscosity μ**.
+so **refill time is directly proportional to dynamic viscosity**. Edible oil
+viscosity roughly doubles for each 20 °C fall in temperature and varies again
+between oils, so a device may encounter a threefold range in ordinary use.
 
-Edible oils vary far more than is generally appreciated. Kinematic viscosity
-roughly doubles for each 20 °C fall in temperature, and different oils differ
-again at the same temperature. A device tuned for sunflower oil at 30 °C in
-Chennai may see three times the viscosity with a cold pressed oil at 12 °C in
-Delhi in January.
+A user actuates at a habitual cadence and does not vary it by oil. When refill
+time exceeds the interval between strokes, the chamber is partly charged and the
+delivered volume falls, **with no perceptible change in the action**. Volume can
+fall by forty percent unnoticed. For a product whose proposition is portion
+control and a stated energy per stroke, the printed number is then wrong for half
+the year.
 
-**The failure is invisible.** The user squeezes at their habitual cadence, of
-roughly one stroke per second. With a thin oil the chamber fully refills and
-delivers the nominal 0.20 ml. With a cold or thick oil the chamber is only
-partly refilled when the next delivery stroke begins, and the device may deliver
-0.12 ml. The action feels identical. The user has no way to know.
+## B2. Why the known art does not solve it
 
-For an ordinary sprayer that is a minor annoyance. **For a product whose entire
-proposition is portion control and a stated calorie per stroke, it is fatal**,
-because the number printed on the device is simply wrong for half the year.
+**Pre-compression and discharge regulation.** US 5,467,900, US 5,730,335,
+US 8,905,271, US 9,714,133, EP 2,566,629.
 
-## B3. Why the known art does not solve it
+> A pre-compression valve regulates the conditions under which the metering
+> chamber empties. It has no effect whatever on whether the chamber was full when
+> emptying began. The volumetric error is created during the return stroke,
+> before the discharge valve participates at all. This distinction should be
+> stated explicitly in the specification because it is the cleanest separation
+> from the closest commercial art.
 
-I identified the closest art in four groups. Each must be distinguished in the
-background section, and a professional search will find more.
+**Nozzle assemblies for viscous liquids.** US 6,659,369, which expressly concerns
+trigger sprayers and cooking oil, and WO 2016/077114. These improve atomisation
+quality, not delivered volume.
 
-**Group 1: pre-compression and discharge pressure regulation.**
-US5467900, US5730335, and the AFA Flairosol family US8905271B2, US9714133 and
-EP2566629B1. These regulate **the pressure at which the chamber empties.**
+**Powered and programmable metering.** US 5,022,556; DE 10 2012 100 306, expressly
+a method for adapting a metering pump to the viscosity of the medium, which
+recognises that viscous media need longer intake and delivery times;
+US 4,518,105. Each requires power, control apparatus or operator configuration,
+and each addresses viscosity by **adapting the pump to the fluid**.
 
-> **The distinction that matters, and it should be stated explicitly in the
-> specification:** a pre-compression valve controls how the chamber discharges.
-> It does nothing whatsoever about whether the chamber was full when discharge
-> began. A device can have a perfect pre-compression valve and still deliver a
-> wrong dose, because the error was created during the *return* stroke, before
-> the valve is involved at all.
+**The inventive direction here is the opposite of that last group**, and the
+distinction is worth making expressly: rather than adapting the machine to
+whatever viscosity arrives, the present invention **normalises the fluid to a
+target viscosity** and lets a fixed geometry machine do the rest.
 
-**Group 2: nozzle improvements for viscous fluids.**
-US6659369B1, "high viscosity liquid sprayer nozzle assembly", which expressly
-addresses trigger sprayers and cooking oil, and WO2016077114A1, "spray nozzle for
-high viscosity (e.g. oil) spray applications". These improve **atomisation
-quality**, not dose volume. A better spray of the wrong quantity is still the
-wrong quantity.
+## B3. Aspect 1: the mechanical base, unpowered
 
-**Group 3: powered and programmable metering pumps.**
-US5022556A programmable volume dispensing with a positive displacement metering
-pump for high viscosity fluids; DE102012100306A1, expressly a method for adapting
-a metering pump to the viscosity of the medium, which notes that viscous media
-need longer intake and delivery times; US4518105 for dispensing viscous
-concentrates of variable viscosity in metered quantities. **These require power,
-control electronics or operator configuration.** None is applicable to an
-unpowered hand held domestic device, and that limitation is the inventive gap.
+**The observation.** During the return stroke the piston can advance only as fast
+as liquid enters behind it. **The position of the piston is therefore a direct
+measure of the state of charge of the chamber**, whatever the viscosity.
 
-**Group 4: metered dose pumps for semi solids.**
-US6889875 taper well meter dose pump. Different problem, different regime.
+**The invention.** A fill completion interlock holds the actuator blocked and
+releases only when the piston reaches its return stop. The device physically
+cannot fire on a partial charge. Delivered volume becomes a function of geometry
+alone, and the viscosity error moves off the axis the user cannot perceive, which
+is volume, onto one they can, which is a short delay.
 
-**Conclusion.** The art either regulates discharge pressure, or improves
-atomisation, or achieves viscosity tolerance using power and control systems.
-**I did not find art that makes dose volume viscosity independent in an unpowered
-hand actuated dispenser by mechanically guaranteeing complete refill before
-permitting delivery.** That is the inventive concept.
+This aspect requires no power at all, and it is what the first product ships.
 
-## B4. The inventive concept, in one sentence
+## B4. Aspect 2 onwards: what the heating element actually unlocks
 
-> Instead of trying to make a viscous liquid refill a chamber faster, **prevent
-> the device from firing until the chamber is actually full**, so that the error
-> is moved off the axis the user cannot perceive, which is volume, and onto the
-> axis they can, which is a fraction of a second of delay.
+The founder proposed a USB powered heating element for temperature control. Worked
+through, it produces four further inventive concepts, and they interlock with
+Aspect 1 rather than merely sitting alongside it. **That functional interaction
+matters a great deal at the EPO**, where a mere collocation of features is not
+inventive but a genuine synergy is.
 
-Three cooperating features, all passive and unpowered:
+### B4.1 Heat the charge, not the bottle
 
-**(A) Fill completion interlock. This is the core.** A mechanical interlock is
-coupled to the metering piston and to the actuator. It holds the actuator blocked
-and releases only when the piston reaches a predetermined full fill position. The
-user simply cannot execute a delivery stroke on a partly filled chamber.
+The naive implementation heats the reservoir. The numbers make that untenable and
+make the alternative obvious once stated:
 
-**(B) Differential pressure responsive inlet valve.** The inlet poppet's lift
-increases with the pressure differential across it. A more viscous fluid produces
-a greater differential at a given flow, so it automatically opens a larger inlet
-aperture and refills faster. Passive self compensation, no sensing.
+| What is heated | Mass | Energy for +25 °C | Time at 15 W |
+|---|---|---|---|
+| Whole 250 ml reservoir | 230 g | 11,500 J | **12.8 minutes** |
+| **One 0.20 ml metered charge** | **0.18 g** | **9.2 J** | **0.61 seconds** |
 
-**(C) Thermally responsive inlet element.** Viscosity is dominated by
-temperature. A bimetallic or shape memory element increases inlet flow area as
-temperature falls, pre empting the seasonal case.
+A factor of **1,250**. Heating the reservoir is an appliance that must be switched
+on a quarter of an hour before cooking, and which holds the entire contents warm,
+accelerating oxidation of oil that will not be used for weeks.
 
-**(D) Fill completion signal.** Release of the interlock produces a tactile and
-audible detent, so the user receives positive confirmation that the dose about to
-be delivered is a full one.
+**Heating only the charge already isolated in the metering chamber is feasible on
+ordinary USB power, happens within the time the user is already holding the
+device, and leaves the bulk oil cold and unoxidised throughout its life.** This is
+a claim in its own right.
 
-## B5. Honest weaknesses to raise with the attorney
+### B4.2 The pump is already a viscometer
 
-1. **Interlocks are old.** Mechanical interlocks preventing actuation until a
-   condition is met exist in many fields, including inhalers and injection pens.
-   The inventive step argument must rest on the *combination and purpose*, which
-   is using a fill completion interlock specifically to render dispensed volume
-   independent of fluid viscosity in an unpowered dispenser. Expect an examiner
-   to cite an inhaler dose interlock. The answer is that those interlocks meter a
-   pre loaded solid or a fixed gas charge and address dose counting or lockout
-   after exhaustion, not the refill dynamics of a viscous liquid.
-2. **Obviousness attack.** An examiner may argue it is obvious to wait for the
-   chamber to fill. The response is that the art consistently solves viscosity by
-   adding power and control, per DE102012100306A1, which is evidence that the
-   simple mechanical route was not obvious to those skilled in the art.
-3. **Claim 1 must not be limited to edible oil.** Claim the fluid class broadly
-   and make edible oil a dependent claim, otherwise you give away every adjacent
-   application.
-4. **Enablement.** The specification must describe at least one interlock
-   geometry in enough detail to be built. The draft below does.
+Aspect 1 gives the device a return stroke whose duration is proportional to
+viscosity, and an interlock that already detects the end of that stroke.
+
+**Therefore the duration between the start of the return stroke and the release of
+the interlock is a direct measurement of the viscosity of whatever liquid is in
+the device**, obtained with no viscometer, no added sensor beyond a timer, no user
+input and no oil type selection.
+
+The device can identify the fluid it has been filled with, by itself, from a
+function it was already performing.
+
+### B4.3 Closed loop normalisation to a target viscosity
+
+Combining B4.1 and B4.2 closes a loop:
+
+1. Time the return stroke. That is the viscosity.
+2. Compare with a target duration corresponding to a target viscosity.
+3. Heat the next charge by the amount needed to close the gap.
+4. Repeat.
+
+The pump then always sees the same viscosity, so **both the delivered volume and
+the atomisation quality become constant**, across every oil and every season,
+without the user knowing any of it happened. The heater is bounded at a
+conservative ceiling, 60 °C in the draft, far below any smoke point and low
+enough that brief exposure does not meaningfully oxidise the charge.
+
+Note the synergy, and put it in the specification explicitly: **the interlock
+creates a dwell; the dwell is the measurement; the dwell is also the window in
+which the heating occurs; and the heating shortens the dwell.** The features are
+not merely combined, they feed one another.
+
+### B4.4 Solid fat mode
+
+If the piston does not move at all when the return spring is released, the
+contents are not a viscous liquid, they are a solid. Coconut oil below about
+24 °C and ghee for much of the Indian year.
+
+The controller can detect exactly that condition, from the same signal, and run a
+melt cycle on the intake path before attempting to charge. **The limitation the
+product page currently states honestly, that solid fats cannot be sprayed, becomes
+addressable rather than permanent.**
+
+### B4.5 The device diagnoses its own filter
+
+Refill time depends on viscosity and on the flow resistance of the intake path. If
+the measured refill time is longer than the measured temperature can account for,
+**the additional resistance is an obstruction**, and the device can say so.
+
+A dispenser that tells the user its filter needs cleaning, before the spray
+degrades, is a genuinely novel answer to the failure mode that kills every product
+in this category.
+
+## B5. Honest weaknesses to put to the attorney
+
+1. **Interlocks are old.** Dose interlocks exist in inhalers and injection pens.
+   The inventive step rests on purpose and combination: an interlock used to make
+   delivered volume independent of fluid viscosity. Expect a citation of an
+   inhaler lockout; the answer is that those meter a pre loaded charge and address
+   dose counting or end of life lockout, not the refill dynamics of a viscous
+   liquid.
+2. **Obviousness of waiting.** An examiner may say it is obvious to wait for the
+   chamber to fill. The rebuttal is that the art consistently solved viscosity by
+   adding power and control, per DE 10 2012 100 306, which is evidence that the
+   simple mechanical route was not obvious to the skilled person.
+3. **Inferring viscosity from a timing is not new in the abstract.** Capillary and
+   falling body viscometry are ancient. The novelty is doing it with the dispensing
+   pump itself, as a by product of an interlock provided for a different purpose,
+   in a hand actuated dispenser.
+4. **Heated dispensers exist**, for chocolate, wax, adhesives and cosmetics. The
+   search must specifically cover heated dispensing. The distinguishing features
+   are heating the metered charge in isolation rather than the reservoir, and
+   heating to a viscosity target rather than a temperature target.
+5. **Unity of invention is a real risk.** See Part E3. This document contains at
+   least six inventive concepts and a PCT examiner may well object.
+6. **Claim 1 must not be limited to edible oil.** Claim the fluid class broadly
+   and make edible oil dependent.
 
 ---
 
-# PART C. Draft patent specification
+# PART C. Draft specification
 
 ## Title
 
-**A manually actuated dispenser for delivering metered volumes of liquid
-substantially independently of liquid viscosity**
-
-A plainer alternative for the Indian filing: *Dispenser with viscosity
-independent volumetric metering.*
+**A dispenser and method for delivering metered volumes of liquid substantially
+independently of liquid viscosity**
 
 ## Technical field
 
-The invention relates to manually actuated dispensers for liquids, and in
-particular to hand operated pump dispensers which deliver a metered volume of a
-liquid of variable and unknown viscosity, such as an edible oil, per actuation.
+Manually actuated dispensers for liquids, and in particular hand operated pump
+dispensers delivering a metered volume of a liquid of variable and unknown
+viscosity, such as an edible oil, per actuation.
 
 ## Background
 
-Manually actuated pump dispensers of the trigger or piston type are widely used
-to dispense liquids. In a positive displacement dispenser of this class, liquid
-is drawn from a reservoir into a metering chamber during a return stroke of a
-piston, and expelled through a discharge orifice during a delivery stroke. The
-nominal volume delivered per actuation is the swept volume of the metering
-chamber.
-
-That nominal volume is achieved only if the metering chamber is completely
-refilled between successive delivery strokes. Refilling occurs because the
-returning piston creates a pressure below atmospheric within the chamber, drawing
-liquid through an intake conduit and an inlet valve. The rate of that flow is
-approximately inversely proportional to the dynamic viscosity of the liquid,
-according to the Hagen-Poiseuille relation, so that the time required to refill
-the chamber increases in approximately direct proportion to viscosity.
-
-Edible oils exhibit a wide range of viscosity. Kinematic viscosity approximately
-doubles for each 20 °C reduction in temperature, and different oils differ
-substantially at a common temperature. A dispenser used with a low viscosity oil
-at 30 °C may encounter three times that viscosity when used with a cold pressed
-oil at 12 °C.
-
-A user actuates such a dispenser at a habitual cadence, typically of the order of
-one actuation per second, and does not vary that cadence according to the liquid.
-Where the refill time exceeds the interval between actuations, the metering
-chamber is only partially charged when the next delivery stroke commences, and
-the volume delivered is correspondingly reduced. Critically, **the actuation feels
-identical to the user**, and there is no indication that a reduced volume has been
-delivered. The dispensed volume may fall by forty percent or more without the
-user's knowledge.
-
-Where the dispenser is used for portion control, or where a stated volume or
-energy content per actuation is relied upon, this variation defeats the purpose
-of the device.
-
-Several approaches are known. Pre-compression discharge valves, such as those
-disclosed in US 5,467,900, US 5,730,335, US 8,905,271 and EP 2,566,629, establish
-a minimum pressure below which the chamber does not discharge, thereby improving
-atomisation consistency. **Such valves regulate the conditions under which the
-metering chamber empties, and have no effect upon whether the metering chamber
-was fully charged before emptying commenced.** The volumetric error arises during
-the return stroke, before the discharge valve participates at all.
-
-Nozzle assemblies adapted to viscous liquids are disclosed in US 6,659,369 and
-WO 2016/077114. These improve the quality of atomisation of a viscous liquid but
-do not address the volume delivered.
-
-Viscosity tolerant metering is known in powered apparatus. US 5,022,556 discloses
-a programmable volume dispensing apparatus using a positive displacement metering
-pump for high viscosity fluids. DE 10 2012 100 306 discloses a method for adapting
-a metering pump to the viscosity of the medium to be metered, and expressly
-recognises that highly viscous media require longer intake and delivery times.
-US 4,518,105 discloses dispensing viscous concentrates of variable viscosity in
-metered quantities. **Each of these requires a power source, control apparatus, or
-operator configuration, and none is applicable to an unpowered hand held
-dispenser intended for domestic use.**
-
-There remains a need for a manually actuated, unpowered dispenser which delivers a
-consistent metered volume of liquid irrespective of the viscosity of that liquid.
+*As set out in Part B1 and B2 above; the attorney should render those passages
+into the formal background section, expressly distinguishing pre-compression
+valves, viscous nozzle assemblies, and powered adaptive metering pumps.*
 
 ## Summary of the invention
 
-According to a first aspect there is provided a manually actuated dispenser
+According to a **first aspect** there is provided a manually actuated dispenser
 comprising a reservoir, a metering chamber of fixed swept volume, a metering
-piston, a manually operable actuator arranged to drive the piston through a
-delivery stroke, a return spring arranged to drive the piston through a return
-stroke so as to draw liquid into the metering chamber, an inlet valve and a
-discharge valve, **characterised by a fill completion interlock operatively
-coupled between the metering piston and the actuator, the interlock being
-arranged to prevent the actuator from executing a delivery stroke until the
-metering piston has attained a predetermined fill position corresponding to the
-fixed swept volume.**
+piston, a manually operable actuator, a return spring, an inlet valve and a
+discharge valve, **characterised by a fill completion interlock** operatively
+coupled between the metering piston and the actuator and arranged to prevent the
+actuator from executing a delivery stroke until the metering piston has attained a
+predetermined fill position corresponding to the fixed swept volume.
 
 The invention proceeds from the recognition that **the position of the metering
 piston during the return stroke is itself a direct measure of the state of charge
-of the metering chamber.** The returning piston can advance only as rapidly as
-liquid enters the chamber behind it. The piston therefore reaches its return stop
-if and only if the chamber has been completely charged, whatever the viscosity of
-the liquid. Interlocking the actuator to that position converts a volumetric
-error, which the user cannot perceive, into a short delay, which the user can.
+of the metering chamber**, because the piston can advance only as rapidly as
+liquid enters behind it. Interlocking the actuator to that position converts a
+volumetric error, which the user cannot perceive, into a short delay, which they
+can.
 
-The consequence is that the delivered volume is determined solely by the geometry
-of the metering chamber and is substantially independent of liquid viscosity,
-without any power source, sensor or control system.
+According to a **second aspect** there is provided such a dispenser further
+comprising a heating element arranged to heat **the liquid within the metering
+chamber**, in thermal isolation from liquid remaining in the reservoir. Because
+the metered charge is of the order of one thousandth of the reservoir contents, it
+may be raised through a useful temperature interval within a fraction of a second
+using power available from a USB supply, whereas heating the reservoir would
+require of the order of a thousand times the energy and would hold the entire
+contents warm, accelerating oxidative degradation of liquid not yet used.
 
-Preferably the dispenser further comprises an inlet valve having a flow area
-which increases with the pressure differential across the valve, so that a more
-viscous liquid, which generates a greater differential at a given flow rate,
-automatically opens a larger inlet aperture and refills the chamber more rapidly.
-This shortens the delay which the interlock would otherwise impose.
+According to a **third aspect** there is provided such a dispenser comprising a
+controller arranged to determine a parameter indicative of the viscosity of the
+liquid from **the duration of the return stroke**, that duration being measured
+between commencement of the return stroke and attainment of the predetermined fill
+position. No viscometer, no additional sensing of the fluid, and no user input or
+selection of liquid type is required.
 
-Preferably the dispenser further comprises a thermally responsive element
-arranged to increase the inlet flow area as temperature decreases, since the
-viscosity of edible oils is dominated by temperature.
+According to a **fourth aspect** the controller is arranged to regulate the
+heating element **in dependence upon said duration**, so as to drive the duration
+towards a target duration corresponding to a target viscosity. The metering
+chamber then receives liquid of substantially constant viscosity irrespective of
+the liquid supplied or the ambient temperature, so that both the delivered volume
+and the atomisation quality are rendered constant.
 
-Preferably release of the interlock produces a tactile or audible signal, so that
-the user receives positive confirmation that a complete dose is available.
+According to a **fifth aspect** the controller is arranged to determine, from an
+absence of movement of the metering piston upon release of the return spring, that
+the contents are not in a flowable state, and in response to energise the heating
+element in a melt mode prior to attempting to charge the metering chamber.
 
-According to a second aspect there is provided a method of dispensing metered
-volumes of a liquid of unknown viscosity, comprising drawing liquid into a
-metering chamber under the action of a return spring, **blocking a delivery stroke
-until the metering piston has attained a predetermined fill position**, and
-thereafter permitting the delivery stroke.
+According to a **sixth aspect** the controller is arranged to compare the measured
+return stroke duration with a duration predicted from a measured temperature, and
+to generate an obstruction indication where the measured duration exceeds the
+predicted duration by more than a threshold, thereby indicating obstruction of a
+filter element.
 
 ## Brief description of the drawings
 
-- **Figure 1** is a sectional elevation of a dispenser according to the invention.
-- **Figure 2** is an enlarged section of the metering chamber and fill completion interlock, with the interlock in the blocking configuration and the chamber partially charged.
-- **Figure 3** is the view of Figure 2 with the chamber fully charged and the interlock in the releasing configuration.
-- **Figure 4** is an enlarged section of the differential pressure responsive inlet valve, showing the progressive seat profile.
-- **Figure 5** is a section of the removable intake cartridge, showing the raised inlet opening, the first filter element and the second filter element.
-- **Figure 6** is an exploded view showing the separable modules.
-- **Figure 7** is a graph of delivered volume against liquid viscosity, for a dispenser according to the invention and for a conventional dispenser.
+- **Figure 1** sectional elevation of the dispenser.
+- **Figure 2** enlarged section of the metering chamber and fill completion interlock, blocking configuration, chamber partially charged.
+- **Figure 3** as Figure 2, chamber fully charged, releasing configuration.
+- **Figure 4** enlarged section of the differential pressure responsive inlet valve showing the progressive seat profile.
+- **Figure 5** section of the removable intake cartridge showing the raised inlet opening and the two filter elements.
+- **Figure 6** exploded view showing the separable modules.
+- **Figure 7** graph of delivered volume against liquid viscosity, invention and conventional dispenser.
+- **Figure 8** schematic of the heating element, temperature sensor, stroke sensor, controller and power input.
+- **Figure 9** control flow diagram of the closed loop viscosity normalisation, melt mode and obstruction detection.
+- **Figure 10** graph of return stroke duration against liquid temperature for three edible oils, showing the target duration band.
 
 ## Detailed description
 
 ### Overall arrangement, Figure 1
 
-A dispenser comprises a tubular reservoir (10) having a floor (11), closed at a
-first end by a head closure (12) and at a second end by a base closure (13), each
-sealed by an axial face seal (14) compressed by a multi start thread. Because both
-closures are removable, the reservoir (10) may be opened at both ends for
-cleaning.
+A tubular reservoir (10) having a floor (11) is closed at a first end by a head
+closure (12) and at a second end by a base closure (13), each sealed by an axial
+face seal (14) compressed by a multi start thread, so that the reservoir may be
+opened at both ends.
 
 Within the head closure (12) is a metering chamber (20) of fixed swept volume,
-having an inlet (21) and an outlet (22), and containing a metering piston (23)
-slidable between a discharge position and a fill position. A return spring (24)
-urges the piston (23) towards the fill position. An inlet valve (25) admits liquid
-to the chamber (20) during the return stroke and closes during the delivery
-stroke. A discharge valve (26), preferably a pre-compression valve having a
-predetermined cracking pressure of between 1.5 and 4 bar, and in one embodiment
-2.4 bar, communicates with a discharge orifice (27).
+having an inlet (21), an outlet (22) and a metering piston (23) slidable between a
+discharge position and a fill position. A return spring (24) urges the piston
+towards the fill position. An inlet valve (25) admits liquid during the return
+stroke. A discharge valve (26), preferably a pre-compression valve of predetermined
+cracking pressure between 1.5 and 4 bar and in one embodiment 2.4 bar, communicates
+with a discharge orifice (27).
 
-A manually operable actuator (30) in the form of a trigger is pivoted at (31) and
-carries a drive member (32) arranged to bear upon a piston rod (33) extending
-from the piston (23).
+A manually operable actuator (30), a trigger pivoted at (31), carries a drive
+member (32) bearing on a piston rod (33). Liquid is drawn through an intake
+conduit (50).
 
-Liquid is drawn from the reservoir (10) through an intake conduit (50).
-
-In one embodiment the swept volume of the metering chamber (20) is between 0.1
-and 0.5 ml, and in a particular embodiment 0.20 ml, corresponding to
-approximately 0.18 g and approximately 1.7 kilocalories of a typical edible oil.
+In one embodiment the swept volume is between 0.1 and 0.5 ml, in a particular
+embodiment 0.20 ml, corresponding to approximately 0.18 g and approximately
+1.7 kilocalories of a typical edible oil.
 
 ### The fill completion interlock, Figures 2 and 3
 
-A latch member (41) is pivotally mounted within the head closure (12) and is
-resiliently biased into a blocking configuration, shown in Figure 2, in which a
-nose of the latch member (41) lies within the path of travel of the drive member
-(32) and engages a detent surface (42) thereon. In that configuration the trigger
-(30) cannot advance the piston (23), and no delivery stroke can occur.
+A latch member (41) is pivotally mounted within the head closure (12) and
+resiliently biased into a blocking configuration in which its nose lies in the
+path of the drive member (32) and engages a detent surface (42) thereon. In that
+configuration no delivery stroke can occur.
 
 The piston rod (33) carries a release cam (44). As the return spring (24) drives
-the piston (23) towards the fill position, liquid is drawn into the chamber (20)
-through the inlet valve (25). **The piston can advance only as rapidly as liquid
-enters behind it.** The rate of advance is therefore governed by the viscosity of
-the liquid, but the final position of the piston is not.
+the piston (23) towards the fill position, liquid is drawn in through the inlet
+valve (25). **The piston advances only as rapidly as liquid enters behind it.** The
+rate of advance is governed by viscosity; the final position is not.
 
 When, and only when, the piston (23) abuts a return stop (43) defining the fill
-position, the release cam (44) displaces the latch member (41) out of the path of
-the drive member (32), as shown in Figure 3. The trigger (30) is then free to
-execute a delivery stroke, and the volume expelled is the full swept volume of
-the chamber (20).
+position, the release cam (44) displaces the latch member (41) clear of the drive
+member (32) and a delivery stroke becomes possible, expelling the full swept
+volume.
 
-In a preferred arrangement the latch member (41) and the detent surface (42) are
-profiled such that a small lost motion of the trigger (30) is permitted in the
-blocking configuration. The user therefore perceives a short positive resistance
-rather than a rigid obstruction, and release of the latch produces a tactile and
-audible detent which signals that a complete dose is available.
+Preferably the latch (41) and detent surface (42) are profiled to permit a small
+lost motion of the actuator whilst blocked, so that the user perceives a short
+positive resistance rather than a rigid obstruction, and release produces a
+tactile and audible detent signalling that a complete dose is available.
 
 With a low viscosity liquid the chamber charges within a small fraction of a
-second and the interlock is released before the user can return the trigger, so
-the interlock is imperceptible. With a high viscosity or cold liquid the interlock
-imposes a delay of the order of a second. **In neither case does the delivered
-volume change.**
+second and the interlock is imperceptible. With a cold or viscous liquid the delay
+is of the order of a second. **In neither case does the delivered volume change.**
 
-### Differential pressure responsive inlet valve, Figure 4
+### Passive viscosity compensation, Figure 4
 
-The inlet valve (25) comprises a poppet resiliently biased against a seat, the
-seat having a progressive profile such that the annular flow area between poppet
-and seat increases more than linearly with poppet lift.
+The inlet valve (25) comprises a poppet resiliently biased against a seat having a
+progressive profile, such that the annular flow area increases more than linearly
+with poppet lift. Poppet lift is a function of the pressure differential across
+the valve; for a given flow a more viscous liquid generates a greater differential
+and therefore opens a larger area. The valve compensates passively and in the
+correct direction, without sensing, power or adjustment.
 
-The lift of the poppet is a function of the pressure differential across the
-valve. For a given volumetric flow rate, a liquid of higher viscosity generates a
-greater pressure differential, and therefore lifts the poppet further and opens a
-larger flow area. The valve thus compensates passively, in the correct direction,
-without sensing, power or adjustment.
+A thermally responsive element (80), a bimetallic or shape memory alloy element,
+may be disposed in the inlet path and arranged to reduce the bias upon the poppet
+as temperature falls, anticipating rather than merely responding to the associated
+rise in viscosity.
 
-The seat profile is selected such that, over a design viscosity window of
-approximately 20 to 100 centistokes at 25 °C, the variation in refill time is
-substantially reduced relative to a valve of fixed flow area.
-
-### Thermally responsive element
-
-A thermally responsive element (80), for example a bimetallic washer or a shape
-memory alloy element, is disposed in the inlet path and arranged to reduce the
-resilient bias upon the poppet, or to increase its rest lift, as temperature
-falls. Because the viscosity of edible oils is dominated by temperature, this
-anticipates the increase in viscosity rather than merely responding to it.
+These passive features operate in embodiments having no power source at all, and
+also serve in powered embodiments to shorten the interval that the heating element
+must bridge.
 
 ### Intake and filtration, Figure 5
 
 The intake conduit (50) terminates in an inlet opening (51) held at a standoff
-(52) of between 5 and 15 mm, and in one embodiment 9 mm, above the floor (11) of
-the reservoir (10), defining beneath it a settling volume (53) into which
-particulate matter descends and from which it is not drawn.
+(52) of between 5 and 15 mm, in one embodiment 9 mm, above the floor (11),
+defining beneath it a settling volume (53) into which particulate descends and
+from which it is not drawn. A first filter element (54) of aperture between 400
+and 800 µm, in one embodiment 600 µm, is disposed at the inlet opening. A second
+filter element (55) of smaller aperture, between 100 and 200 µm and in one
+embodiment 150 µm, is disposed upstream of the discharge orifice (27). Preferably
+the conduit and both filter elements are carried on a common carrier (56) and are
+removable as a single cartridge.
 
-A first filter element (54) having an aperture of between 400 and 800 µm, and in
-one embodiment 600 µm, is disposed at the inlet opening (51). A second filter
-element (55) having a smaller aperture, of between 100 and 200 µm and in one
-embodiment 150 µm, is disposed upstream of the discharge orifice (27).
+### Thermal subsystem, Figure 8
 
-In a preferred arrangement the intake conduit (50), the first filter element (54)
-and the second filter element (55) are carried upon a common carrier (56) and are
-removable from the reservoir (10) as a single cartridge, so that all three stages
-of filtration are cleaned or replaced together.
+A heating element (100), for example a positive temperature coefficient ceramic
+element or a thin film resistive element, is disposed in thermal contact with the
+metering chamber (20) and arranged to heat liquid **within that chamber**. A
+thermal break (105) of low thermal conductivity separates the metering chamber
+from the intake conduit (50) and from the reservoir (10), so that heat is not
+conducted into the bulk liquid.
+
+A temperature sensor (101), for example a thermistor, senses the temperature of
+liquid in or adjacent the metering chamber. A stroke sensor (104) detects
+attainment of the predetermined fill position; conveniently this is a switch or
+optical detector actuated by the release cam (44) or the latch member (41), so
+that the interlock provided for the first aspect also serves as the sensing
+element.
+
+A controller (102) receives signals from the sensors (101, 104) and regulates the
+heating element (100). Electrical power is received at a power input (103),
+suitably a USB Type C receptacle. An energy store (106), a capacitor or cell, may
+buffer the supply so that a charge may be heated at a power exceeding the
+instantaneous supply capability. An indicator (107) conveys state to the user. A
+grip sensor (108) may initiate preheating on the device being picked up.
+
+**Energy budget.** A metered charge of 0.20 ml has a mass of approximately 0.18 g.
+At a specific heat capacity of approximately 2.0 J/g/K, raising it by 25 K requires
+approximately 9.2 J, achieved in approximately 0.61 s at 15 W. Raising the whole
+of a 250 ml reservoir through the same interval would require approximately
+11,500 J and approximately 12.8 minutes at the same power, a factor of
+approximately 1,250. **This disparity is what makes charge only heating practical
+and reservoir heating impractical**, and it is additionally what preserves the
+quality of liquid that will not be dispensed for some weeks.
+
+The controller limits the temperature of the charge to a predetermined maximum,
+preferably not exceeding 60 °C, which is far below the smoke point of edible oils
+and low enough that the brief exposure of an individual charge does not
+meaningfully promote oxidation.
+
+### Viscosity determination and closed loop normalisation, Figures 9 and 10
+
+Upon release of the actuator (30) the return spring (24) drives the return stroke.
+The controller (102) starts a timer and stops it upon the stroke sensor (104)
+indicating attainment of the fill position. **The elapsed duration is a monotonic
+function of the viscosity of the liquid**, the geometry of the intake path and the
+force of the return spring both being fixed and known.
+
+The controller compares that duration with a target duration corresponding to a
+target viscosity, and regulates the energy delivered to the heating element (100)
+for the succeeding charge so as to drive the measured duration towards the target.
+The loop converges over a small number of strokes.
+
+The consequence is that the metering chamber, the discharge valve and the orifice
+all receive liquid at substantially constant viscosity, **whatever liquid has been
+placed in the reservoir and whatever the ambient temperature**. Delivered volume
+and atomisation quality are both thereby stabilised.
+
+There is a functional synergy between the aspects which should be noted. The
+interlock of the first aspect creates a dwell between strokes; the duration of
+that dwell constitutes the viscosity measurement of the third aspect; the dwell is
+also the interval during which heating under the second aspect is performed; and
+that heating shortens the dwell. **The features are not merely collocated, they
+each enable and modify the others.**
+
+### Melt mode
+
+Where, upon release of the return spring (24), the stroke sensor (104) indicates
+no movement of the piston (23) within a predetermined interval, the controller
+determines that the contents are not in a flowable state. It then energises the
+heating element (100) in a melt mode, directed to the intake path, until movement
+commences or a timeout expires. This permits use with fats which are solid at
+ambient temperature, such as coconut oil below approximately 24 °C, and clarified
+butter.
+
+### Obstruction detection
+
+The controller stores a relationship between temperature and expected return
+stroke duration for an unobstructed intake path. Where the measured duration
+exceeds the duration predicted from the measured temperature by more than a
+predetermined threshold, the controller determines that a filter element (54, 55)
+is obstructed and generates an indication via the indicator (107). **The dispenser
+thereby warns of an impending clog before spray quality is affected**, the clog
+being the predominant failure mode of dispensers of this class.
 
 ### Further features
 
-A stroke counter (60) is coupled to the actuator (30) and advances by one
-increment per delivery stroke. Because each delivery stroke delivers a known
-volume, the counter indicates both the volume remaining and, for an edible oil of
-known energy density, the energy content dispensed. In one arrangement the
-counter (60) is a separable module attached to the head closure (12).
+A counter (60) registers delivery strokes and indicates volume remaining and, for
+a liquid of known energy density, energy dispensed. In unpowered embodiments the
+counter is mechanical and may be a separable module; in powered embodiments it may
+be implemented in the controller (102).
 
-A vent (70) comprising a hydrophobic membrane admits air to the reservoir (10) as
-liquid is withdrawn while excluding moisture and airborne particulate.
-
-An internal fill line is formed on the inner wall of the reservoir (10), visible
-through the opened head closure (12), indicating the maximum charge.
+A vent (70) comprising a hydrophobic membrane admits air to the reservoir while
+excluding moisture and airborne particulate. An internal fill line is formed on
+the inner wall of the reservoir, visible through the opened head closure.
 
 ### Performance, Figure 7
 
-Figure 7 plots delivered volume against liquid viscosity at a fixed actuation
-cadence. For a conventional dispenser the delivered volume falls progressively as
-viscosity rises above the value for which the dispenser was designed. For a
-dispenser according to the invention the delivered volume remains substantially
-constant across the whole design window, the effect of viscosity appearing
-instead as an increase in the minimum interval between actuations.
+For a conventional dispenser, delivered volume falls progressively as viscosity
+rises above the design value. For a dispenser according to the first aspect,
+delivered volume remains substantially constant, the effect of viscosity appearing
+as an increase in the minimum interval between actuations. For a dispenser
+according to the fourth aspect, **both the delivered volume and that interval
+remain substantially constant**, the effect of viscosity being absorbed by the
+thermal loop.
 
-## Claims
+---
 
-> **Format note for the attorney.** Claim 1 is given in the EPO two part form
-> with a characterising portion. For the United States the two part form is not
-> required and can operate as an implied admission regarding the preamble, so the
-> US claim set should be recast in single part form. The usual practice is to
-> file the priority and PCT application in a form acceptable to the EPO and
-> amend on entry to the US national phase. Avoid means plus function language
-> under 35 USC 112(f) unless deliberately intended.
+# PART D. Claims
+
+> **Format and cost note for the attorney.** Claim 1 is in EPO two part form. For
+> the United States recast in single part form, since the two part form can
+> operate as an implied admission regarding the preamble, and avoid means plus
+> function language under 35 USC 112(f) unless deliberately intended.
+>
+> **This set is deliberately extensive and should not be filed as is at every
+> office.** The PCT charges by page rather than by claim, and an Indian
+> provisional need not contain claims at all, so breadth is nearly free at those
+> stages and the full set preserves options. **The EPO charges a fee for each
+> claim from the 16th, and a substantially higher fee for each from the 51st.**
+> The United States basic fee covers 20 claims including 3 independent. Prune to
+> approximately 15 for EPO entry and approximately 20 with 3 independent for the
+> US, selecting on the basis of the international search report.
+
+## Aspect 1: fill completion interlock
 
 **1.** A manually actuated dispenser for delivering a metered volume of a liquid,
 comprising a reservoir (10); a metering chamber (20) having a fixed swept volume,
 an inlet (21) in communication with the reservoir and an outlet (22); a metering
-piston (23) movable within the metering chamber between a discharge position and
-a fill position; a manually operable actuator (30) arranged to drive the metering
-piston through a delivery stroke from the fill position towards the discharge
-position; a return spring (24) arranged to urge the metering piston through a
-return stroke from the discharge position towards the fill position so as to draw
-liquid from the reservoir into the metering chamber; an inlet valve (25)
-permitting flow into the metering chamber during the return stroke and preventing
-reverse flow during the delivery stroke; and a discharge valve (26) downstream of
-the outlet,
+piston (23) movable within the metering chamber between a discharge position and a
+fill position; a manually operable actuator (30) arranged to drive the metering
+piston through a delivery stroke; a return spring (24) arranged to urge the
+metering piston through a return stroke so as to draw liquid from the reservoir
+into the metering chamber; an inlet valve (25) permitting flow into the metering
+chamber during the return stroke and preventing reverse flow during the delivery
+stroke; and a discharge valve (26) downstream of the outlet,
 
 **characterised in that** the dispenser further comprises a fill completion
 interlock (40) operatively coupled to the metering piston (23) and to the actuator
-(30), the interlock being arranged to adopt a blocking configuration in which it
-prevents the actuator from driving the metering piston through a delivery stroke,
-and to adopt a releasing configuration only upon the metering piston attaining a
-predetermined fill position corresponding to said fixed swept volume,
+(30), arranged to adopt a blocking configuration preventing the actuator from
+driving the metering piston through a delivery stroke, and to adopt a releasing
+configuration only upon the metering piston attaining a predetermined fill position
+corresponding to said fixed swept volume,
 
-whereby the volume of liquid delivered per delivery stroke is determined by the
-fixed swept volume of the metering chamber and is substantially independent of the
-viscosity of the liquid.
+whereby the volume delivered per delivery stroke is determined by the fixed swept
+volume and is substantially independent of the viscosity of the liquid.
 
-**2.** A dispenser according to claim 1, wherein the fill completion interlock
-comprises a latch member (41) resiliently biased into the blocking configuration
-and arranged, in that configuration, to engage a detent surface (42) associated
-with the actuator (30).
+**2.** A dispenser according to claim 1, wherein the interlock comprises a latch
+member (41) resiliently biased into the blocking configuration and arranged therein
+to engage a detent surface (42) associated with the actuator.
 
-**3.** A dispenser according to claim 2, wherein the metering piston (23) carries
-a release cam (44) arranged to displace the latch member (41) to the releasing
-configuration upon the metering piston abutting a return stop (43) defining said
-predetermined fill position.
+**3.** A dispenser according to claim 2, wherein the metering piston carries a
+release cam (44) arranged to displace the latch member to the releasing
+configuration upon the piston abutting a return stop (43) defining said fill
+position.
 
-**4.** A dispenser according to any preceding claim, wherein the fill completion
-interlock permits a lost motion of the actuator (30) whilst in the blocking
-configuration, such that the actuator may be partially displaced but cannot
-execute a delivery stroke.
+**4.** A dispenser according to any preceding claim, wherein the interlock permits
+a lost motion of the actuator whilst in the blocking configuration.
 
-**5.** A dispenser according to any preceding claim, wherein transition of the
-fill completion interlock to the releasing configuration generates a tactile
-signal, an audible signal, or both, perceptible to a user.
+**5.** A dispenser according to any preceding claim, wherein transition to the
+releasing configuration generates a tactile signal, an audible signal, or both.
 
 **6.** A dispenser according to any preceding claim, wherein the inlet valve (25)
-has a flow area which increases with the pressure differential across the inlet
-valve.
+has a flow area which increases with the pressure differential across it.
 
-**7.** A dispenser according to claim 6, wherein the inlet valve (25) comprises a
-poppet resiliently biased against a seat, the seat having a profile such that the
-flow area between the poppet and the seat increases more than linearly with
-poppet lift.
+**7.** A dispenser according to claim 6, wherein the inlet valve comprises a poppet
+biased against a seat having a profile such that the flow area increases more than
+linearly with poppet lift.
 
-**8.** A dispenser according to any preceding claim, further comprising a
-thermally responsive element (80) arranged to increase the flow area of the inlet
-valve (25) as temperature decreases.
+**8.** A dispenser according to any preceding claim, further comprising a thermally
+responsive element (80) arranged to increase the flow area of the inlet valve as
+temperature decreases.
 
 **9.** A dispenser according to claim 8, wherein the thermally responsive element
-(80) comprises a bimetallic element or a shape memory alloy element.
+comprises a bimetallic element or a shape memory alloy element.
 
 **10.** A dispenser according to any preceding claim, wherein the discharge valve
-(26) is a pre-compression valve having a predetermined cracking pressure, such
-that the metering chamber does not discharge until the pressure therein exceeds
-said cracking pressure.
+(26) is a pre-compression valve having a predetermined cracking pressure.
 
-**11.** A dispenser according to claim 10, wherein the cracking pressure is
-between 1.5 and 4 bar, preferably between 2.0 and 3.0 bar.
+**11.** A dispenser according to claim 10, wherein the cracking pressure is between
+1.5 and 4 bar, preferably between 2.0 and 3.0 bar.
 
-**12.** A dispenser according to any preceding claim, wherein the fixed swept
-volume is between 0.1 and 0.5 ml, preferably between 0.15 and 0.25 ml.
+**12.** A dispenser according to any preceding claim, wherein the fixed swept volume
+is between 0.1 and 0.5 ml, preferably between 0.15 and 0.25 ml.
 
-**13.** A dispenser according to any preceding claim, arranged such that the
-volume delivered per delivery stroke varies by no more than 15 percent across a
-liquid kinematic viscosity range of 20 to 100 centistokes at 25 °C.
+**13.** A dispenser according to any preceding claim, arranged such that the volume
+delivered per delivery stroke varies by no more than 15 percent, preferably no more
+than 8 percent, across a kinematic viscosity range of 20 to 100 centistokes.
 
 **14.** A dispenser according to any preceding claim, further comprising an intake
-conduit (50) having an inlet opening (51) disposed at a standoff distance (52)
-above a floor (11) of the reservoir (10) so as to define a settling volume (53)
-therebelow.
+conduit (50) having an inlet opening (51) at a standoff distance (52) above a floor
+(11) of the reservoir defining a settling volume (53) therebelow.
 
-**15.** A dispenser according to claim 14, wherein the standoff distance (52) is
-between 5 and 15 mm.
+**15.** A dispenser according to claim 14, wherein the standoff distance is between
+5 and 15 mm.
 
 **16.** A dispenser according to claim 14 or 15, further comprising a first filter
-element (54) disposed at the inlet opening (51) and a second filter element (55)
-disposed upstream of a discharge orifice (27), the second filter element having a
-smaller aperture than the first.
+element (54) at the inlet opening and a second filter element (55) upstream of a
+discharge orifice (27), the second having a smaller aperture than the first.
 
-**17.** A dispenser according to claim 16, wherein the first filter element (54)
-has an aperture between 400 and 800 µm and the second filter element (55) has an
-aperture between 100 and 200 µm.
+**17.** A dispenser according to claim 16, wherein the first filter element has an
+aperture between 400 and 800 µm and the second between 100 and 200 µm, and wherein
+the intake conduit and both filter elements are carried on a common carrier (56)
+and are together removable as a unitary cartridge.
 
-**18.** A dispenser according to claim 16 or 17, wherein the intake conduit (50),
-the first filter element (54) and the second filter element (55) are carried upon
-a common carrier (56) and are together removable from the reservoir as a unitary
-cartridge.
+**18.** A dispenser according to any preceding claim, wherein the reservoir (10) is
+tubular and open at both ends, closed at a first end by a head closure (12) carrying
+the metering chamber and at a second end by a removable base closure (13), each
+sealing by an axial face seal (14).
 
-**19.** A dispenser according to any preceding claim, wherein the reservoir (10)
-is tubular and open at both ends, and is closed at a first end by a head closure
-(12) carrying the metering chamber and at a second end by a removable base closure
-(13), each closure sealing against the reservoir by an axial face seal (14).
+## Aspect 2: heating of the metered charge
 
-**20.** A dispenser according to any preceding claim, further comprising a counter
-(60) coupled to the actuator (30) and arranged to register the number of delivery
-strokes executed, and thereby to indicate a quantity of liquid remaining.
+**19.** A dispenser for delivering a metered volume of a liquid, comprising a
+reservoir (10), a metering chamber (20) of fixed swept volume arranged to receive a
+charge of liquid from the reservoir, a discharge valve (26) and an actuator (30),
 
-**21.** A dispenser according to any preceding claim, further comprising a vent
-(70) admitting air to the reservoir and comprising a hydrophobic membrane.
+**characterised by** a heating element (100) arranged to heat liquid within the
+metering chamber, and a thermal break (105) disposed between the metering chamber
+and the reservoir and arranged to impede conduction of heat from the metering
+chamber to liquid remaining in the reservoir,
 
-**22.** A dispenser according to any preceding claim, wherein the liquid is an
-edible oil.
+such that a charge may be heated without heating the contents of the reservoir.
 
-**23.** A method of delivering metered volumes of a liquid of unknown viscosity
-from a manually actuated dispenser having a metering chamber of fixed swept
-volume and a metering piston, the method comprising:
+**20.** A dispenser according to claim 19, wherein the fixed swept volume is less
+than one five hundredth of the capacity of the reservoir.
 
-  (a) urging the metering piston through a return stroke under the action of a
-      return spring, thereby drawing liquid into the metering chamber;
-  (b) blocking a manually operable actuator so as to prevent a delivery stroke
-      whilst the metering piston is between a discharge position and a
-      predetermined fill position corresponding to said fixed swept volume;
-  (c) releasing the actuator upon the metering piston attaining said predetermined
-      fill position; and
-  (d) thereafter executing a delivery stroke to expel said fixed swept volume,
+**21.** A dispenser according to claim 19 or 20, wherein the heating element is
+arranged to raise the temperature of a charge by at least 20 K in less than 2
+seconds at an electrical input power not exceeding 20 W.
 
-  whereby the volume delivered is substantially independent of the viscosity of
-  the liquid.
+**22.** A dispenser according to any of claims 19 to 21, further comprising an
+electrical power input (103), preferably a USB receptacle.
 
-**24.** A method according to claim 23, further comprising increasing a flow area
-of an inlet to the metering chamber in response to an increase in the pressure
-differential across said inlet, in response to a decrease in temperature, or both.
+**23.** A dispenser according to claim 22, further comprising an energy store (106)
+arranged to permit heating at a power exceeding the instantaneous capability of a
+supply connected to the power input.
+
+**24.** A dispenser according to any of claims 19 to 23, further comprising a
+controller (102) arranged to limit the temperature of the charge to a predetermined
+maximum not exceeding 80 °C, preferably not exceeding 60 °C.
+
+**25.** A dispenser according to any of claims 19 to 24, further comprising a grip
+sensor (108), the controller being arranged to energise the heating element upon
+the grip sensor indicating that the dispenser has been grasped.
+
+**26.** A dispenser according to any of claims 19 to 25, comprising the fill
+completion interlock of any of claims 1 to 5, wherein the heating element is
+energised during an interval in which the interlock is in the blocking
+configuration.
+
+## Aspect 3: determination of viscosity from return stroke duration
+
+**27.** A dispenser for delivering a metered volume of a liquid, comprising a
+metering chamber (20), a metering piston (23), a return spring (24) arranged to
+urge the piston through a return stroke drawing liquid into the metering chamber,
+and a sensor (104) arranged to detect attainment by the piston of a predetermined
+fill position,
+
+**characterised by** a controller (102) arranged to measure a duration between
+commencement of the return stroke and attainment of said fill position, and to
+determine from that duration a parameter indicative of the viscosity of the liquid
+drawn into the metering chamber.
+
+**28.** A dispenser according to claim 27, wherein the sensor (104) is actuated by a
+member of a fill completion interlock according to any of claims 1 to 5, whereby the
+interlock serves both to prevent premature actuation and to provide said detection.
+
+**29.** A dispenser according to claim 27 or 28, further comprising a temperature
+sensor (101), the controller being arranged to determine said parameter from the
+measured duration and the measured temperature in combination.
+
+**30.** A dispenser according to any of claims 27 to 29, wherein the controller is
+arranged to identify a class of liquid present in the reservoir from said parameter
+and a measured temperature, without input from a user.
+
+## Aspect 4: closed loop normalisation of viscosity
+
+**31.** A dispenser according to any of claims 27 to 30, further comprising a
+heating element (100) arranged to heat liquid to be drawn into or contained within
+the metering chamber, **wherein the controller is arranged to regulate the heating
+element in dependence upon said measured duration so as to drive the measured
+duration towards a target duration corresponding to a target viscosity**, whereby
+liquid presented to the metering chamber is of substantially constant viscosity
+irrespective of the liquid supplied and of ambient temperature.
+
+**32.** A dispenser according to claim 31, wherein the controller regulates the
+energy delivered to the heating element for a succeeding charge in dependence upon
+the duration measured for a preceding charge.
+
+**33.** A dispenser according to claim 31 or 32, wherein the target duration is
+selected such that the discharge valve and a discharge orifice receive liquid within
+a viscosity range over which a predetermined atomisation quality is maintained.
+
+**34.** A dispenser according to any of claims 31 to 33, wherein both the volume
+delivered per delivery stroke and the interval between successive delivery strokes
+are substantially constant across a kinematic viscosity range of the supplied liquid
+of at least 20 to 100 centistokes.
+
+**35.** A dispenser according to any of claims 31 to 34, wherein the controller is
+arranged to store and apply a relationship between temperature and viscosity for
+each of a plurality of classes of edible oil.
+
+## Aspect 5: non flowable contents
+
+**36.** A dispenser according to any of claims 27 to 35, wherein the controller is
+arranged to determine, from an absence of movement of the metering piston within a
+predetermined interval following release of the return spring, that the contents of
+the reservoir are not in a flowable state, and in response to energise the heating
+element in a melt mode prior to a further attempt to charge the metering chamber.
+
+**37.** A dispenser according to claim 36, wherein in the melt mode the heating
+element is arranged to direct heat to an intake path (50) in preference to the bulk
+of the reservoir.
+
+**38.** A dispenser according to claim 36 or 37, arranged for use with a fat which is
+solid below approximately 24 °C, such as coconut oil, or with clarified butter.
+
+## Aspect 6: obstruction detection
+
+**39.** A dispenser according to any of claims 27 to 38, comprising at least one
+filter element (54, 55) in an intake path, wherein the controller is arranged to
+compare the measured duration with a duration predicted from a measured temperature
+for an unobstructed intake path, and to generate an obstruction indication where the
+measured duration exceeds the predicted duration by more than a predetermined
+threshold.
+
+**40.** A dispenser according to claim 39, wherein the obstruction indication is
+generated before a degradation of spray quality perceptible to a user has occurred.
+
+**41.** A dispenser according to claim 39 or 40, wherein the controller distinguishes
+an increase in duration attributable to viscosity from an increase attributable to
+obstruction by reference to the measured temperature.
+
+## Further apparatus features
+
+**42.** A dispenser according to any preceding claim, further comprising a counter
+(60) arranged to register delivery strokes and to indicate a quantity of liquid
+remaining.
+
+**43.** A dispenser according to claim 42, wherein the counter is arranged to
+indicate an energy content of the liquid dispensed, derived from the number of
+delivery strokes, the fixed swept volume and a stored energy density.
+
+**44.** A dispenser according to any preceding claim, further comprising a vent (70)
+comprising a hydrophobic membrane.
+
+**45.** A dispenser according to any preceding claim, wherein the liquid is an edible
+oil.
+
+**46.** A dispenser according to any preceding claim, wherein the reservoir, the
+metering chamber, an intake cartridge, a nozzle, a base closure and a grip member are
+each separable from one another without tools and without breaking an adhesive, weld
+or rivet.
+
+## Methods
+
+**47.** A method of delivering metered volumes of a liquid of unknown viscosity from a
+manually actuated dispenser having a metering chamber of fixed swept volume and a
+metering piston, comprising: (a) urging the metering piston through a return stroke
+under a return spring so as to draw liquid into the metering chamber; (b) blocking a
+manually operable actuator so as to prevent a delivery stroke whilst the piston is
+between a discharge position and a predetermined fill position corresponding to said
+fixed swept volume; (c) releasing the actuator upon the piston attaining said fill
+position; and (d) executing a delivery stroke to expel said fixed swept volume,
+whereby the volume delivered is substantially independent of the viscosity of the
+liquid.
+
+**48.** A method of determining a parameter indicative of the viscosity of a liquid in
+a dispenser, comprising urging a metering piston through a return stroke under a
+return spring of known force so as to draw the liquid into a metering chamber of
+known geometry, measuring the duration between commencement of the return stroke and
+attainment by the piston of a predetermined fill position, and determining said
+parameter from that duration.
+
+**49.** A method according to claim 48, further comprising measuring a temperature of
+the liquid and determining said parameter from the duration and the temperature in
+combination.
+
+**50.** A method of dispensing metered volumes of a liquid, comprising performing the
+method of claim 48, comparing the determined duration with a target duration
+corresponding to a target viscosity, and heating a charge of the liquid within the
+metering chamber by an amount selected to drive a subsequently measured duration
+towards the target duration, **whereby successive charges are presented to a
+discharge orifice at substantially constant viscosity**.
+
+**51.** A method according to claim 50, wherein the heating is performed during an
+interval in which a fill completion interlock prevents actuation.
+
+**52.** A method according to claim 50 or 51, wherein the charge heated is less than
+one five hundredth of the liquid held in a reservoir of the dispenser, and wherein
+liquid remaining in the reservoir is not substantially heated.
+
+**53.** A method of detecting obstruction of a filter element in a dispenser,
+comprising measuring a duration of a return stroke as in claim 48, measuring a
+temperature of the liquid, predicting a duration for an unobstructed intake path at
+said temperature, and generating an obstruction indication where the measured
+duration exceeds the predicted duration by more than a threshold.
+
+**54.** A method of dispensing a fat which is solid at ambient temperature, comprising
+releasing a return spring of a metering piston, determining from an absence of
+movement of the piston that the fat is not in a flowable state, energising a heating
+element in a melt mode, and thereafter charging a metering chamber and executing a
+delivery stroke.
 
 ## Abstract
 
 A manually actuated dispenser delivers a metered volume of liquid substantially
-independently of the liquid's viscosity. A metering chamber (20) of fixed swept
-volume is charged during a return stroke of a piston (23) urged by a return
-spring (24). Because the piston can advance only as rapidly as liquid enters
-behind it, its position is a direct measure of the state of charge of the
-chamber. A fill completion interlock (40) blocks the manually operable actuator
-(30) until the piston (23) attains a fill position defined by a return stop (43),
-whereupon a release cam (44) displaces a latch member (41) and permits a delivery
-stroke. The volume delivered is therefore set by chamber geometry alone, the
-effect of viscosity appearing as a short delay between actuations rather than as
-an unperceived reduction in delivered volume. An inlet valve (25) whose flow area
-increases with pressure differential, and a thermally responsive element (80),
-shorten that delay. (Figure 2)
+independently of viscosity. A metering chamber (20) is charged during a return
+stroke of a piston (23) urged by a spring (24). Because the piston advances only as
+rapidly as liquid enters behind it, its position measures the state of charge, and
+the duration of the return stroke measures the viscosity. A fill completion
+interlock (40) blocks the actuator (30) until the piston reaches a fill stop (43),
+so delivered volume is set by chamber geometry alone. In powered embodiments a
+heating element (100) heats only the charge within the metering chamber, isolated by
+a thermal break (105) from the reservoir, requiring approximately one thousandth of
+the energy needed to heat the reservoir. A controller (102) regulates that heating
+so as to drive the measured return stroke duration towards a target, presenting
+liquid of constant viscosity to the orifice whatever oil is supplied. The same
+measurement detects non flowable contents, triggering a melt mode, and detects
+filter obstruction before spray quality degrades. (Figures 2 and 9)
 
 ---
 
-# PART D. Filing strategy
+# PART E. Filing strategy
 
-## D1. The sequence, which Section 39 largely dictates
+## E1. Sequence, which Section 39 dictates
 
 | When | Action | Why |
 |---|---|---|
-| **Day 0** | **File Indian provisional specification** | Establishes the priority date. Starts both the Section 39 six week clock and the twelve month Paris Convention clock. Cheap and fast |
-| **Day 0** | Password protect the website if it is live | Stops further public disclosure accruing |
-| **Week 6** | Free to file abroad without Form 25 | Section 39 satisfied by the six week route |
-| **By month 12** | **File PCT application** claiming Indian priority | One application preserving rights in most of the world. Also file the Indian complete specification by month 12 |
-| Month 16 | International Search Report and Written Opinion | First real read on patentability. Decide whether to continue before spending on national phases |
-| **Month 30 or 31** | **National or regional phase: EPO, USPTO, and any others** | The expensive step, deferred as long as possible |
+| **Day 0** | **File Indian provisional** covering all six aspects | Priority date. Starts the Section 39 six week clock and the twelve month Paris clock. A provisional needs no claims, so file the full description |
+| Day 0 | Preserve evidence of the site's first public date | It will be asked for, and the evidence decays |
+| **Week 6** | Free to file abroad | Section 39 satisfied by the six week route |
+| Months 1 to 9 | Professional novelty search; build the bench rig | Evidence for the complete specification, and a reduction to practice |
+| **By month 12** | **File PCT** claiming Indian priority, and the Indian complete specification | One application preserving most of the world |
+| Month 16 | International Search Report and Written Opinion | The first real read. Decide what to prune |
+| **Month 30 or 31** | **EPO and USPTO national phase** | The expensive step, deferred as long as possible |
 
-Filing the Indian provisional first is not merely compliant, it is the correct
-commercial sequence. It is the cheapest way to secure a date, and it defers every
-large cost by up to thirty months while the product is validated.
+## E2. What to file where, given the disclosure problem
 
-## D2. Indicative costs
+- **India and EPO.** Lead with the clean subject matter: the interlock, the
+  viscometry, the charge heating, the closed loop, melt mode and obstruction
+  detection. Treat the raised intake, the two stage filtration ratings, the
+  cracking pressure and the dual opening body as **dependent claims only**,
+  expecting them to be cut.
+- **United States.** The twelve month grace period may still protect the published
+  material if filed in time. Ask the attorney whether a broader US claim set is
+  worth pursuing on that basis, and establish the first public date before relying
+  on it.
 
-Ranges only, and they vary widely by firm. Confirm before committing.
+## E3. Unity of invention, which will be raised
+
+PCT Rule 13 requires a single general inventive concept. Six aspects invites an
+objection and a demand for additional search fees.
+
+**The unifying special technical feature to argue is this:** *using the motion of
+the metering piston during the return stroke as a measure of the state of charge
+and of the viscosity of the liquid, and employing that measure to render the
+delivered volume independent of viscosity.* Aspects 1, 3, 4, 5 and 6 all rest on
+it directly.
+
+**Aspect 2, charge only heating with a thermal break, is the most likely to be
+severed**, because it can be practised without measuring anything. Be ready to
+divide it out. That is not a loss: a divisional keeps the priority date, and
+charge only heating is independently valuable and independently licensable.
+
+## E4. Indicative costs
+
+Ranges only. Confirm with the firm before committing.
 
 | Step | Government fee | Professional fee |
 |---|---|---|
 | Indian provisional, natural person or startup, e-filed | approx ₹1,600 | ₹20,000 to ₹45,000 |
-| Indian complete specification | approx ₹1,600 | ₹30,000 to ₹70,000 |
-| Indian request for examination | approx ₹4,000 | included above |
-| PCT international application including search | approx ₹1.5 to 2.5 lakh | ₹40,000 to ₹80,000 |
-| EPO regional phase | €4,000 to €8,000 including translation and validation | varies |
+| Indian complete specification | approx ₹1,600 | ₹40,000 to ₹90,000 |
+| Indian request for examination | approx ₹4,000 | included |
+| PCT with international search | approx ₹1.5 to 2.5 lakh | ₹40,000 to ₹80,000 |
+| EPO regional phase | €4,000 to €8,000 plus claim fees | varies |
+| EPO claim fees | fee per claim from the 16th, higher from the 51st | prune before entry |
 | US national phase, small or micro entity | $1,000 to $2,000 | $6,000 to $12,000 |
+| Each divisional | roughly a further national phase | budget for at least one |
 
-Claim startup status with the Indian Patent Office where eligible, since the fee
-reduction is substantial.
+Claim startup status with the Indian Patent Office where eligible; the reduction is
+substantial.
 
-## D3. Run the searches before spending
+## E5. Search instructions
 
-Commission a professional novelty search before the complete specification, not
-before the provisional. The provisional is cheap enough to file first and search
-afterwards. Ask the searcher specifically to cover:
+Commission the search after the provisional, not before; the provisional is cheap
+enough to file first. Direct the searcher to:
 
-- metering pumps with actuation lockout or interlock dependent on chamber charge state
-- inhaler and injection pen dose interlocks, which are the most likely citations
-- viscosity compensation in unpowered dispensers
-- IPC classes B05B 11/00, B67D 3/00, G01F 11/02, A47J 43/00
+- metering pumps with actuation lockout dependent on chamber charge state
+- inhaler and injection pen dose interlocks, the most likely citations
+- **heated dispensers** for chocolate, wax, adhesive, cosmetics and infant formula,
+  specifically whether any heats a metered charge in isolation from a reservoir
+- **inference of fluid viscosity from pump stroke timing**, including in industrial
+  metering and in inkjet
+- filter obstruction detection by flow or timing anomaly
+- IPC and CPC: B05B 11/00, B05B 11/10, B67D 3/00, B67D 1/08, G01F 11/02,
+  G01N 11/04, A47J 43/00, H05B 1/02
 
-## D4. Also file, separately
+## E6. What the electronics change, beyond patents
 
-**Design registration** under the Designs Act 2000 on the final form of the
-product. It protects appearance, costs ₹1,000 in government fees for a startup
-or small entity with Form 24, plus ₹5,000 to ₹8,000 professional, and gives ten
-years extendable by five. This is the right instrument for the six module
-architecture and the dual opening body, which are weak as patent subject matter
-but strong as appearance. **File only after the patent provisional, and note that
-a published design can also destroy design novelty.**
+Adding a heater, controller and USB input moves the product into a different
+regulatory class, and this should be costed before committing:
 
-**Trade mark** for ENNA in class 21, with classes 8 and 11 as relevant.
+- **Electrical safety**: IEC 60335-1 and the relevant part 2, for household
+  appliances.
+- **India**: the BIS Compulsory Registration Scheme may apply to the electronics.
+  Check whether the product falls within a notified category.
+- **Cells**: IEC 62133 if an energy store using a cell is fitted. A supercapacitor
+  avoids much of this and is worth considering for that reason alone.
+- **EU and US**: CE and UKCA marking, FCC Part 15 for the US.
+- **Food contact**: unchanged, and now additionally the heating element must not
+  contact the oil directly unless its wetted surface is itself compliant.
+
+**It also conflicts with the ten year repairability commitment**, since a
+controller is not a repairable module in the sense the rest of the product is. The
+cleanest resolution is that the powered version is a **separate model**, with the
+unpowered six module product remaining the repairable one, and the shared published
+interface allowing a powered head to be fitted to the same body. The interface
+specification already contemplates exactly that.
+
+## E7. Also file separately
+
+**Design registration** under the Designs Act 2000 on the final form. ₹1,000
+government fee for a startup or small entity with Form 24, plus ₹5,000 to ₹8,000
+professional, ten years extendable by five. This is the right instrument for the
+six module architecture and the dual opening body, which are weak as patent subject
+matter but strong as appearance. **File after the patent provisional, and note that
+prior publication can destroy design novelty too.**
+
+**Trade mark** ENNA in class 21, with classes 8 and 11 as relevant.
 
 ---
 
-# PART E. What this document is not
+# PART F. What this document is not
 
 I am not a patent attorney, this is not legal advice, and nothing here has been
-searched professionally. Specifically:
+professionally searched.
 
 1. **No professional novelty search has been conducted.** The prior art in Part B
-   was identified through ordinary web searching. A proper search will find art I
-   have not seen, and it may well find something that reads directly on claim 1.
-2. **The claims need professional revision.** Claim scope is the entire value of
-   a patent and the wording above is a starting point for an attorney, not a
-   filing text.
-3. **Figures must be prepared** to the formal drawing standards of each office.
-   Part C describes seven figures but none has been drawn.
-4. **The Section 39 and disclosure questions in Part A require a lawyer's
-   opinion on your actual facts**, particularly the date your site first became
-   publicly reachable.
-5. **A registered Indian patent agent is required** to prosecute an Indian
-   application on your behalf.
+   was found by ordinary web searching. A proper search will find art I have not
+   seen, and may find something reading directly on claim 1.
+2. **The claims need professional revision.** Claim scope is the whole value of a
+   patent, and the set above is a starting point, not a filing text. It is also
+   deliberately over inclusive, per the note in Part D.
+3. **None of the ten figures has been drawn.** They must be prepared to each
+   office's formal drawing standards.
+4. **The thermal figures are calculated, not measured.** 9.2 J for a 0.20 ml charge
+   at 25 K rise assumes 2.0 J/g/K and 0.92 g/ml. Confirm against the actual oils
+   before the complete specification, and measure on the bench rig.
+5. **Nothing has been reduced to practice.** No interlock has been built, no loop
+   has been closed, no viscosity has been inferred from a real return stroke. The
+   specification must be enabling on paper, and the bench rig should exist before
+   the complete specification is filed.
+6. **A registered Indian patent agent is required** to prosecute in India.
+7. **The Section 39 and disclosure questions require a lawyer's opinion on your
+   actual facts**, especially the site's first public date.
 
-## The single most important next step
+## The order of the next three things
 
-**Establish the date your Amplify site first became publicly reachable, and
-password protect it today if it is live.** Everything else in this document can
-wait a week. That cannot, because in Europe and India the clock it started cannot
-be stopped or reversed, only outrun.
+1. **Establish and evidence the date the site first became publicly reachable.**
+   The password protection stops the bleeding but does not heal the wound, and the
+   evidence decays.
+2. **File the Indian provisional**, with the full description of all six aspects.
+   It is cheap, it can be done in days, and it starts every clock you need.
+3. **Build the bench rig**, which is a spring, a piston, a chamber, a latch, a
+   timer and a thermistor. **If the return stroke duration tracks viscosity as
+   predicted, aspects 3 to 6 are all real**, and you will know within a month for
+   the price of a prototype round.
