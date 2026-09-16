@@ -6,6 +6,7 @@ const PAGES = [
   { src: '../site/index.html', out: '../build/artifact.html' },
   { src: '../site/engineering.html', out: '../build/dossier.html' },
   { src: '../site/dream.html', out: '../build/dream.html' },
+  { src: '../site/patent.html', out: '../build/patent.html' },
 ];
 
 mkdirSync(new URL('../build/', import.meta.url), { recursive: true });
@@ -25,7 +26,7 @@ for (const { src, out } of PAGES) {
     .trim();
 
   // Relative page links do not resolve between two separate artifacts.
-  const linked = body.replace(/href="(index|engineering|dream)\.html"/g, 'href="#" data-page="$1"');
+  const linked = body.replace(/href="(index|engineering|dream|patent)\.html"/g, 'href="#" data-page="$1"');
 
   writeFileSync(new URL(out, import.meta.url), `${carried}\n${linked.trim()}\n`);
   console.log('wrote', out.replace('../', ''));
